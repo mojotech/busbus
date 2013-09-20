@@ -18,6 +18,8 @@
 		2289A1E117EBDFC900A54599 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2289A1E017EBDFC900A54599 /* Default-568h@2x.png */; };
 		2289A1E417EBDFC900A54599 /* busbusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2289A1E317EBDFC900A54599 /* busbusViewController.m */; };
 		2289A1E717EBDFC900A54599 /* busbusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2289A1E517EBDFC900A54599 /* busbusViewController.xib */; };
+		2289A1F017EBE02F00A54599 /* Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 2289A1EF17EBE02F00A54599 /* Bus.m */; };
+		2289A1F217EBE2E900A54599 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2289A1F117EBE2E900A54599 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		2289A1E217EBDFC900A54599 /* busbusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = busbusViewController.h; sourceTree = "<group>"; };
 		2289A1E317EBDFC900A54599 /* busbusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = busbusViewController.m; sourceTree = "<group>"; };
 		2289A1E617EBDFC900A54599 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/busbusViewController.xib; sourceTree = "<group>"; };
+		2289A1EE17EBE02F00A54599 /* Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bus.h; sourceTree = "<group>"; };
+		2289A1EF17EBE02F00A54599 /* Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bus.m; sourceTree = "<group>"; };
+		2289A1F117EBE2E900A54599 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2289A1F217EBE2E900A54599 /* CoreLocation.framework in Frameworks */,
 				2289A1CB17EBDFC900A54599 /* UIKit.framework in Frameworks */,
 				2289A1CD17EBDFC900A54599 /* Foundation.framework in Frameworks */,
 				2289A1CF17EBDFC900A54599 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +62,7 @@
 		2289A1BE17EBDFC900A54599 = {
 			isa = PBXGroup;
 			children = (
+				2289A1F117EBE2E900A54599 /* CoreLocation.framework */,
 				2289A1D017EBDFC900A54599 /* busbus */,
 				2289A1C917EBDFC900A54599 /* Frameworks */,
 				2289A1C817EBDFC900A54599 /* Products */,
@@ -83,6 +90,7 @@
 		2289A1D017EBDFC900A54599 /* busbus */ = {
 			isa = PBXGroup;
 			children = (
+				2289A1ED17EBE00100A54599 /* models */,
 				2289A1D917EBDFC900A54599 /* busbusAppDelegate.h */,
 				2289A1DA17EBDFC900A54599 /* busbusAppDelegate.m */,
 				2289A1E217EBDFC900A54599 /* busbusViewController.h */,
@@ -105,6 +113,15 @@
 				2289A1E017EBDFC900A54599 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2289A1ED17EBE00100A54599 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2289A1EE17EBE02F00A54599 /* Bus.h */,
+				2289A1EF17EBE02F00A54599 /* Bus.m */,
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +194,7 @@
 				2289A1D717EBDFC900A54599 /* main.m in Sources */,
 				2289A1DB17EBDFC900A54599 /* busbusAppDelegate.m in Sources */,
 				2289A1E417EBDFC900A54599 /* busbusViewController.m in Sources */,
+				2289A1F017EBE02F00A54599 /* Bus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
