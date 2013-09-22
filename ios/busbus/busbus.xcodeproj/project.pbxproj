@@ -153,6 +153,11 @@
 				CLASSPREFIX = busbus;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Sam Saccone";
+				TargetAttributes = {
+					2289A1C617EBDFC900A54599 = {
+						DevelopmentTeam = 9J835CKYCL;
+					};
+				};
 			};
 			buildConfigurationList = 2289A1C217EBDFC900A54599 /* Build configuration list for PBXProject "busbus" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -279,10 +284,13 @@
 		2289A1EB17EBDFC900A54599 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "busbus/busbus-Prefix.pch";
 				INFOPLIST_FILE = "busbus/busbus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -290,10 +298,13 @@
 		2289A1EC17EBDFC900A54599 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "busbus/busbus-Prefix.pch";
 				INFOPLIST_FILE = "busbus/busbus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -317,6 +328,7 @@
 				2289A1EC17EBDFC900A54599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

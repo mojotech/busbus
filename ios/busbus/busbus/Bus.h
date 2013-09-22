@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+
 @interface Bus : NSObject
 
-@property(nonatomic, readwrite) CLLocationCoordinate2D location;
-@property(nonatomic, copy) NSString *id;
+- (id)initWithLocation:(CLLocationCoordinate2D)l id:(NSString *)i;
+
+@property(nonatomic) CLLocationCoordinate2D location;
+@property(nonatomic) NSString *id;
 @end

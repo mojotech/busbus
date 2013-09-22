@@ -10,6 +10,9 @@
 
 @implementation Bus
 
+@synthesize id;
+@synthesize location;
+
 - (id)init
 {
     return [self initWithLocation:CLLocationCoordinate2DMake(40.2, 21.2) id:@"fake"];
@@ -20,10 +23,17 @@
     self = [super init];
     
     if (self) {
-        _location = l;
-        _id = i;
+        [self setLocation:l];
+        [self setId:i];
     }
     
     return self;
+}
+
+- (NSString *)description
+{
+    NSString *description = [[NSString alloc] initWithFormat:@"lat %f lng %f : %@", location.latitude, location.longitude, id];
+
+    return description;
 }
 @end
