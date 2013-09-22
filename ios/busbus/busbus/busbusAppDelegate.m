@@ -13,7 +13,7 @@
 @implementation busbusAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+{    
     NSMutableArray *locations = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 10; ++i) {
@@ -27,6 +27,7 @@
     self.viewController = [[busbusViewController alloc] initWithNibName:@"busbusViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 

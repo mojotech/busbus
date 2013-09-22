@@ -20,6 +20,7 @@
 		2289A1E717EBDFC900A54599 /* busbusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2289A1E517EBDFC900A54599 /* busbusViewController.xib */; };
 		2289A1F017EBE02F00A54599 /* Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 2289A1EF17EBE02F00A54599 /* Bus.m */; };
 		2289A1F217EBE2E900A54599 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2289A1F117EBE2E900A54599 /* CoreLocation.framework */; };
+		228A973917EFA5F100590913 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228A973817EFA5F100590913 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		2289A1EE17EBE02F00A54599 /* Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bus.h; sourceTree = "<group>"; };
 		2289A1EF17EBE02F00A54599 /* Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bus.m; sourceTree = "<group>"; };
 		2289A1F117EBE2E900A54599 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		228A973817EFA5F100590913 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228A973917EFA5F100590913 /* MapKit.framework in Frameworks */,
 				2289A1F217EBE2E900A54599 /* CoreLocation.framework in Frameworks */,
 				2289A1CB17EBDFC900A54599 /* UIKit.framework in Frameworks */,
 				2289A1CD17EBDFC900A54599 /* Foundation.framework in Frameworks */,
@@ -80,6 +83,7 @@
 		2289A1C917EBDFC900A54599 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				228A973817EFA5F100590913 /* MapKit.framework */,
 				2289A1CA17EBDFC900A54599 /* UIKit.framework */,
 				2289A1CC17EBDFC900A54599 /* Foundation.framework */,
 				2289A1CE17EBDFC900A54599 /* CoreGraphics.framework */,

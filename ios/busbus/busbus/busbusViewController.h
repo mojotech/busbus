@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface busbusViewController : UIViewController
-
+@interface busbusViewController : UIViewController <MKMapViewDelegate>
+{
+    IBOutlet MKMapView *map;
+}
 @end
