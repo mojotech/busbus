@@ -17,13 +17,8 @@
 - (void)viewDidLoad
 {
     CLLocationCoordinate2D boston = CLLocationCoordinate2DMake(42.36, -71.06);
-    
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(boston, 1000, 1000);
-    [map setRegion:region animated:TRUE];
-    
-    UIView *header = [busList tableHeaderView];
-    
-    [header se]
+    [map setRegion:region animated:NO];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -31,13 +26,9 @@
 
 - (void)didReceiveMemoryWarning
 {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 @end
