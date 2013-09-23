@@ -20,7 +20,11 @@
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(boston, 1000, 1000);
     [map setRegion:region animated:TRUE];
-
+    
+    UIView *header = [busList tableHeaderView];
+    
+    [header se]
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }

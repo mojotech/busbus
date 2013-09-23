@@ -12,5 +12,6 @@
 @interface busbusViewController : UIViewController <MKMapViewDelegate>
 {
     IBOutlet MKMapView *map;
+    IBOutlet UITableView *busList;
 }
 @end
