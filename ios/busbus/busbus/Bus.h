@@ -14,6 +14,6 @@
 
 - (id)initWithLocation:(CLLocationCoordinate2D)l id:(NSString *)i;
 
-@property(nonatomic) CLLocationCoordinate2D location;
-@property(nonatomic) NSString *id;
+@property(readwrite) CLLocationCoordinate2D location;
+@property(readwrite) NSString *id;
 @end

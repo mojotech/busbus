@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "bustListTable.h"
 
 @interface busbusViewController : UIViewController <MKMapViewDelegate>
 {

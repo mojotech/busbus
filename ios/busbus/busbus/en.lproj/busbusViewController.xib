@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="busbusViewController">
             <connections>
+                <outlet property="busList" destination="u6O-JD-Ak3" id="EKV-Lj-y6c"/>
                 <outlet property="map" destination="Oeh-r0-zT4" id="ZQW-g2-46v"/>
                 <outlet property="view" destination="6" id="7"/>
             </connections>

@@ -9,7 +9,7 @@
 #import "busbusViewController.h"
 
 @interface busbusViewController ()
-
+@property (strong, nonatomic) bustListTable *busListController;
 @end
 
 @implementation busbusViewController
@@ -21,8 +21,14 @@
     [map setRegion:region animated:NO];
     boston.latitude -= map.region.span.latitudeDelta * 0.3;
     [map setCenterCoordinate:boston];
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+	
+    self.busListController = [[bustListTable alloc] init];
+
+    [busList setDelegate:self.busListController];
+    [busList setDataSource:self.busListController];
 }
 
 - (BOOL)shouldAutorotate

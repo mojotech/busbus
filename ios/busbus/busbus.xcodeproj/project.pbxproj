@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2255FB4817F119AC003C9158 /* bustListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2255FB4717F119AC003C9158 /* bustListTable.m */; };
 		2289A1CB17EBDFC900A54599 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2289A1CA17EBDFC900A54599 /* UIKit.framework */; };
 		2289A1CD17EBDFC900A54599 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2289A1CC17EBDFC900A54599 /* Foundation.framework */; };
 		2289A1CF17EBDFC900A54599 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2289A1CE17EBDFC900A54599 /* CoreGraphics.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2255FB4617F119AC003C9158 /* bustListTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bustListTable.h; sourceTree = "<group>"; };
+		2255FB4717F119AC003C9158 /* bustListTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bustListTable.m; sourceTree = "<group>"; };
 		2289A1C717EBDFC900A54599 /* busbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = busbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2289A1CA17EBDFC900A54599 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2289A1CC17EBDFC900A54599 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2255FB4917F128D6003C9158 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2255FB4617F119AC003C9158 /* bustListTable.h */,
+				2255FB4717F119AC003C9158 /* bustListTable.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
 		2289A1BE17EBDFC900A54599 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +106,11 @@
 		2289A1D017EBDFC900A54599 /* busbus */ = {
 			isa = PBXGroup;
 			children = (
+				2255FB4917F128D6003C9158 /* controllers */,
 				2289A1ED17EBE00100A54599 /* models */,
+				2289A1E217EBDFC900A54599 /* busbusViewController.h */,
 				2289A1D917EBDFC900A54599 /* busbusAppDelegate.h */,
 				2289A1DA17EBDFC900A54599 /* busbusAppDelegate.m */,
-				2289A1E217EBDFC900A54599 /* busbusViewController.h */,
 				2289A1E317EBDFC900A54599 /* busbusViewController.m */,
 				2289A1E517EBDFC900A54599 /* busbusViewController.xib */,
 				2289A1D117EBDFC900A54599 /* Supporting Files */,
@@ -204,6 +217,7 @@
 				2289A1DB17EBDFC900A54599 /* busbusAppDelegate.m in Sources */,
 				2289A1E417EBDFC900A54599 /* busbusViewController.m in Sources */,
 				2289A1F017EBE02F00A54599 /* Bus.m in Sources */,
+				2255FB4817F119AC003C9158 /* bustListTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,20 +7,12 @@
 //
 
 #import "busbusAppDelegate.h"
-#import "Bus.h"
 #import "busbusViewController.h"
 
 @implementation busbusAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
-    NSMutableArray *locations = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < 10; ++i) {
-        [locations addObject:[[Bus alloc] init]];
-    }
-    
-    NSLog(@"%@", locations);
+{
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
