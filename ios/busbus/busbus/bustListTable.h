@@ -10,7 +10,6 @@
 #import "Bus.h"
 
 @interface bustListTable : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-@property NSMutableArray *busList;
-
+@property (readwrite) NSMutableArray *busList;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "busbusViewController.h"
+#import "Bus.h"
 
 @interface busbusViewController ()
 @property (strong, nonatomic) bustListTable *busListController;
@@ -29,6 +30,20 @@
 
     [busList setDelegate:self.busListController];
     [busList setDataSource:self.busListController];
+    
+    
+    // obviously this needs to be moved into a collection
+    NSArray *buses = [self.busListController busList];
+    
+    for(NSInteger i = 0; i < buses.count; ++i) {
+        MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+        Bus *bus = [buses objectAtIndex:i];
+        
+        [marker setCoordinate:bus.location];
+        [marker setTitle:bus.id];
+        
+        [map addAnnotation:marker];
+    }
 }
 
 - (BOOL)shouldAutorotate
