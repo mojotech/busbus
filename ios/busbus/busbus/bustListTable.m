@@ -18,7 +18,7 @@
         NSMutableArray *buses = [[NSMutableArray alloc] init];
         for (int i = 0; i < 10; ++i) {
             NSString *name = [NSString stringWithFormat:@"v000%d", i];
-            [buses addObject:[[Bus alloc] initWithLocation:CLLocationCoordinate2DMake(41.523, -71.4531) id:name]];
+            [buses addObject:[[Bus alloc] initWithLocationIdRouteAndStop:CLLocationCoordinate2DMake(41.523, -71.4531) id:name route:@"123" nextStop:@"banks"]];
         }
         
         _busList = buses;
