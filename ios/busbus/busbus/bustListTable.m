@@ -14,11 +14,21 @@
 {
     self = [super init];
     
-    if(self) {
+    NSArray *locations = [[NSArray alloc] initWithObjects:
+                          [[CLLocation alloc] initWithLatitude:42.279300689697266 longitude:-71.11894226074219],
+                          [[CLLocation alloc] initWithLatitude:42.27154541015625 longitude:-71.17156219482422],
+                          [[CLLocation alloc] initWithLatitude:42.25250244140625 longitude:-71.11825561523438],
+                          [[CLLocation alloc] initWithLatitude:42.28729248046875 longitude:-71.1271743774414],
+                          [[CLLocation alloc] initWithLatitude:42.28920364379883 longitude:-71.12512969970703],
+                          [[CLLocation alloc] initWithLatitude:42.28145217895508 longitude:-71.13356018066406],
+                          [[CLLocation alloc] initWithLatitude:42.25502395629883 longitude:-71.12413787841797],
+                          nil];
+
+                          if(self) {
         NSMutableArray *buses = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < locations.count; ++i) {
             NSString *name = [NSString stringWithFormat:@"v000%d", i];
-            [buses addObject:[[Bus alloc] initWithLocationIdRouteAndStop:CLLocationCoordinate2DMake(41.523, -71.4531) id:name route:@"123" nextStop:@"banks"]];
+            [buses addObject:[[Bus alloc] initWithLocationIdRouteAndStop:[[locations objectAtIndex:i] coordinate] id:name route:@"123" nextStop:@"banks"]];
         }
         
         _busList = buses;
