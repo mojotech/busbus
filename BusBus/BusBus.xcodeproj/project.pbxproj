@@ -20,6 +20,7 @@
 		940A694618AC21B600472B65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 940A694418AC21B600472B65 /* InfoPlist.strings */; };
 		940A694818AC21B600472B65 /* BusBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A694718AC21B600472B65 /* BusBusTests.m */; };
 		940A695218AC21F900472B65 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940A695118AC21F900472B65 /* MainStoryboard.storyboard */; };
+		940A695518AC222800472B65 /* BusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695418AC222800472B65 /* BusBusViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		940A694518AC21B600472B65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		940A694718AC21B600472B65 /* BusBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusBusTests.m; sourceTree = "<group>"; };
 		940A695118AC21F900472B65 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
+		940A695318AC222800472B65 /* BusBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusBusViewController.h; sourceTree = SOURCE_ROOT; };
+		940A695418AC222800472B65 /* BusBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusBusViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 		940A692818AC21B600472B65 /* BusBus */ = {
 			isa = PBXGroup;
 			children = (
+				940A695318AC222800472B65 /* BusBusViewController.h */,
+				940A695418AC222800472B65 /* BusBusViewController.m */,
 				940A695118AC21F900472B65 /* MainStoryboard.storyboard */,
 				940A693118AC21B600472B65 /* AppDelegate.h */,
 				940A693218AC21B600472B65 /* AppDelegate.m */,
@@ -244,6 +249,7 @@
 			files = (
 				940A693318AC21B600472B65 /* AppDelegate.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
+				940A695518AC222800472B65 /* BusBusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
