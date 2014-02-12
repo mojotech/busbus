@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "BusListTable.h"
 
 @interface BusBusViewController : UIViewController <MKMapViewDelegate>
-
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
+{
+    IBOutlet MKMapView *mapView;
+    IBOutlet UITableView *busListTable;
+}
 @end

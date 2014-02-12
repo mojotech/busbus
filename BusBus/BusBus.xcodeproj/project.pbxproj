@@ -23,6 +23,8 @@
 		940A695518AC222800472B65 /* BusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695418AC222800472B65 /* BusBusViewController.m */; };
 		940A695818AC22CD00472B65 /* Bus.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695718AC22CD00472B65 /* Bus.m */; };
 		940A695B18AC24C000472B65 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A695A18AC24C000472B65 /* MapKit.framework */; };
+		940A696118AC267300472B65 /* BusListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A696018AC267300472B65 /* BusListTable.m */; };
+		9499D24C18AC349C000C1374 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9499D24A18AC2E66000C1374 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		940A695618AC22CD00472B65 /* Bus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bus.h; sourceTree = "<group>"; };
 		940A695718AC22CD00472B65 /* Bus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bus.m; sourceTree = "<group>"; };
 		940A695A18AC24C000472B65 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		940A695F18AC267300472B65 /* BusListTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusListTable.h; path = ../BusListTable.h; sourceTree = "<group>"; };
+		940A696018AC267300472B65 /* BusListTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusListTable.m; path = ../BusListTable.m; sourceTree = "<group>"; };
+		9499D24A18AC2E66000C1374 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9499D24C18AC349C000C1374 /* CoreLocation.framework in Frameworks */,
 				940A695B18AC24C000472B65 /* MapKit.framework in Frameworks */,
 				940A692518AC21B600472B65 /* CoreGraphics.framework in Frameworks */,
 				940A692718AC21B600472B65 /* UIKit.framework in Frameworks */,
@@ -107,6 +113,7 @@
 		940A692118AC21B600472B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9499D24A18AC2E66000C1374 /* CoreLocation.framework */,
 				940A695A18AC24C000472B65 /* MapKit.framework */,
 				940A692218AC21B600472B65 /* Foundation.framework */,
 				940A692418AC21B600472B65 /* CoreGraphics.framework */,
@@ -119,6 +126,8 @@
 		940A692818AC21B600472B65 /* BusBus */ = {
 			isa = PBXGroup;
 			children = (
+				940A695F18AC267300472B65 /* BusListTable.h */,
+				940A696018AC267300472B65 /* BusListTable.m */,
 				940A695318AC222800472B65 /* BusBusViewController.h */,
 				940A695418AC222800472B65 /* BusBusViewController.m */,
 				940A695118AC21F900472B65 /* MainStoryboard.storyboard */,
@@ -264,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940A696118AC267300472B65 /* BusListTable.m in Sources */,
 				940A693318AC21B600472B65 /* AppDelegate.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* Bus.m in Sources */,
@@ -468,6 +478,7 @@
 				940A694D18AC21B600472B65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		940A694E18AC21B600472B65 /* Build configuration list for PBXNativeTarget "BusBusTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +487,7 @@
 				940A695018AC21B600472B65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -12,6 +12,8 @@
 
 @interface BusBusViewController ()
 
+@property (strong, nonatomic) BusListTable *busListController;
+
 @end
 
 @implementation BusBusViewController
@@ -28,13 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+    self.busListController = [[BusListTable alloc] init];
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [busListTable setDelegate:self.busListController];
+    [busListTable setDataSource:self.busListController];
 }
-
 @end
