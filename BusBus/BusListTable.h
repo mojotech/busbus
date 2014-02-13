@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BusListTable : UITableView
+@interface BusListTable : UITableView <UITableViewDataSource, UITableViewDelegate>
+
 @property (strong, nonatomic) NSMutableArray *busList;
 
 @end
