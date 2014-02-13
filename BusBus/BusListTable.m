@@ -7,6 +7,7 @@
 //
 
 #import "BusListTable.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation BusListTable
 
