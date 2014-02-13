@@ -7,6 +7,7 @@
 //
 
 #import "BusListTable.h"
+#import "Bus.h"
 #import <CoreLocation/CoreLocation.h>
 
 @implementation BusListTable
@@ -57,8 +58,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+
+    Bus *bus = [self.busList objectAtIndex:indexPath.row];
+    cell.textLabel.text = bus.id;
+
     return cell;
 }
-
-
 @end
