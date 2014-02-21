@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "BusListTable.h"
+#import "Bus.h"
 
 @interface BusBusViewController : UIViewController <MKMapViewDelegate>
-{
-    IBOutlet MKMapView *mapView;
-    IBOutlet UITableView *busListTable;
-}
+
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) IBOutlet UITableView *busListTable;
+
+@property (nonatomic, strong) Bus *bus;
+@property (nonatomic, strong) NSArray *buses;
+
+- (NSDictionary *)convertDummyJSONData;
+
 @end
