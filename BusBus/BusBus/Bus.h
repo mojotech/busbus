@@ -8,14 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+
 @interface Bus : NSObject
 
-- (id)initWithLocationIdRouteAndStop:(CLLocationCoordinate2D)l id:(NSString *)i route:(NSString *)r nextStop:(NSString *)ns;
+@property (nonatomic, strong) NSArray *buses;
+@property (nonatomic, strong) NSDictionary *busJSON;
 
 @property(readwrite) CLLocationCoordinate2D location;
-@property(readwrite) NSString *id;
-@property(readwrite) NSString *route;
-@property(readwrite) NSString *nextStop;
+@property(nonatomic, strong) NSString *lat;
+@property(nonatomic, strong) NSString *lng;
+@property(nonatomic, strong) NSString *id;
+@property(nonatomic, strong) NSString *route;
+@property(nonatomic, strong) NSString *nextStop;
 
+- (id)initWithRoute:(NSString *)bRoute
+                lat:(NSString *)bLat
+                lng:(NSString *)bLng
+           nextStop:(NSString *)bNextStop;
 
 @end

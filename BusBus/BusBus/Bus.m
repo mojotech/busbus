@@ -10,34 +10,21 @@
 
 @implementation Bus
 
-@synthesize location;
-@synthesize id;
 
-- (id)init
-{
-    return [self initWithLocationIdRouteAndStop:CLLocationCoordinate2DMake(40.2, 21.2) id:@"fake1" route:@"1002" nextStop:@"banks and park"];
-}
+- (id)initWithRoute:(NSString *)bRoute
+                lat:(NSString *)bLat
+                lng:(NSString *)bLng
+                nextStop:(NSString *)bNextStop
 
-- (id)initWithLocationIdRouteAndStop:(CLLocationCoordinate2D)l id:(NSString *)i route:(NSString *)r nextStop:(NSString *)ns
 {
     self = [super init];
-
     if (self) {
-        [self setLocation:l];
-        [self setId:i];
-        [self setRoute:r];
-        [self setNextStop:ns];
+        self.route = bRoute;
+        self.lat = bLat;
+        self.lng = bLng;
+        self.nextStop = bNextStop;
     }
-
     return self;
-
-}
-
-- (NSString *)description
-{
-    NSString *description = [[NSString alloc] initWithFormat:@"lat %f lng %f : %@, %@, %@", location.latitude, location.longitude, id, self.route, self.nextStop];
-
-    return description;
 }
 
 @end
