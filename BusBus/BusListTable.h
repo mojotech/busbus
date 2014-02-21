@@ -10,6 +10,6 @@
 
 @interface BusListTable : UITableView <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSMutableArray *busList;
+@property (strong, nonatomic) NSArray *busList;
 
 @end
