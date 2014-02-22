@@ -10,6 +10,7 @@
 #import "BusBusViewController.h"
 #import "Bus.h"
 #import <MapKit/MapKit.h>
+#import <Mantle.h>
 
 @interface BusBusViewController ()
 
@@ -28,27 +29,15 @@
     [self.busListTable setDataSource:self.busListController];
 
 
-    NSDictionary *busData = [self.convertDummyJSONData objectForKey:@"RESULTS"];
-    NSLog(@"busData: %@", busData);
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    NSError *error = nil;
 
-    for (NSDictionary *busDictionary in busData) {
+    Bus *bus = [MTLJSONAdapter modelOfClass: [Bus class] fromJSONDictionary:[self convertDummyJSONData] error: &error];
 
-        NSString *route = [busDictionary objectForKey:@"route"];
-        NSString *latitude = [busDictionary objectForKey:@"latitude"];
-        NSString *longitude = [busDictionary objectForKey:@"longitude"];
-        NSString *address = [busDictionary objectForKey:@"address"];
-
-        Bus *bus = [[Bus alloc] initWithRoute:route lat:latitude lng:longitude nextStop:address];
-        [tempArray addObject:bus];
-
-        self.buses = [[NSArray alloc] initWithArray:tempArray];
-
+    if (error){
+        NSLog(@"Model issue, whoops: %@", error);
     }
 
-
-    // This needs to be refactored. Need to pass bus model to BusListTable
-    self.busListController.busList = self.buses;
+    self.busListController.bus = self.bus;
 
     [self setDummyLocationToBoston];
 }
