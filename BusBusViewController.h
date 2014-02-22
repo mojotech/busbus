@@ -19,5 +19,6 @@
 @property (nonatomic, strong) Bus *bus;
 
 - (NSDictionary *)convertDummyJSONData;
+- (void)dropBusLocationsOnMap;
 
 @end

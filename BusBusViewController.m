@@ -28,7 +28,6 @@
     [self.busListTable setDelegate:self.busListController];
     [self.busListTable setDataSource:self.busListController];
 
-
     NSError *error = nil;
 
     self.bus = [MTLJSONAdapter modelOfClass: [Bus class] fromJSONDictionary:[self convertDummyJSONData] error: &error];
@@ -37,9 +36,25 @@
         NSLog(@"Model issue, whoops: %@", error);
     }
 
-    self.busListController.bus = self.bus;
+    self.busListController.busList = self.bus.buses;
 
     [self setDummyLocationToBoston];
+    [self dropBusLocationsOnMap];
+}
+
+- (void)dropBusLocationsOnMap
+{
+    int i;
+    for (i = 0; i < [self.bus.buses count]; i++)
+    {
+        double fLat = [self.bus.buses[i][@"latitude"] doubleValue];
+        double fLng = [self.bus.buses[i][@"longitude"] doubleValue];
+        CLLocationDegrees *lat = &fLat;
+        CLLocationDegrees *lng = &fLng;
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
+        [self.mapView addAnnotation:point];
+    }
 }
 
 - (NSDictionary *)convertDummyJSONData
