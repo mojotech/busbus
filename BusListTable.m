@@ -41,9 +41,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    NSDictionary *busTableItem = [self.busList objectAtIndex:indexPath.row];
-    NSString *route = [NSString stringWithFormat:@"%@", [busTableItem objectForKey:@"route"]];
-    cell.textLabel.text = route;
+    cell.textLabel.text = self.busList[indexPath.row][@"address"];
     return cell;
 }
 @end
