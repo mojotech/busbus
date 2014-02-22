@@ -17,7 +17,6 @@
 @property (nonatomic, strong) IBOutlet UITableView *busListTable;
 
 @property (nonatomic, strong) Bus *bus;
-@property (nonatomic, strong) NSArray *buses;
 
 - (NSDictionary *)convertDummyJSONData;
 
