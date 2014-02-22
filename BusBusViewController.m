@@ -31,7 +31,7 @@
 
     NSError *error = nil;
 
-    Bus *bus = [MTLJSONAdapter modelOfClass: [Bus class] fromJSONDictionary:[self convertDummyJSONData] error: &error];
+    self.bus = [MTLJSONAdapter modelOfClass: [Bus class] fromJSONDictionary:[self convertDummyJSONData] error: &error];
 
     if (error){
         NSLog(@"Model issue, whoops: %@", error);
