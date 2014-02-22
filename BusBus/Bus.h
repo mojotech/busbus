@@ -8,22 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Mantle.h>
 
-@interface Bus : NSObject
+@interface Bus : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, strong) NSArray *buses;
-@property (nonatomic, strong) NSDictionary *busJSON;
 
-@property(readwrite) CLLocationCoordinate2D location;
-@property(nonatomic, strong) NSString *lat;
-@property(nonatomic, strong) NSString *lng;
-@property(nonatomic, strong) NSString *id;
-@property(nonatomic, strong) NSString *route;
-@property(nonatomic, strong) NSString *nextStop;
+@end
 
-- (id)initWithRoute:(NSString *)bRoute
-                lat:(NSString *)bLat
-                lng:(NSString *)bLng
-           nextStop:(NSString *)bNextStop;
+@interface BusItem : MTLModel <MTLJSONSerializing>
+
+@property(nonatomic, strong) NSNumber *latitude;
+@property(nonatomic, strong) NSNumber *longitude;
+@property(nonatomic, strong) NSNumber *id;
+@property(nonatomic, strong) NSNumber *route;
+@property(nonatomic, strong) NSString *address;
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey;
 
 @end

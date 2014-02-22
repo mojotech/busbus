@@ -7,24 +7,33 @@
 //
 
 #import "Bus.h"
+#import <Mantle.h>
 
 @implementation Bus
 
-
-- (id)initWithRoute:(NSString *)bRoute
-                lat:(NSString *)bLat
-                lng:(NSString *)bLng
-                nextStop:(NSString *)bNextStop
-
++ (NSValueTransformer *)busesTransformer
 {
-    self = [super init];
-    if (self) {
-        self.route = bRoute;
-        self.lat = bLat;
-        self.lng = bLng;
-        self.nextStop = bNextStop;
-    }
-    return self;
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[BusItem class]];
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"buses"          : @"buses"
+             };
+}
+
+@end
+
+@implementation BusItem
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"route"       : @"route",
+             @"nextStop"    : @"address",
+             @"latitude"    : @"latitude",
+             @"longitude"   : @"longitude",
+             @"id"          : @"id"
+             };
 }
 
 @end
