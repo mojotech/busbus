@@ -36,7 +36,8 @@
     static NSString *CellIdentifier = @"Cell";
     
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
+    cell.backgroundColor = [UIColor clearColor];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
