@@ -36,17 +36,18 @@
         NSLog(@"Model issue, whoops: %@", error);
     }
 
-    self.busListController.busList = self.bus.buses;
-
     [self setDummyLocationToBoston];
     [self dropBusLocationsOnMap];
+
+    self.busListController.busList = self.bus.buses;
+    self.busListController.busPinAnnotations = self.busPinAnnotations;
 
     self.busListTable.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0f/255.0f blue:255.0f/255.0f alpha:0.9f/1.0f];
 }
 
 - (void)dropBusLocationsOnMap
 {
-    NSMutableArray *busPinAnnoation = [[NSMutableArray alloc] init];
+    NSMutableArray *tempBusPinAnnoations = [[NSMutableArray alloc] init];
     int i;
     for (i = 0; i < [self.bus.buses count]; i++)
     {
@@ -56,11 +57,13 @@
         CLLocationDegrees *lng = &fLng;
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
 
-        [busPinAnnoation addObject:point];
+        [tempBusPinAnnoations addObject:point];
         point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
     }
 
-    [self.mapView showAnnotations:busPinAnnoation animated:YES];
+    self.busPinAnnotations = [[NSArray alloc] initWithArray:tempBusPinAnnoations];
+
+    [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
 }
 
 - (NSDictionary *)convertDummyJSONData

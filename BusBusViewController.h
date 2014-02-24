@@ -16,6 +16,8 @@
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) IBOutlet UITableView *busListTable;
 
+@property (nonatomic, strong) NSArray *busPinAnnotations;
+
 @property (nonatomic, strong) Bus *bus;
 
 - (NSDictionary *)convertDummyJSONData;
