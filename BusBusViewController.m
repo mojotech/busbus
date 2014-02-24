@@ -40,8 +40,6 @@
     [self dropBusLocationsOnMap];
 
     self.busListController.busList = self.bus.buses;
-    self.busListController.busPinAnnotations = self.busPinAnnotations;
-
     self.busListTable.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0f/255.0f blue:255.0f/255.0f alpha:0.9f/1.0f];
 }
 
