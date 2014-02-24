@@ -13,7 +13,7 @@
 
 + (NSValueTransformer *)busesTransformer
 {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[BusItem class]];
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[BusItem class]];
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
