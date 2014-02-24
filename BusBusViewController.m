@@ -12,21 +12,11 @@
 #import <MapKit/MapKit.h>
 #import <Mantle.h>
 
-@interface BusBusViewController ()
-
-@property (strong, nonatomic) BusListTable *busListController;
-
-@end
-
 @implementation BusBusViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.busListController = [[BusListTable alloc] init];
-    [self.busListTable setDelegate:self.busListController];
-    [self.busListTable setDataSource:self.busListController];
 
     NSError *error = nil;
 
@@ -36,11 +26,25 @@
         NSLog(@"Model issue, whoops: %@", error);
     }
 
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
+    self.pageViewController.dataSource = self;
+    
+    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    NSArray *viewControllers = @[startingViewController];
+    startingViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
+    NSLog(@"viewControllers: %@", viewControllers);
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+
+
+    self.pageViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
+    
+    [self addChildViewController:_pageViewController];
+    [self.pageView addSubview:_pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
+    
+
     [self setDummyLocationToBoston];
     [self dropBusLocationsOnMap];
-
-    self.busListController.busList = self.bus.buses;
-    self.busListTable.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0f/255.0f blue:255.0f/255.0f alpha:0.9f/1.0f];
 }
 
 - (void)dropBusLocationsOnMap
@@ -82,6 +86,62 @@
     [self.mapView setRegion:region animated:NO];
     boston.latitude -= self.mapView.region.span.latitudeDelta * 0.3;
     [self.mapView setCenterCoordinate:boston];
+}
+
+- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+{
+    if (([self.bus.buses count] == 0) || (index >= [self.bus.buses count])) {
+        NSLog(@"nil returne");
+        return nil;
+    }
+    
+    // Create a new view controller and pass suitable data.
+    PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    pageContentViewController.titleText = self.bus.buses[index][@"address"];
+    pageContentViewController.pageIndex = index;
+
+    return pageContentViewController;
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((PageContentViewController *) viewController).pageIndex;
+    
+    if((index == 0) || (index == NSNotFound))
+    {
+        return nil;
+    }
+    
+    index--;
+    NSLog(@"index--: %lu", (unsigned long)index--);
+    return [self viewControllerAtIndex:index];
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
+
+    if (index == NSNotFound) {
+        return nil;
+    }
+
+    index++;
+    if (index == [self.bus.buses count]) {
+        return nil;
+    }
+    return [self viewControllerAtIndex:index];
+}
+
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    NSLog(@"bus count: %lu", (unsigned long)[self.bus.buses count]);
+    return [self.bus.buses count];
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
 }
 
 @end

@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "BusListTable.h"
+#import "PageContentViewController.h"
 #import "Bus.h"
 
-@interface BusBusViewController : UIViewController <MKMapViewDelegate>
+@interface BusBusViewController : UIViewController <MKMapViewDelegate, UIPageViewControllerDataSource>
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) IBOutlet UITableView *busListTable;
-
 @property (nonatomic, strong) NSArray *busPinAnnotations;
+@property (nonatomic, strong) UIPageViewController *pageViewController;
 
+@property (strong, nonatomic) IBOutlet UIView *pageView;
 @property (nonatomic, strong) Bus *bus;
 
 - (NSDictionary *)convertDummyJSONData;
