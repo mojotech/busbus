@@ -29,6 +29,16 @@
     [self setDummyLocationToBoston];
     [self dropBusLocationsOnMap];
     [self instantiatePageViewController];
+
+
+    // This needs to be placed in to a method that returns a CCLocationCoordinate2DMake
+    double fLat = [self.bus.buses[0][@"latitude"] doubleValue];
+    double fLng = [self.bus.buses[0][@"longitude"] doubleValue];
+    CLLocationDegrees *lat = &fLat;
+    CLLocationDegrees *lng = &fLng;
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
+    [self.mapView setCenterCoordinate:point.coordinate animated:YES];
 }
 
 - (void)instantiatePageViewController
@@ -64,9 +74,8 @@
     }
 
     self.busPinAnnotations = [[NSArray alloc] initWithArray:tempBusPinAnnoations];
-
     [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
-}
+ }
 
 - (NSDictionary *)convertDummyJSONData
 {
