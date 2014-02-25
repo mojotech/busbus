@@ -96,6 +96,7 @@
 
     PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     pageContentViewController.titleText = self.bus.buses[index][@"route"];
+    pageContentViewController.busStop   = self.bus.buses[index][@"address"];
     pageContentViewController.pageIndex = index;
 
     double fLat = [self.bus.buses[index][@"latitude"] doubleValue];

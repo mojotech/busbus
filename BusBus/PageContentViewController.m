@@ -21,6 +21,7 @@
     [self customizeInterface];
 
     self.label.text = self.titleText;
+    self.stop.text = self.busStop;
 }
 
 - (void)customizeInterface
