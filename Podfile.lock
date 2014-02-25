@@ -1,12 +1,15 @@
 PODS:
+  - FXBlurView (1.5.3)
   - Mantle (1.3.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.3.1)
 
 DEPENDENCIES:
+  - FXBlurView
   - Mantle
 
 SPEC CHECKSUMS:
+  FXBlurView: 8d662dd5b4ba15a1a0e97235501326fbdfb2b755
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
 
 COCOAPODS: 0.29.0
