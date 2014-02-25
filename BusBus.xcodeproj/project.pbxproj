@@ -237,6 +237,9 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					940A691E18AC21B600472B65 = {
+						DevelopmentTeam = EW56673BU3;
+					};
 					940A693918AC21B600472B65 = {
 						TestTargetID = 940A691E18AC21B600472B65;
 					};
@@ -444,10 +447,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusBus/BusBus-Prefix.pch";
 				INFOPLIST_FILE = "BusBus/BusBus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2533C783-88CA-441E-B76E-8F7AB237C068";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -458,10 +464,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusBus/BusBus-Prefix.pch";
 				INFOPLIST_FILE = "BusBus/BusBus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2533C783-88CA-441E-B76E-8F7AB237C068";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
