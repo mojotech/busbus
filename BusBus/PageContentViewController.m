@@ -18,7 +18,14 @@
 {
     [super viewDidLoad];
 
+    [self customizeInterface];
+
     self.label.text = self.titleText;
+}
+
+- (void)customizeInterface
+{
+    self.label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:84.0f];
 }
 
 @end
