@@ -26,24 +26,26 @@
         NSLog(@"Model issue, whoops: %@", error);
     }
 
+    [self setDummyLocationToBoston];
+    [self dropBusLocationsOnMap];
+    [self instantiatePageViewController];
+}
+
+- (void)instantiatePageViewController
+{
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
-    
+
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     startingViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 
-
     self.pageViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
-    
     [self addChildViewController:_pageViewController];
     [self.pageView addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    
 
-    [self setDummyLocationToBoston];
-    [self dropBusLocationsOnMap];
 }
 
 - (void)dropBusLocationsOnMap
