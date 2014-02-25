@@ -100,6 +100,15 @@
     pageContentViewController.titleText = self.bus.buses[index][@"address"];
     pageContentViewController.pageIndex = index;
 
+    double fLat = [self.bus.buses[index][@"latitude"] doubleValue];
+    double fLng = [self.bus.buses[index][@"longitude"] doubleValue];
+    CLLocationDegrees *lat = &fLat;
+    CLLocationDegrees *lng = &fLng;
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
+
+    [self.mapView setCenterCoordinate:point.coordinate animated:YES];
+
     return pageContentViewController;
 }
 
