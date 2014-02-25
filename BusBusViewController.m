@@ -32,7 +32,6 @@
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     startingViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
-    NSLog(@"viewControllers: %@", viewControllers);
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 
 
@@ -91,11 +90,9 @@
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([self.bus.buses count] == 0) || (index >= [self.bus.buses count])) {
-        NSLog(@"nil returne");
         return nil;
     }
-    
-    // Create a new view controller and pass suitable data.
+
     PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     pageContentViewController.titleText = self.bus.buses[index][@"address"];
     pageContentViewController.pageIndex = index;
@@ -122,7 +119,6 @@
     }
     
     index--;
-    NSLog(@"index--: %lu", (unsigned long)index--);
     return [self viewControllerAtIndex:index];
 }
 
@@ -144,7 +140,6 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    NSLog(@"bus count: %lu", (unsigned long)[self.bus.buses count]);
     return [self.bus.buses count];
 }
 
