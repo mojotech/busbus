@@ -39,7 +39,52 @@
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
     [self.mapView setCenterCoordinate:point.coordinate animated:YES];
+    
     self.pageView.backgroundColor = [UIColor clearColor];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = (UITouch *)[touches anyObject];
+    float start = [touch locationInView:self.view].y;
+    if(start > 30 && self.pageView.center.y < 0)//touch was not in upper area of view AND pulldownView not visible
+    {
+        start = -1; //start is a CGFloat member of this view
+    }
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    float start = 0.0;
+    
+    if(start < 0)
+    {
+        return;
+    }
+    UITouch *touch = (UITouch *)[touches anyObject];
+    CGFloat now = [touch locationInView:self.view].y;
+    CGFloat diff = now - start;
+    BOOL directionUp = diff < 0;//directionUp is a BOOL member of this view
+    float nuCenterY = self.pageView.center.y + diff;
+    self.pageView.center = CGPointMake(self.pageView.center.x, nuCenterY);
+    start = now;
+}
+
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    BOOL directionUp = '\0';
+    float start;
+    if (directionUp)
+    {
+        //animate pulldownView out of visibel area
+        [UIView animateWithDuration:.3 animations:^{self.pageView.center = CGPointMake(self.pageView.center.x, -roundf(self.view.bounds.size.height/2.));}];
+    }
+    else if(start>=0)
+    {
+        //animate pulldownView with top to mainviews top
+        [UIView animateWithDuration:.3 animations:^{self.pageView.center = CGPointMake(self.pageView.center.x, roundf(self.pageView.bounds.size.height/2.));}];
+    }
 }
 
 - (void)instantiatePageViewController
