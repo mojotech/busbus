@@ -23,5 +23,6 @@
 
 - (NSDictionary *)convertDummyJSONData;
 - (void)dropBusLocationsOnMap;
+- (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
 
 @end

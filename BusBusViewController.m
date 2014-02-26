@@ -31,14 +31,14 @@
     [self instantiatePageViewController];
 
 
-    // This needs to be placed in to a method that returns a CCLocationCoordinate2DMake
+    // This needs to be placed in to a method that returns a CCLocationCoordinate
     double fLat = [self.bus.buses[0][@"latitude"] doubleValue];
     double fLng = [self.bus.buses[0][@"longitude"] doubleValue];
     CLLocationDegrees *lat = &fLat;
     CLLocationDegrees *lng = &fLng;
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
-    [self.mapView setCenterCoordinate:point.coordinate animated:YES];
+    [self moveCenterByOffset:CGPointMake(0, 100) from:point.coordinate];
 }
 
 - (void)instantiatePageViewController
@@ -115,10 +115,20 @@
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
 
-    [self.mapView setCenterCoordinate:point.coordinate animated:YES];
+    [self moveCenterByOffset:CGPointMake(0, 100) from:point.coordinate];
 
     return pageContentViewController;
 }
+
+- (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate
+{
+    CGPoint point = [self.mapView convertCoordinate:coordinate toPointToView:self.mapView];
+    point.x += offset.x;
+    point.y += offset.y;
+    CLLocationCoordinate2D center = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
+    [self.mapView setCenterCoordinate:center animated:YES];
+}
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
