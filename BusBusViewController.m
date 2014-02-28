@@ -39,6 +39,7 @@
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
     [self moveCenterByOffset:CGPointMake(0, 100) from:point.coordinate];
+    self.pageView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)instantiatePageViewController
