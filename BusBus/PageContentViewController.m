@@ -27,7 +27,7 @@
 - (void)customizeInterface
 {
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:84.0f];
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.9/1.0];
+    self.view.backgroundColor = [UIColor clearColor];
 }
 
 @end
