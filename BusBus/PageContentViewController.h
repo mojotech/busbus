@@ -16,5 +16,6 @@
 @property (nonatomic) NSUInteger pageIndex;
 @property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) NSString *busStop;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @end

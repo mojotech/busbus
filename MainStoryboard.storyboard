@@ -23,6 +23,12 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDR-Et-rod">
                                 <rect key="frame" x="0.0" y="329" width="320" height="239"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="zeA-U2-REb">
+                                        <rect key="frame" x="142" y="205" width="39" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </pageControl>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -31,6 +37,7 @@
                     <navigationItem key="navigationItem" title="BusBus" id="bcK-Gb-YXg"/>
                     <connections>
                         <outlet property="mapView" destination="TYE-ui-dd7" id="Pl4-KA-8Fe"/>
+                        <outlet property="pageControl" destination="zeA-U2-REb" id="Y19-vA-wBP"/>
                         <outlet property="pageView" destination="YDR-Et-rod" id="yKq-RG-EEj"/>
                     </connections>
                 </viewController>

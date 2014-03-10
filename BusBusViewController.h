@@ -15,14 +15,20 @@
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIView *pageView;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (nonatomic, strong) NSArray *busPinAnnotations;
 @property (nonatomic, strong) UIPageViewController *pageViewController;
+@property (nonatomic) float screenHeight;
+@property (nonatomic) float screenWidth;
 
 @property (nonatomic, strong) Bus *bus;
+
+@property (nonatomic, strong) UIView *pinView;
 
 - (NSDictionary *)convertDummyJSONData;
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
+- (UIImage *) imageWithView:(UIView *)view;
 
 @end
