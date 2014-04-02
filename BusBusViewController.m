@@ -49,14 +49,6 @@
     busRouteLabel.font = [UIFont boldSystemFontOfSize:10.0f];
     busRouteLabel.textAlignment = NSTextAlignmentCenter;
     [self.pinView addSubview:busRouteLabel];
-    
-    self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    self.pageControl.backgroundColor = [UIColor whiteColor];
-    self.pageControl.bounds = CGRectMake(0,
-                                         10,
-                                         320,
-                                         300);
 
     [self.mapView setDelegate:self];
     [self setDummyLocationToBoston];
