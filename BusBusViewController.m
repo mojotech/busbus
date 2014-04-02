@@ -32,9 +32,6 @@
     }
     
     self.pageView.backgroundColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:0.86/1.0];
-    
-    NSLog(@"pageView height: %f", self.pageView.bounds.size.height);
-    
     self.pinView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     self.pinView.backgroundColor = [UIColor redColor];
 
