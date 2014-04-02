@@ -72,25 +72,6 @@
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
     [self moveCenterByOffset:CGPointMake(0, 100) from:point.coordinate];
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-    tapGesture.numberOfTapsRequired = 1;
-    [self.pageView addGestureRecognizer:tapGesture];
-}
-
-- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateRecognized) {
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDelay:0.5];
-        [UIView setAnimationDelay:1.0];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        
-        self.pageView.frame = CGRectMake(0, self.view.bounds.size.height / 2, self.pageView.frame.size.width, self.pageView.frame.size.height);
-        
-        [UIView commitAnimations];
-
-    }
 }
 
 - (void)instantiatePageViewController
