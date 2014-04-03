@@ -50,7 +50,6 @@
     [self.pinView addSubview:busRouteLabel];
 
     [self.mapView setDelegate:self];
-    [self setDummyLocationToBoston];
     [self dropBusLocationsOnMap];
     [self instantiatePageViewController];
 
