@@ -27,6 +27,7 @@
 		948B142718C4F51D00ADA61A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948B142618C4F51D00ADA61A /* QuartzCore.framework */; };
 		9499D24C18AC349C000C1374 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9499D24A18AC2E66000C1374 /* CoreLocation.framework */; };
 		94D8A8E418BBC212007DFA6F /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8A8E318BBC212007DFA6F /* PageContentViewController.m */; };
+		94F606F018ECB0A800782D1B /* Boston.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 94F606EF18ECB0A800782D1B /* Boston.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		9499D24A18AC2E66000C1374 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		94D8A8E218BBC212007DFA6F /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		94D8A8E318BBC212007DFA6F /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
+		94F606EF18ECB0A800782D1B /* Boston.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Boston.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				940A695318AC222800472B65 /* BusBusViewController.h */,
 				940A695418AC222800472B65 /* BusBusViewController.m */,
+				94F606EF18ECB0A800782D1B /* Boston.gpx */,
 				940A695118AC21F900472B65 /* MainStoryboard.storyboard */,
 				94D8A8E218BBC212007DFA6F /* PageContentViewController.h */,
 				94D8A8E318BBC212007DFA6F /* PageContentViewController.m */,
@@ -267,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94F606F018ECB0A800782D1B /* Boston.gpx in Resources */,
 				940A695218AC21F900472B65 /* MainStoryboard.storyboard in Resources */,
 				940A692D18AC21B600472B65 /* InfoPlist.strings in Resources */,
 				940A693518AC21B600472B65 /* Images.xcassets in Resources */,
