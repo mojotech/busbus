@@ -9,6 +9,7 @@
 
 #import "BusBusViewController.h"
 #import "Bus.h"
+#import "BOManager.h"
 #import <MapKit/MapKit.h>
 #import <Mantle.h>
 #import <QuartzCore/QuartzCore.h>
@@ -21,6 +22,7 @@
     [super viewDidLoad];
 
     NSError *error = nil;
+    [[BOManager sharedManager] findCurrentLocation];
 
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     self.screenHeight = screenRect.size.height;
