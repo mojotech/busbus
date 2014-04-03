@@ -144,15 +144,6 @@
     return dictionary;
 }
 
-- (void)setDummyLocationToBoston
-{
-    CLLocationCoordinate2D boston = CLLocationCoordinate2DMake(42.36, -71.06);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(boston, 1000, 1000);
-    [self.mapView setRegion:region animated:NO];
-    boston.latitude -= self.mapView.region.span.latitudeDelta * 0.3;
-    [self.mapView setCenterCoordinate:boston];
-}
-
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([self.bus.buses count] == 0) || (index >= [self.bus.buses count])) {
@@ -184,7 +175,6 @@
     CLLocationCoordinate2D center = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     [self.mapView setCenterCoordinate:center animated:YES];
 }
-
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
