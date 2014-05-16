@@ -8,6 +8,12 @@
 
 #import "BOManager.h"
 
+@interface BOManager ()<CLLocationManagerDelegate>
+
+@property (nonatomic, strong) BOClient *client;
+
+@end
+
 @implementation BOManager
 
 - (id)init {
@@ -58,8 +64,8 @@
 }
 
 - (RACSignal *)updateCurrentBusLocations {
-    return [[self.client fetchBusLocationsNearUser:self.currentLocation.coordinate] doNext:^(Bus *condition) {
-        self.currentBusses = condition;
+    return [[self.client fetchBusLocationsNearUser:self.currentLocation.coordinate] doNext:^(NSArray *busLocations) {
+        self.currentBusses = busLocations;
     }];
 }
 

@@ -1,3 +1,4 @@
 platform :ios, '7.0'
-pod 'Mantle'
+pod 'OHMKit'
+pod 'BlocksKit'
 pod 'ReactiveCocoa'

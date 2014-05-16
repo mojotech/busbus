@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "PageContentViewController.h"
-#import "Bus.h"
 
 @interface BusBusViewController : UIViewController <MKMapViewDelegate, UIPageViewControllerDataSource>
 
@@ -19,10 +18,8 @@
 
 @property (nonatomic, strong) NSArray *busPinAnnotations;
 @property (nonatomic, strong) UIPageViewController *pageViewController;
-@property (nonatomic) float screenHeight;
-@property (nonatomic) float screenWidth;
 
-@property (nonatomic, strong) Bus *bus;
+@property (nonatomic, strong) NSArray *buses;
 
 @property (nonatomic, strong) UIView *pinView;
 

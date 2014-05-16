@@ -6,7 +6,7 @@
 //
 //
 
-#import "Bus.h"
+#import "BSBBus.h"
 #import "BOClient.h"
 
 @interface BOClient ()
@@ -70,9 +70,10 @@
     NSURL *url = [NSURL URLWithString:urlString];
     
     return [[self fetchJSONFromURL:url] map:^(NSDictionary *json) {
-        return [MTLJSONAdapter modelOfClass:[Bus class]
-                            fromJSONDictionary:json
-                            error:nil];
+        return @1;
+//        return [MTLJSONAdapter modelOfClass:[Bus class]
+//                            fromJSONDictionary:json
+//                            error:nil];
     }];
 }
 

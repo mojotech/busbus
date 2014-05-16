@@ -8,27 +8,39 @@
 //
 
 #import "BusBusViewController.h"
-#import "Bus.h"
+#import "BSBBus.h"
 #import "BOManager.h"
 #import <MapKit/MapKit.h>
-#import <Mantle.h>
+#import <BlocksKit/BlocksKit.h>
+
+#import <OHMKit/ObjectMapping.h>
 #import <QuartzCore/QuartzCore.h>
 
+@interface BusBusViewController ()
+
+@property (nonatomic, strong) NSCache *busDetailCache;
+
+@end
 
 @implementation BusBusViewController
+
++ (void)load
+{
+    OHMMappable(self);
+    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(buses)) : [BSBBus class]});
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.busDetailCache = [NSCache new];
+    
     NSError *error = nil;
     [[BOManager sharedManager] findCurrentLocation];
-
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    self.screenHeight = screenRect.size.height;
-    self.screenWidth = screenRect.size.width;
-    self.bus = [MTLJSONAdapter modelOfClass: [Bus class] fromJSONDictionary:[self convertDummyJSONData] error: &error];
-
+    
+    [self setValuesForKeysWithDictionary:[self bussesDictionary]];
+    
     if (error){
         NSLog(@"Model issue, whoops: %@", error);
     }
@@ -55,13 +67,9 @@
 
 
     // This needs to be placed in to a method that returns a CCLocationCoordinate
-    double fLat = [self.bus.buses[0][@"latitude"] doubleValue];
-    double fLng = [self.bus.buses[0][@"longitude"] doubleValue];
-    CLLocationDegrees *lat = &fLat;
-    CLLocationDegrees *lng = &fLng;
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
-    [self moveCenterByOffset:CGPointMake(0, 100) from:point.coordinate];
+    
+    BSBBus *firstBus = self.buses.firstObject;
+    [self moveCenterByOffset:CGPointMake(0, 100) from:firstBus.coordinate];
 }
 
 - (void)instantiatePageViewController
@@ -115,26 +123,14 @@
 
 - (void)dropBusLocationsOnMap
 {
-    NSMutableArray *tempBusPinAnnoations = [[NSMutableArray alloc] init];
-    int i;
-    for (i = 0; i < [self.bus.buses count]; i++)
-    {
-        double fLat = [self.bus.buses[i][@"latitude"] doubleValue];
-        double fLng = [self.bus.buses[i][@"longitude"] doubleValue];
-        CLLocationDegrees *lat = &fLat;
-        CLLocationDegrees *lng = &fLng;
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    self.busPinAnnotations = [self.buses bk_map:^MKPointAnnotation *(BSBBus *bus) {
+        return bus.annotation;
+    }];
 
-        [tempBusPinAnnoations addObject:point];
-        point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
-        
-    }
-
-    self.busPinAnnotations = [[NSArray alloc] initWithArray:tempBusPinAnnoations];
     [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
  }
 
-- (NSDictionary *)convertDummyJSONData
+- (NSDictionary *)bussesDictionary
 {
 
     NSString *stringOfJSON = @"{\"buses\":[{\"id\":0,\"route\":\"170\",\"address\":\"Northern Ave Opp Federal Court House \",\"registered\":\"2006-04-20T11:40:17 +04:00\",\"latitude\":42.402965,\"longitude\":-71.13627},{\"id\":1,\"route\":\"184\",\"address\":\"Northern Ave & Tide St\",\"registered\":\"2012-06-29T08:45:47 +04:00\",\"latitude\":42.3488,\"longitude\":-71.2600},{\"id\":2,\"route\":\"147\",\"address\":\"Devonshire St & State St \",\"registered\":\"2012-07-23T16:23:04 +04:00\",\"latitude\":42.3652687,\"longitude\":-71.0754089},{\"id\":3,\"route\":\"187\",\"address\":\"Causeway St. & North Station\",\"registered\":\"1990-03-10T16:45:38 +05:00\",\"latitude\":42.36484527,\"longitude\":-71.075546},{\"id\":4,\"route\":\"181\",\"address\":\"Northern Ave & Tide St\",\"registered\":\"2001-11-26T10:07:16 +05:00\",\"latitude\":42.3367881,\"longitude\":-71.0895233},{\"id\":5,\"route\":\"175\",\"address\":\"Summer St & South Station\",\"registered\":\"2010-12-07T02:09:31 +05:00\",\"latitude\":42.292160034,\"longitude\":-71.0566680},{\"id\":6,\"route\":\"136\",\"address\":\"Dunne Place\",\"registered\":\"2011-05-15T17:26:23 +04:00\",\"latitude\":42.42391204,\"longitude\":-71.0813822},{\"id\":7,\"route\":\"149\",\"address\":\"Onderdonk Avenue\",\"registered\":\"1996-12-16T05:55:15 +05:00\",\"latitude\":42.428723,\"longitude\":-71.0900955},{\"id\":8,\"route\":\"104\",\"address\":\"Jerome Avenue\",\"registered\":\"2001-07-29T13:28:08 +04:00\",\"latitude\":42.398036,\"longitude\":-71.230851},{\"id\":9,\"route\":\"110\",\"address\":\"Dwight Street\",\"registered\":\"2012-01-12T15:25:48 +05:00\",\"latitude\":42.412990,\"longitude\":-71.191760}]}";
@@ -143,29 +139,6 @@
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
     return dictionary;
-}
-
-- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
-{
-    if (([self.bus.buses count] == 0) || (index >= [self.bus.buses count])) {
-        return nil;
-    }
-
-    PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    pageContentViewController.titleText = self.bus.buses[index][@"route"];
-    pageContentViewController.busStop   = self.bus.buses[index][@"address"];
-    pageContentViewController.pageIndex = index;
-
-    double fLat = [self.bus.buses[index][@"latitude"] doubleValue];
-    double fLng = [self.bus.buses[index][@"longitude"] doubleValue];
-    CLLocationDegrees *lat = &fLat;
-    CLLocationDegrees *lng = &fLng;
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    point.coordinate = CLLocationCoordinate2DMake(*lat, *lng);
-
-    [self moveCenterByOffset:CGPointMake(0, 100) from:point.coordinate];
-
-    return pageContentViewController;
 }
 
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate
@@ -177,15 +150,35 @@
     [self.mapView setCenterCoordinate:center animated:YES];
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+#pragma mark - Paging
+
+- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    NSUInteger index = ((PageContentViewController *) viewController).pageIndex;
-    
-    if((index == 0) || (index == NSNotFound))
-    {
+    if (self.buses.count <= index) {
         return nil;
     }
     
+    BSBBus *bus = [self.buses objectAtIndex:index];
+    
+    PageContentViewController *pageContentViewController = [self.busDetailCache objectForKey:@(bus.id)];
+    
+    if (pageContentViewController == nil) {
+        pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+        pageContentViewController.titleText = [NSString stringWithFormat:@"%d", (int)bus.route];
+        pageContentViewController.busStop   = bus.address;
+        pageContentViewController.pageIndex = index;
+        
+        [self.busDetailCache setObject:pageContentViewController forKey:@(bus.id)];
+    }
+    
+    [self moveCenterByOffset:CGPointMake(0, 100) from:bus.coordinate];
+
+    return pageContentViewController;
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((PageContentViewController *) viewController).pageIndex;
     index--;
     return [self viewControllerAtIndex:index];
 }
@@ -193,22 +186,14 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
-
-    if (index == NSNotFound) {
-        return nil;
-    }
-
     index++;
-    if (index == [self.bus.buses count]) {
-        return nil;
-    }
     return [self viewControllerAtIndex:index];
 }
 
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return [self.bus.buses count];
+    return [self.buses count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

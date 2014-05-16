@@ -9,7 +9,6 @@
 @import Foundation;
 @import CoreLocation;
 #import <ReactiveCocoa.h>
-#import <Mantle.h>
 
 @interface BOClient : NSObject
 
