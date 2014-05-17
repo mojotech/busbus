@@ -19,7 +19,6 @@
 @property (nonatomic, strong) NSArray *currentBusses;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, assign) BOOL isFirstUpdate;
 
 - (void)updateCurrentBusLocations;
 - (void)findCurrentLocation;
