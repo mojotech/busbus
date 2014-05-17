@@ -80,4 +80,10 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     return CGSizeMake(320, 250);
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollView.contentOffset];
+    [self.delegate collectionViewSelectedBus:self.buses[path.item]];
+}
+
 @end

@@ -6,55 +6,60 @@
 //
 //
 
-#import "BOManager.h"
+#import "BSBBusService.h"
 
-@interface BOManager ()<CLLocationManagerDelegate>
+@interface BSBBusService ()<CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocation *currentLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
 @property (nonatomic, strong) BOClient *client;
 @end
 
-@implementation BOManager
+@implementation BSBBusService
 
-- (instancetype)init {
-    
-    static BOManager *_sharedManager;
++ (instancetype)sharedManager
+{
+    return [self new];
+}
+
+- (instancetype)init
+{
+    static BSBBusService *_sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedManager = [[BOManager alloc] init];
+        _sharedManager = [super init];
         _sharedManager->_locationManager = [[CLLocationManager alloc] init];
         _sharedManager->_locationManager.delegate = self;
         
         _sharedManager->_client = [[BOClient alloc] init];
-        
-        [RACObserve(_sharedManager, currentLocation) subscribeNext:^(CLLocation *lastLocation) {
-            [_sharedManager updateCurrentBusLocations];
-        }];
     });
     self = _sharedManager;
     
     return self;
 }
 
-- (void)findCurrentLocation {
+- (void)findCurrentLocation
+{
     [self.locationManager startUpdatingLocation];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
     CLLocation *location = [locations lastObject];
     // Negative horizontal accuracies indicate an invalid location.
     if (location.horizontalAccuracy > 0) {
         self.currentLocation = location;
+        [self updateCurrentBusLocations];
     }
 }
 
-- (void)updateCurrentBusLocations {
+- (void)updateCurrentBusLocations
+{
     [self.client busLocationsNearLocation:self.currentLocation.coordinate
                                 completion:^(NSArray *busLocations) {
                                     self.currentBusses = busLocations;
                                 } failure:nil];
-}
-
-+ (instancetype)sharedManager {
-    return [self new];
 }
 
 @end

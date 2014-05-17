@@ -24,7 +24,7 @@
 		940A695518AC222800472B65 /* BusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695418AC222800472B65 /* BusBusViewController.m */; };
 		940A695818AC22CD00472B65 /* BSBBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695718AC22CD00472B65 /* BSBBus.m */; };
 		940A695B18AC24C000472B65 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A695A18AC24C000472B65 /* MapKit.framework */; };
-		9449A36918ECAC7E004E0A4E /* BOManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449A36818ECAC7E004E0A4E /* BOManager.m */; };
+		9449A36918ECAC7E004E0A4E /* BSBBusService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449A36818ECAC7E004E0A4E /* BSBBusService.m */; };
 		9476177918E9A8C3000FEA58 /* BOClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476177818E9A8C3000FEA58 /* BOClient.m */; };
 		948B142718C4F51D00ADA61A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948B142618C4F51D00ADA61A /* QuartzCore.framework */; };
 		9499D24C18AC349C000C1374 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9499D24A18AC2E66000C1374 /* CoreLocation.framework */; };
@@ -73,8 +73,8 @@
 		940A695618AC22CD00472B65 /* BSBBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBus.h; sourceTree = "<group>"; };
 		940A695718AC22CD00472B65 /* BSBBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBus.m; sourceTree = "<group>"; };
 		940A695A18AC24C000472B65 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		9449A36718ECAC7E004E0A4E /* BOManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOManager.h; sourceTree = "<group>"; };
-		9449A36818ECAC7E004E0A4E /* BOManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOManager.m; sourceTree = "<group>"; };
+		9449A36718ECAC7E004E0A4E /* BSBBusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusService.h; sourceTree = "<group>"; };
+		9449A36818ECAC7E004E0A4E /* BSBBusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusService.m; sourceTree = "<group>"; };
 		9476177718E9A8C3000FEA58 /* BOClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOClient.h; sourceTree = "<group>"; };
 		9476177818E9A8C3000FEA58 /* BOClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOClient.m; sourceTree = "<group>"; };
 		948B142618C4F51D00ADA61A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -166,8 +166,8 @@
 				940A695318AC222800472B65 /* BusBusViewController.h */,
 				940A695418AC222800472B65 /* BusBusViewController.m */,
 				94F606EF18ECB0A800782D1B /* Boston.gpx */,
-				9449A36718ECAC7E004E0A4E /* BOManager.h */,
-				9449A36818ECAC7E004E0A4E /* BOManager.m */,
+				9449A36718ECAC7E004E0A4E /* BSBBusService.h */,
+				9449A36818ECAC7E004E0A4E /* BSBBusService.m */,
 				940A695118AC21F900472B65 /* MainStoryboard.storyboard */,
 				94D8A8E218BBC212007DFA6F /* PageContentViewController.h */,
 				94D8A8E318BBC212007DFA6F /* PageContentViewController.m */,
@@ -391,7 +391,7 @@
 				E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */,
 				E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */,
 				940A695518AC222800472B65 /* BusBusViewController.m in Sources */,
-				9449A36918ECAC7E004E0A4E /* BOManager.m in Sources */,
+				9449A36918ECAC7E004E0A4E /* BSBBusService.m in Sources */,
 				9476177918E9A8C3000FEA58 /* BOClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

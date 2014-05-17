@@ -12,7 +12,7 @@
 
 @interface BOClient : NSObject
 
-- (void)fetchBusLocationsNearUser:(CLLocationCoordinate2D)coordinate
+- (void)busLocationsNearLocation:(CLLocationCoordinate2D)coordinate
                        completion:(void(^)(NSArray *))completion
                           failure:(void(^)(NSError *))failure;
 

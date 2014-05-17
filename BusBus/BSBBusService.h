@@ -9,16 +9,13 @@
 @import Foundation;
 @import CoreLocation;
 @import MapKit;
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "BusBusViewController.h"
 #import "BOClient.h"
 #import "BSBBus.h"
 
-@interface BOManager : NSObject
+@interface BSBBusService : NSObject
 
 @property (nonatomic, strong) NSArray *currentBusses;
-@property (nonatomic, strong) CLLocation *currentLocation;
-@property (nonatomic, strong) CLLocationManager *locationManager;
 
 - (void)updateCurrentBusLocations;
 - (void)findCurrentLocation;

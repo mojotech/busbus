@@ -8,17 +8,16 @@
 
 #import "BusBusViewController.h"
 #import "BSBBus.h"
-#import "BOManager.h"
+#import "BSBBusService.h"
 #import "BSBBusPin.h"
 #import "BSBBusCollectionViewController.h"
 
 #import <MapKit/MapKit.h>
-#import <BlocksKit/BlocksKit.h>
 
 #import <OHMKit/ObjectMapping.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface BusBusViewController ()
+@interface BusBusViewController () <BSBBusCollectionDelegate>
 
 @property (nonatomic, strong) NSCache *busDetailCache;
 @property (nonatomic, strong) BSBBusCollectionViewController *bussesViewController;
@@ -43,9 +42,9 @@
     self.busDetailCache = [NSCache new];
     
     NSError *error = nil;
-    [[BOManager sharedManager] findCurrentLocation];
+    [[BSBBusService sharedManager] findCurrentLocation];
     
-    [RACObserve([BOManager sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
+    [RACObserve([BSBBusService sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
         [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
         [self dropBusLocationsOnMap];
     }];
@@ -69,7 +68,6 @@
 
 - (void)instantiatePageViewController
 {
-    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
@@ -79,6 +77,8 @@
     [self addChildViewController:_bussesViewController];
     [self.pageView addSubview:_bussesViewController.view];
     [_bussesViewController didMoveToParentViewController:self];
+    
+    self.bussesViewController.delegate = self;
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
@@ -117,6 +117,11 @@
         [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
     });
  }
+
+- (void)collectionViewSelectedBus:(BSBBus *)bus
+{
+    [self moveCenterByOffset:CGPointMake(0, 125) from:bus.coordinate];
+}
 
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate
 {

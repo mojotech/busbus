@@ -29,7 +29,7 @@
     return self;
 }
 
-- (void)fetchBusLocationsNearUser: (CLLocationCoordinate2D)coordinate completion:(void(^)(NSArray *))completion failure:(void(^)(NSError *))failure
+- (void)busLocationsNearLocation: (CLLocationCoordinate2D)coordinate completion:(void(^)(NSArray *))completion failure:(void(^)(NSError *))failure
 {
     NSString *requestString = [NSString stringWithFormat:@"http://transit.nodejitsu.com/api/feed/near?latitude=%f&longitude=%f&radius=1800",coordinate.latitude, coordinate.longitude];
     
@@ -65,10 +65,8 @@
                                                      if (completion) {
                                                          completion(locations);
                                                      }
-                                                     
                                                  }];
     [dataTask resume];
-    
 }
 
 @end
