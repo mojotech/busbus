@@ -21,6 +21,9 @@
 
 @property (nonatomic, strong) NSCache *busDetailCache;
 
+- (void)dropBusLocationsOnMap;
+- (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
+
 @end
 
 @implementation BusBusViewController
@@ -50,20 +53,6 @@
     }
     
     self.pageView.backgroundColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:0.86/1.0];
-    self.pinView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    self.pinView.backgroundColor = [UIColor redColor];
-
-    self.pinView.layer.cornerRadius = 12;
-    UILabel *busRouteLabel = [[UILabel alloc] initWithFrame:
-                              CGRectMake(0, 0,
-                                         self.pinView.bounds.size.width,
-                                         self.pinView.bounds.size.height
-                                         )];
-    busRouteLabel.text = @"121";
-    busRouteLabel.textColor = [UIColor whiteColor];
-    busRouteLabel.font = [UIFont boldSystemFontOfSize:10.0f];
-    busRouteLabel.textAlignment = NSTextAlignmentCenter;
-    [self.pinView addSubview:busRouteLabel];
 
     [self.mapView setDelegate:self];
     
@@ -114,18 +103,6 @@
         pin.canShowCallout = NO;
     }
     return pin;
-}
-
-- (UIImage *) imageWithView:(UIView *)view
-{
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return img;
 }
 
 - (void)dropBusLocationsOnMap
