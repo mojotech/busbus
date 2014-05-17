@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BSBBusCollectionViewController : UICollectionViewController
-
+@property (nonatomic, strong) NSArray *buses;
 @end

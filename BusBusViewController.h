@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "PageContentViewController.h"
 
-@interface BusBusViewController : UIViewController <MKMapViewDelegate, UIPageViewControllerDataSource>
+@interface BusBusViewController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIView *pageView;

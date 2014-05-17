@@ -10,6 +10,7 @@
 #import "BSBBus.h"
 #import "BOManager.h"
 #import "BSBBusPin.h"
+#import "BSBBusCollectionViewController.h"
 
 #import <MapKit/MapKit.h>
 #import <BlocksKit/BlocksKit.h>
@@ -20,6 +21,7 @@
 @interface BusBusViewController ()
 
 @property (nonatomic, strong) NSCache *busDetailCache;
+@property (nonatomic, strong) BSBBusCollectionViewController *bussesViewController;
 
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
@@ -46,7 +48,6 @@
     [RACObserve([BOManager sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
         [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
         [self dropBusLocationsOnMap];
-//        [self updatePaging];
     }];
     
     if (error){
@@ -60,28 +61,24 @@
     [self instantiatePageViewController];
 }
 
-//- (void)updatePaging
-//{
-//    [self.pageViewController setViewControllers:@[[self viewControllerAtIndex:0]]
-//                                      direction:UIPageViewControllerNavigationOrientationHorizontal
-//                                       animated:NO
-//                                     completion:nil];
-//}
+- (void)setBuses:(NSArray *)buses
+{
+    _buses = buses;
+    [self.bussesViewController setBuses:buses];
+}
 
 - (void)instantiatePageViewController
 {
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
-    self.pageViewController.dataSource = self;
-
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-
-    self.pageViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
-    [self addChildViewController:_pageViewController];
-    [self.pageView addSubview:_pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
-
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    
+    self.bussesViewController = [[BSBBusCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+    
+    _bussesViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
+    [self addChildViewController:_bussesViewController];
+    [self.pageView addSubview:_bussesViewController.view];
+    [_bussesViewController didMoveToParentViewController:self];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
@@ -128,57 +125,6 @@
     point.y += offset.y;
     CLLocationCoordinate2D center = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     [self.mapView setCenterCoordinate:center animated:YES];
-}
-
-#pragma mark - Paging
-
-- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
-{
-    if (self.buses.count <= index) {
-        return [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    }
-    
-    BSBBus *bus = [self.buses objectAtIndex:index];
-    
-    PageContentViewController *pageContentViewController = [self.busDetailCache objectForKey:bus.busID];
-    
-    if (pageContentViewController == nil) {
-        pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-        pageContentViewController.titleText = bus.routeID;
-        pageContentViewController.busStop   = bus.address;
-        pageContentViewController.pageIndex = index;
-        
-        [self.busDetailCache setObject:pageContentViewController forKey:bus.busID];
-    }
-    
-//    [self moveCenterByOffset:CGPointMake(0, 100) from:bus.coordinate];
-
-    return pageContentViewController;
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-{
-    NSUInteger index = ((PageContentViewController *) viewController).pageIndex;
-    index--;
-    return [self viewControllerAtIndex:index];
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
-{
-    NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
-    index++;
-    return [self viewControllerAtIndex:index];
-}
-
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return [self.buses count];
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
 }
 
 @end
