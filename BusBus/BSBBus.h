@@ -14,8 +14,8 @@
 
 @interface BSBBus : NSObject <MKAnnotation>
 
-@property (nonatomic, assign) NSString *busID;
-@property (nonatomic, assign) NSString *routeID;
+@property (nonatomic, copy) NSString *busID;
+@property (nonatomic, copy) NSString *routeID;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) BSBVehicle *vehicle;
 
