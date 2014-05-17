@@ -12,7 +12,7 @@
 
 #import "BSBVehicle.h"
 
-@interface BSBBus : NSObject
+@interface BSBBus : NSObject <MKAnnotation>
 
 @property (nonatomic, assign) NSString *busID;
 @property (nonatomic, assign) NSString *routeID;
@@ -20,6 +20,5 @@
 @property (nonatomic, strong) BSBVehicle *vehicle;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly, strong) MKPointAnnotation *annotation;
 
 @end

@@ -9,6 +9,8 @@
 #import "BusBusViewController.h"
 #import "BSBBus.h"
 #import "BOManager.h"
+#import "BSBBusPin.h"
+
 #import <MapKit/MapKit.h>
 #import <BlocksKit/BlocksKit.h>
 
@@ -92,21 +94,24 @@
 
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
 {
-
-    MKAnnotationView *pin = nil;
+    BSBBusPin *pin;
     if(annotation != self.mapView.userLocation)
     {
-        static NSString *defaultPinID = @"com.invasivecode.pin";
-        pin = (MKAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
-        if ( pin == nil )
-            pin = [[MKAnnotationView alloc]
-                       initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+        BSBBus *bus = (BSBBus *)annotation;
         
-        pin.canShowCallout = YES;
-        pin.image = [self imageWithView: self.pinView];
-    }
-    else {
-        [self.mapView.userLocation setTitle:@"I am here"];
+        static NSString *busPinIdentifier = @"busPinIdentifier";
+        pin = (BSBBusPin *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:busPinIdentifier];
+        if ( pin == nil ) {
+            pin = [[BSBBusPin alloc] initWithAnnotation:annotation
+                                        reuseIdentifier:busPinIdentifier];
+        }
+        
+        NSString *busNumber = [bus.busID substringFromIndex:1];
+        
+        pin.pinText = busNumber;
+        pin.color = [BSBAppearance moduloColor:[busNumber integerValue]];
+        
+        pin.canShowCallout = NO;
     }
     return pin;
 }
@@ -126,13 +131,11 @@
 - (void)dropBusLocationsOnMap
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[self.busPinAnnotations copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.busPinAnnotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self.mapView removeAnnotation:obj];
         }];
         
-        self.busPinAnnotations = [self.buses bk_map:^MKPointAnnotation *(BSBBus *bus) {
-            return bus.annotation;
-        }];
+        self.busPinAnnotations = [self.buses copy];
         
         [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
     });

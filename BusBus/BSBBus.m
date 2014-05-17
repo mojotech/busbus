@@ -9,10 +9,6 @@
 #import "BSBBus.h"
 #import <OHMKit/ObjectMapping.h>
 
-@interface BSBBus ()
-@property (nonatomic, readwrite, strong) MKPointAnnotation *annotation;
-@end
-
 @implementation BSBBus
 
 + (void)load
@@ -31,15 +27,6 @@
 - (CLLocationCoordinate2D)coordinate
 {
     return self.vehicle.position;
-}
-
-- (MKPointAnnotation *)annotation
-{
-    if (_annotation == nil) {
-        _annotation = [[MKPointAnnotation alloc] init];
-        _annotation.coordinate = self.coordinate;
-    }
-    return _annotation;
 }
 
 @end
