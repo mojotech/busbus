@@ -23,7 +23,6 @@
 
 @property (nonatomic, strong) UIView *pinView;
 
-- (NSDictionary *)convertDummyJSONData;
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
 - (UIImage *) imageWithView:(UIView *)view;

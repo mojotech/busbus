@@ -32,6 +32,7 @@
 		94F606F018ECB0A800782D1B /* Boston.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 94F606EF18ECB0A800782D1B /* Boston.gpx */; };
 		E7A839A51926C5A600EE7048 /* BSBBusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A839A41926C5A600EE7048 /* BSBBusDetailView.xib */; };
 		E7A839A81926C5BB00EE7048 /* BSBBusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839A71926C5BB00EE7048 /* BSBBusDetailView.m */; };
+		E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839AA1926E68900EE7048 /* BSBVehicle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		E7A839A41926C5A600EE7048 /* BSBBusDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBBusDetailView.xib; sourceTree = "<group>"; };
 		E7A839A61926C5BB00EE7048 /* BSBBusDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusDetailView.h; sourceTree = "<group>"; };
 		E7A839A71926C5BB00EE7048 /* BSBBusDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusDetailView.m; sourceTree = "<group>"; };
+		E7A839A91926E68900EE7048 /* BSBVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBVehicle.h; sourceTree = "<group>"; };
+		E7A839AA1926E68900EE7048 /* BSBVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBVehicle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,8 @@
 			children = (
 				940A695618AC22CD00472B65 /* BSBBus.h */,
 				940A695718AC22CD00472B65 /* BSBBus.m */,
+				E7A839A91926E68900EE7048 /* BSBVehicle.h */,
+				E7A839AA1926E68900EE7048 /* BSBVehicle.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 			files = (
 				94D8A8E418BBC212007DFA6F /* PageContentViewController.m in Sources */,
 				940A693318AC21B600472B65 /* AppDelegate.m in Sources */,
+				E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
 				E7A839A81926C5BB00EE7048 /* BSBBusDetailView.m in Sources */,

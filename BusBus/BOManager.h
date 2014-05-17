@@ -21,7 +21,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign) BOOL isFirstUpdate;
 
-- (RACSignal *)updateCurrentBusLocations;
+- (void)updateCurrentBusLocations;
 - (void)findCurrentLocation;
 + (instancetype)sharedManager;
 

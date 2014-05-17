@@ -10,9 +10,6 @@
 #import <OHMKit/ObjectMapping.h>
 
 @interface BSBBus ()
-@property (nonatomic, assign) double latitude;
-@property (nonatomic, assign) double longitude;
-
 @property (nonatomic, readwrite, strong) MKPointAnnotation *annotation;
 @end
 
@@ -20,13 +17,20 @@
 
 + (void)load
 {
-    OHMMappable(self);
-    OHMSetMapping(self, @{@"nextStop" : NSStringFromSelector(@selector(address))});
+    OHMMappable([BSBBus class]);
+    OHMSetMapping([BSBBus class], @{@"nextStop" : NSStringFromSelector(@selector(address))});
+    OHMSetMapping([BSBBus class], @{@"route_id" : NSStringFromSelector(@selector(routeID))});
+    OHMSetMapping([BSBBus class], @{@"id" : NSStringFromSelector(@selector(busID))});
+}
+
+- (void)setVehicle:(BSBVehicle *)vehicle
+{
+    _vehicle = vehicle;
 }
 
 - (CLLocationCoordinate2D)coordinate
 {
-    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
+    return self.vehicle.position;
 }
 
 - (MKPointAnnotation *)annotation

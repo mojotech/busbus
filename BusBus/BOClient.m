@@ -17,64 +17,58 @@
 
 @implementation BOClient
 
-- (id)init
+- (instancetype)init
 {
-    if(self = [super init])
-    {
-        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:config];
+    if(self == nil) {
+        return nil;
     }
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    _session = [NSURLSession sessionWithConfiguration:config];
     
     return self;
 }
 
-- (RACSignal *)fetchJSONFromURL:(NSURL *)url
+- (void)fetchBusLocationsNearUser: (CLLocationCoordinate2D)coordinate completion:(void(^)(NSArray *))completion failure:(void(^)(NSError *))failure
 {
-    NSLog(@"Fetching url: %@", url.absoluteString);
-
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-
-        NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-            if(!error) {
-                NSError *jsonError = nil;
-                id json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
-
-                if(!jsonError) {
-                    [subscriber sendNext:json];
-                } else {
-                    [subscriber sendError:jsonError];
-                }
-            } else {
-                [subscriber sendNext:error];
-            }
-            
-            [subscriber sendCompleted];
-        }];
-
-        [dataTask resume];
-        
-        return [RACDisposable disposableWithBlock:^{
-            [dataTask cancel];
-        }];
-        
-    }] doError:^(NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    NSString *requestString = [NSString stringWithFormat:@"http://transit.nodejitsu.com/api/feed/near?latitude=%f&longitude=%f&radius=800",coordinate.latitude, coordinate.longitude];
     
-}
-
-- (RACSignal *)fetchBusLocationsNearUser: (CLLocationCoordinate2D)coordinate
-{
-    NSString *urlString = [NSString stringWithFormat:@"URL_HERE"];
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSURL *url = [NSURL URLWithString:requestString];
     
-    return [[self fetchJSONFromURL:url] map:^(NSDictionary *json) {
-        return @1;
-//        return [MTLJSONAdapter modelOfClass:[Bus class]
-//                            fromJSONDictionary:json
-//                            error:nil];
-    }];
+    NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url
+                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                     
+                                                     if (error) {
+                                                         NSLog(@"%@", error);
+                                                         if (failure){
+                                                             failure(error);
+                                                         }
+                                                         return;
+                                                     }
+                                                     
+                                                     NSArray *locations = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                     
+                                                     if (error) {
+                                                         NSLog(@"JSON error: %@", error);
+                                                         if (failure) {
+                                                             failure(error);
+                                                         }
+                                                         return;
+                                                     }
+                                                     
+                                                     if (![locations isKindOfClass:[NSArray class]]) {
+                                                         if (failure) {
+                                                             failure(nil);
+                                                         }
+                                                     }
+                                                     
+                                                     if (completion) {
+                                                         completion(locations);
+                                                     }
+                                                     
+                                                 }];
+    [dataTask resume];
+    
 }
 
 @end

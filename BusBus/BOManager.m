@@ -16,30 +16,16 @@
 
 @implementation BOManager
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
         
         _client = [[BOClient alloc] init];
         
-        [[[[RACObserve(self, currentLocation)
-            ignore:nil]
-           flattenMap:^(CLLocation *newLocation) {
-               return [RACSignal merge:@[
-                                         [self updateCurrentBusLocations]
-                                         ]];
-           }] deliverOn:RACScheduler.mainThreadScheduler]
-         subscribeError:^(NSError *error) {
-
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not find location."
-                                                             message:@"Please make sure your location services are on for this app."
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-             [alert show];
-
-         }];
+        [RACObserve(self, currentLocation) subscribeNext:^(CLLocation *lastLocation) {
+            [self updateCurrentBusLocations];
+        }];
     }
     return self;
 }
@@ -50,23 +36,24 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    if (self.isFirstUpdate) {
-        self.isFirstUpdate = NO;
-        return;
-    }
-    
+//    if (self.isFirstUpdate) {
+//        self.isFirstUpdate = NO;
+//        return;
+//    }
+//    
     CLLocation *location = [locations lastObject];
     if (location.horizontalAccuracy > 0) {
         self.currentLocation = location;
-        [self.locationManager stopUpdatingLocation];
-
+//        [self.locationManager stopUpdatingLocation];
     }
 }
 
-- (RACSignal *)updateCurrentBusLocations {
-    return [[self.client fetchBusLocationsNearUser:self.currentLocation.coordinate] doNext:^(NSArray *busLocations) {
-        self.currentBusses = busLocations;
-    }];
+- (void)updateCurrentBusLocations {
+    [self.client fetchBusLocationsNearUser:self.currentLocation.coordinate
+                                completion:^(NSArray *busLocations) {
+//                                    NSLog(@"locations: %@", busLocations);
+                                    self.currentBusses = busLocations;
+                                } failure:nil];
 }
 
 

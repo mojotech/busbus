@@ -10,11 +10,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
+#import "BSBVehicle.h"
+
 @interface BSBBus : NSObject
 
-@property (nonatomic, assign) NSUInteger id;
-@property (nonatomic, assign) NSUInteger route;
+@property (nonatomic, assign) NSString *busID;
+@property (nonatomic, assign) NSString *routeID;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) BSBVehicle *vehicle;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, strong) MKPointAnnotation *annotation;

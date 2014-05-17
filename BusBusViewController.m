@@ -1,4 +1,3 @@
-
 //
 //  BusBusViewController.m
 //  BusBus
@@ -26,8 +25,8 @@
 
 + (void)load
 {
-    OHMMappable(self);
-    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(buses)) : [BSBBus class]});
+    OHMMappable([BusBusViewController class]);
+    OHMSetArrayClasses([BusBusViewController class], @{NSStringFromSelector(@selector(buses)) : [BSBBus class]});
 }
 
 - (void)viewDidLoad
@@ -39,7 +38,10 @@
     NSError *error = nil;
     [[BOManager sharedManager] findCurrentLocation];
     
-    [self setValuesForKeysWithDictionary:[self bussesDictionary]];
+    [RACObserve([BOManager sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
+        [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
+        [self dropBusLocationsOnMap];
+    }];
     
     if (error){
         NSLog(@"Model issue, whoops: %@", error);
@@ -62,7 +64,7 @@
     [self.pinView addSubview:busRouteLabel];
 
     [self.mapView setDelegate:self];
-    [self dropBusLocationsOnMap];
+    
     [self instantiatePageViewController];
 
 
@@ -123,23 +125,18 @@
 
 - (void)dropBusLocationsOnMap
 {
-    self.busPinAnnotations = [self.buses bk_map:^MKPointAnnotation *(BSBBus *bus) {
-        return bus.annotation;
-    }];
-
-    [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self.busPinAnnotations copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [self.mapView removeAnnotation:obj];
+        }];
+        
+        self.busPinAnnotations = [self.buses bk_map:^MKPointAnnotation *(BSBBus *bus) {
+            return bus.annotation;
+        }];
+        
+        [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
+    });
  }
-
-- (NSDictionary *)bussesDictionary
-{
-
-    NSString *stringOfJSON = @"{\"buses\":[{\"id\":0,\"route\":\"170\",\"address\":\"Northern Ave Opp Federal Court House \",\"registered\":\"2006-04-20T11:40:17 +04:00\",\"latitude\":42.402965,\"longitude\":-71.13627},{\"id\":1,\"route\":\"184\",\"address\":\"Northern Ave & Tide St\",\"registered\":\"2012-06-29T08:45:47 +04:00\",\"latitude\":42.3488,\"longitude\":-71.2600},{\"id\":2,\"route\":\"147\",\"address\":\"Devonshire St & State St \",\"registered\":\"2012-07-23T16:23:04 +04:00\",\"latitude\":42.3652687,\"longitude\":-71.0754089},{\"id\":3,\"route\":\"187\",\"address\":\"Causeway St. & North Station\",\"registered\":\"1990-03-10T16:45:38 +05:00\",\"latitude\":42.36484527,\"longitude\":-71.075546},{\"id\":4,\"route\":\"181\",\"address\":\"Northern Ave & Tide St\",\"registered\":\"2001-11-26T10:07:16 +05:00\",\"latitude\":42.3367881,\"longitude\":-71.0895233},{\"id\":5,\"route\":\"175\",\"address\":\"Summer St & South Station\",\"registered\":\"2010-12-07T02:09:31 +05:00\",\"latitude\":42.292160034,\"longitude\":-71.0566680},{\"id\":6,\"route\":\"136\",\"address\":\"Dunne Place\",\"registered\":\"2011-05-15T17:26:23 +04:00\",\"latitude\":42.42391204,\"longitude\":-71.0813822},{\"id\":7,\"route\":\"149\",\"address\":\"Onderdonk Avenue\",\"registered\":\"1996-12-16T05:55:15 +05:00\",\"latitude\":42.428723,\"longitude\":-71.0900955},{\"id\":8,\"route\":\"104\",\"address\":\"Jerome Avenue\",\"registered\":\"2001-07-29T13:28:08 +04:00\",\"latitude\":42.398036,\"longitude\":-71.230851},{\"id\":9,\"route\":\"110\",\"address\":\"Dwight Street\",\"registered\":\"2012-01-12T15:25:48 +05:00\",\"latitude\":42.412990,\"longitude\":-71.191760}]}";
-
-    NSData *data = [stringOfJSON dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
-    return dictionary;
-}
 
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate
 {
@@ -155,20 +152,20 @@
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (self.buses.count <= index) {
-        return nil;
+        return [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     }
     
     BSBBus *bus = [self.buses objectAtIndex:index];
     
-    PageContentViewController *pageContentViewController = [self.busDetailCache objectForKey:@(bus.id)];
+    PageContentViewController *pageContentViewController = [self.busDetailCache objectForKey:bus.busID];
     
     if (pageContentViewController == nil) {
         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-        pageContentViewController.titleText = [NSString stringWithFormat:@"%d", (int)bus.route];
+        pageContentViewController.titleText = bus.routeID;
         pageContentViewController.busStop   = bus.address;
         pageContentViewController.pageIndex = index;
         
-        [self.busDetailCache setObject:pageContentViewController forKey:@(bus.id)];
+        [self.busDetailCache setObject:pageContentViewController forKey:bus.busID];
     }
     
     [self moveCenterByOffset:CGPointMake(0, 100) from:bus.coordinate];
