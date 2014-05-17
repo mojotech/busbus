@@ -30,11 +30,12 @@
 		9499D24C18AC349C000C1374 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9499D24A18AC2E66000C1374 /* CoreLocation.framework */; };
 		94D8A8E418BBC212007DFA6F /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8A8E318BBC212007DFA6F /* PageContentViewController.m */; };
 		94F606F018ECB0A800782D1B /* Boston.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 94F606EF18ECB0A800782D1B /* Boston.gpx */; };
-		E7A839A51926C5A600EE7048 /* BSBBusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A839A41926C5A600EE7048 /* BSBBusDetailView.xib */; };
-		E7A839A81926C5BB00EE7048 /* BSBBusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839A71926C5BB00EE7048 /* BSBBusDetailView.m */; };
+		E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839A71926C5BB00EE7048 /* BSBBusDetailCell.m */; };
 		E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839AA1926E68900EE7048 /* BSBVehicle.m */; };
 		E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7A7192712F90019CC20 /* BSBBusPin.m */; };
 		E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AA192716C30019CC20 /* BSBAppearance.m */; };
+		E7C3E7AF1927237E0019CC20 /* BSBBusCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */; };
+		E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,15 +82,17 @@
 		94D8A8E218BBC212007DFA6F /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		94D8A8E318BBC212007DFA6F /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		94F606EF18ECB0A800782D1B /* Boston.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Boston.gpx; sourceTree = "<group>"; };
-		E7A839A41926C5A600EE7048 /* BSBBusDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBBusDetailView.xib; sourceTree = "<group>"; };
-		E7A839A61926C5BB00EE7048 /* BSBBusDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusDetailView.h; sourceTree = "<group>"; };
-		E7A839A71926C5BB00EE7048 /* BSBBusDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusDetailView.m; sourceTree = "<group>"; };
+		E7A839A61926C5BB00EE7048 /* BSBBusDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusDetailCell.h; sourceTree = "<group>"; };
+		E7A839A71926C5BB00EE7048 /* BSBBusDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusDetailCell.m; sourceTree = "<group>"; };
 		E7A839A91926E68900EE7048 /* BSBVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBVehicle.h; sourceTree = "<group>"; };
 		E7A839AA1926E68900EE7048 /* BSBVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBVehicle.m; sourceTree = "<group>"; };
 		E7C3E7A6192712F90019CC20 /* BSBBusPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusPin.h; sourceTree = "<group>"; };
 		E7C3E7A7192712F90019CC20 /* BSBBusPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusPin.m; sourceTree = "<group>"; };
 		E7C3E7A9192716C30019CC20 /* BSBAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBAppearance.h; sourceTree = "<group>"; };
 		E7C3E7AA192716C30019CC20 /* BSBAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBAppearance.m; sourceTree = "<group>"; };
+		E7C3E7AD1927237E0019CC20 /* BSBBusCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusCollectionViewController.h; sourceTree = "<group>"; };
+		E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusCollectionViewController.m; sourceTree = "<group>"; };
+		E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBBusDetailCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,7 @@
 		940A692818AC21B600472B65 /* BusBus */ = {
 			isa = PBXGroup;
 			children = (
+				E7C3E7AC1927236D0019CC20 /* ViewControllers */,
 				E7A839A31926C56000EE7048 /* Views */,
 				940A695318AC222800472B65 /* BusBusViewController.h */,
 				940A695418AC222800472B65 /* BusBusViewController.m */,
@@ -223,13 +227,22 @@
 		E7A839A31926C56000EE7048 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E7A839A41926C5A600EE7048 /* BSBBusDetailView.xib */,
-				E7A839A61926C5BB00EE7048 /* BSBBusDetailView.h */,
-				E7A839A71926C5BB00EE7048 /* BSBBusDetailView.m */,
+				E7A839A61926C5BB00EE7048 /* BSBBusDetailCell.h */,
+				E7A839A71926C5BB00EE7048 /* BSBBusDetailCell.m */,
 				E7C3E7A6192712F90019CC20 /* BSBBusPin.h */,
 				E7C3E7A7192712F90019CC20 /* BSBBusPin.m */,
+				E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E7C3E7AC1927236D0019CC20 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E7C3E7AD1927237E0019CC20 /* BSBBusCollectionViewController.h */,
+				E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,10 +326,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94F606F018ECB0A800782D1B /* Boston.gpx in Resources */,
+				E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */,
 				940A695218AC21F900472B65 /* MainStoryboard.storyboard in Resources */,
 				940A692D18AC21B600472B65 /* InfoPlist.strings in Resources */,
 				940A693518AC21B600472B65 /* Images.xcassets in Resources */,
-				E7A839A51926C5A600EE7048 /* BSBBusDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +387,8 @@
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
 				E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */,
-				E7A839A81926C5BB00EE7048 /* BSBBusDetailView.m in Sources */,
+				E7C3E7AF1927237E0019CC20 /* BSBBusCollectionViewController.m in Sources */,
+				E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */,
 				E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */,
 				940A695518AC222800472B65 /* BusBusViewController.m in Sources */,
 				9449A36918ECAC7E004E0A4E /* BOManager.m in Sources */,
@@ -502,7 +516,7 @@
 				GCC_PREFIX_HEADER = "BusBus/BusBus-Prefix.pch";
 				INFOPLIST_FILE = "BusBus/BusBus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4C9379AA-C35A-41BA-A077-1528DD5F5050";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -519,7 +533,7 @@
 				GCC_PREFIX_HEADER = "BusBus/BusBus-Prefix.pch";
 				INFOPLIST_FILE = "BusBus/BusBus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4C9379AA-C35A-41BA-A077-1528DD5F5050";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

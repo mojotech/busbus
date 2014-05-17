@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BSBBusDetailView : UIView
+@interface BSBBusDetailCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *routeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stopLabel;

@@ -46,6 +46,7 @@
     [RACObserve([BOManager sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
         [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
         [self dropBusLocationsOnMap];
+//        [self updatePaging];
     }];
     
     if (error){
@@ -57,13 +58,15 @@
     [self.mapView setDelegate:self];
     
     [self instantiatePageViewController];
-
-
-    // This needs to be placed in to a method that returns a CCLocationCoordinate
-    
-    BSBBus *firstBus = self.buses.firstObject;
-    [self moveCenterByOffset:CGPointMake(0, 100) from:firstBus.coordinate];
 }
+
+//- (void)updatePaging
+//{
+//    [self.pageViewController setViewControllers:@[[self viewControllerAtIndex:0]]
+//                                      direction:UIPageViewControllerNavigationOrientationHorizontal
+//                                       animated:NO
+//                                     completion:nil];
+//}
 
 - (void)instantiatePageViewController
 {
@@ -148,7 +151,7 @@
         [self.busDetailCache setObject:pageContentViewController forKey:bus.busID];
     }
     
-    [self moveCenterByOffset:CGPointMake(0, 100) from:bus.coordinate];
+//    [self moveCenterByOffset:CGPointMake(0, 100) from:bus.coordinate];
 
     return pageContentViewController;
 }
