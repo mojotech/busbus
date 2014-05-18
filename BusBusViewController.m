@@ -19,6 +19,7 @@
 
 @interface BusBusViewController () <BSBBusCollectionDelegate>
 
+@property (nonatomic, assign) BOOL busesHavePresented;
 @property (nonatomic, strong) BSBBusCollectionViewController *bussesViewController;
 
 - (void)dropBusLocationsOnMap;
@@ -38,7 +39,6 @@
 {
     [super viewDidLoad];
     
-    NSError *error = nil;
     [[BSBBusService sharedManager] findCurrentLocation];
     
     [RACObserve([BSBBusService sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
@@ -107,7 +107,28 @@
         
         self.busPinAnnotations = [self.buses copy];
         
-        [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
+        __block MKMapRect zoomRect = MKMapRectNull;
+        
+        [self.busPinAnnotations enumerateObjectsUsingBlock:^(id <MKAnnotation> annotation, NSUInteger idx, BOOL *stop) {
+            MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
+            MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+            if (MKMapRectIsNull(zoomRect)) {
+                zoomRect = pointRect;
+            } else {
+                zoomRect = MKMapRectUnion(zoomRect, pointRect);
+            }
+        }];
+        
+        if (self.busesHavePresented == NO && self.busPinAnnotations.count > 0) {
+            [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
+            [self.mapView setVisibleMapRect:zoomRect
+                                edgePadding:UIEdgeInsetsMake(10, 10, 250, 10)
+                                   animated:YES];
+            self.busesHavePresented = YES;
+        } else {
+            [self.mapView addAnnotations:self.busPinAnnotations];
+        }
+        
     });
 }
 
