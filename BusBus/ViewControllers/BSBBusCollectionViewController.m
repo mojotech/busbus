@@ -87,7 +87,11 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollView.contentOffset];
+    CGPoint scrollOffset = scrollView.contentOffset;
+    CGSize infoViewSize = CGSizeMake(320, 250);
+    scrollOffset.x += infoViewSize.width/2.;
+    scrollOffset.y = infoViewSize.height/2.;
+    NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollOffset];
     [self.delegate collectionViewSelectedBus:self.buses[path.item]];
 }
 
