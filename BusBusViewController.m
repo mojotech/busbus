@@ -57,6 +57,8 @@
 
     [self.mapView setDelegate:self];
     
+    self.navigationItem.rightBarButtonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    
     [self instantiatePageViewController];
 }
 
