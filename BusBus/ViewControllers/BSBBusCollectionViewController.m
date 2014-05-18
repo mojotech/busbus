@@ -70,7 +70,7 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
         return cell;
     }
     
-    cell.routeLabel.text = ((BSBBus *)self.buses[indexPath.item]).busID;
+    cell.routeLabel.text = ((BSBBus *)self.buses[indexPath.item]).routeID;
     
     return cell;
 }

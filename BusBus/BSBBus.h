@@ -15,10 +15,10 @@
 @interface BSBBus : NSObject <MKAnnotation>
 
 @property (nonatomic, copy) NSString *busID;
-@property (nonatomic, copy) NSString *routeID;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) BSBVehicle *vehicle;
 
+@property (nonatomic, readonly) NSString *routeID;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @end

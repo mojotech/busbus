@@ -12,5 +12,6 @@
 @interface BSBVehicle : NSObject
 
 @property (nonatomic, assign) CLLocationCoordinate2D position;
+@property (nonatomic, readonly) NSString *routeID;
 
 @end

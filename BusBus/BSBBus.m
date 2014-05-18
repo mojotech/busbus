@@ -15,13 +15,12 @@
 {
     OHMMappable([BSBBus class]);
     OHMSetMapping([BSBBus class], @{@"nextStop" : NSStringFromSelector(@selector(address))});
-    OHMSetMapping([BSBBus class], @{@"route_id" : NSStringFromSelector(@selector(routeID))});
     OHMSetMapping([BSBBus class], @{@"id" : NSStringFromSelector(@selector(busID))});
 }
 
-- (void)setVehicle:(BSBVehicle *)vehicle
+- (NSString *)routeID
 {
-    _vehicle = vehicle;
+    return self.vehicle.routeID;
 }
 
 - (CLLocationCoordinate2D)coordinate

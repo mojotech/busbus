@@ -10,11 +10,28 @@
 
 #import <OHMKit/ObjectMapping.h>
 
+
+@interface BSBTrip : NSObject
+@property (nonatomic, copy) NSString *routeID;
+@end
+
+@implementation BSBTrip
++ (void)load
+{
+    OHMMappable(self);
+    OHMSetMapping(self, @{ @"route_id" : NSStringFromSelector(@selector(routeID)) } );
+}
+@end
+
+@interface BSBVehicle ()
+@property (nonatomic, strong) BSBTrip *trip;
+@end
+
 @implementation BSBVehicle
 
 + (void)load
 {
-    OHMMappable([BSBVehicle class]);
+    OHMMappable(self);
     
     OHMValueAdapterBlock coordinateAdapter = ^id(NSDictionary * position) {
         CLLocationCoordinate2D coordinate;
@@ -22,13 +39,12 @@
         coordinate.longitude = [position[@"longitude"] doubleValue];
         return [NSValue valueWithBytes:&coordinate objCType:@encode(CLLocationCoordinate2D)];
     };
-    OHMSetAdapter(self, @{NSStringFromSelector(@selector(position)) : coordinateAdapter});
+    OHMSetAdapter(self, @{ NSStringFromSelector(@selector(position)) : coordinateAdapter } );
 }
 
-- (void)setPosition:(CLLocationCoordinate2D)position
+- (NSString *)routeID
 {
-    _position = position;
-    
+    return self.trip.routeID;
 }
 
 @end

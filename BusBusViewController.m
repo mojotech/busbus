@@ -95,7 +95,7 @@
                                         reuseIdentifier:busPinIdentifier];
         }
         
-        NSString *busNumber = [bus.busID substringFromIndex:1];
+        NSString *busNumber = bus.routeID;
         
         pin.pinText = busNumber;
         pin.color = [BSBAppearance moduloColor:[busNumber integerValue]];
@@ -116,7 +116,7 @@
         
         [self.mapView showAnnotations:self.busPinAnnotations animated:YES];
     });
- }
+}
 
 - (void)collectionViewSelectedBus:(BSBBus *)bus
 {
