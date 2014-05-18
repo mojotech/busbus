@@ -10,6 +10,8 @@
 #import "BSBBusDetailCell.h"
 #import "BSBBus.h"
 
+#import <Masonry/Masonry.h>
+
 static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
 @interface BSBBusCollectionViewController () <UICollectionViewDelegateFlowLayout>
@@ -37,17 +39,20 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     [super viewDidLoad];
     
     [self.collectionView setPagingEnabled:YES];
-    [self.collectionView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.6]];
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBBusDetailCell" bundle:nil]
           forCellWithReuseIdentifier:BSBBusCellReuseIdentifier];
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIToolbar *blurringBackgroundView = [[UIToolbar alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:blurringBackgroundView];
+    [self.view sendSubviewToBack:blurringBackgroundView];
+    
+    UIView *superview = self.view;
+    
+    [blurringBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(superview);
+    }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

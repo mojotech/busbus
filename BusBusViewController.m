@@ -53,8 +53,8 @@
         NSLog(@"Model issue, whoops: %@", error);
     }
     
-    self.pageView.backgroundColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:0.86/1.0];
-
+    self.pageView.backgroundColor = [UIColor clearColor];
+    
     [self.mapView setDelegate:self];
     
     self.navigationItem.rightBarButtonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
