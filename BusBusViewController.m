@@ -19,7 +19,6 @@
 
 @interface BusBusViewController () <BSBBusCollectionDelegate>
 
-@property (nonatomic, strong) NSCache *busDetailCache;
 @property (nonatomic, strong) BSBBusCollectionViewController *bussesViewController;
 
 - (void)dropBusLocationsOnMap;
@@ -39,8 +38,6 @@
 {
     [super viewDidLoad];
     
-    self.busDetailCache = [NSCache new];
-    
     NSError *error = nil;
     [[BSBBusService sharedManager] findCurrentLocation];
     
@@ -48,12 +45,6 @@
         [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
         [self dropBusLocationsOnMap];
     }];
-    
-    if (error){
-        NSLog(@"Model issue, whoops: %@", error);
-    }
-    
-    self.pageView.backgroundColor = [UIColor clearColor];
     
     [self.mapView setDelegate:self];
     

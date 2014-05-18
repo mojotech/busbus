@@ -23,13 +23,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDR-Et-rod">
                                 <rect key="frame" x="0.0" y="329" width="320" height="239"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="zeA-U2-REb">
-                                        <rect key="frame" x="142" y="205" width="39" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </pageControl>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -37,61 +31,12 @@
                     <navigationItem key="navigationItem" title="BusBus" id="bcK-Gb-YXg"/>
                     <connections>
                         <outlet property="mapView" destination="TYE-ui-dd7" id="Pl4-KA-8Fe"/>
-                        <outlet property="pageControl" destination="zeA-U2-REb" id="Y19-vA-wBP"/>
                         <outlet property="pageView" destination="YDR-Et-rod" id="yKq-RG-EEj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMl-OM-ysg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="766" y="58"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="V4f-Gn-LeI">
-            <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wny-dg-BLj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AwY-FC-LH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="766" y="722"/>
-        </scene>
-        <!--Page Content View Controller-->
-        <scene sceneID="xhS-N0-Iwk">
-            <objects>
-                <viewController storyboardIdentifier="PageContentViewController" id="207-B2-Kz6" customClass="PageContentViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Tf8-Qh-t5C"/>
-                        <viewControllerLayoutGuide type="bottom" id="pSf-fR-kAM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nAO-sK-tfb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tl8-LF-HcJ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="105"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="39"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRE-45-2LV">
-                                <rect key="frame" x="20" y="113" width="280" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
-                    <connections>
-                        <outlet property="label" destination="tl8-LF-HcJ" id="lmZ-qT-V4G"/>
-                        <outlet property="stop" destination="bRE-45-2LV" id="Be0-hx-oT8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2AW-nT-fkm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1143" y="722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HUX-pb-6Mw">

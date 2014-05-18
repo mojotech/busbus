@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIView *pageView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
