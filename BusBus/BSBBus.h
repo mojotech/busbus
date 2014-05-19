@@ -11,14 +11,22 @@
 #import <MapKit/MapKit.h>
 
 #import "BSBVehicle.h"
+#import "BSBPassage.h"
+#import "BSBRoute.h"
 
 @interface BSBBus : NSObject <MKAnnotation>
 
 @property (nonatomic, copy) NSString *busID;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) BSBVehicle *vehicle;
+@property (nonatomic, strong) BSBPassage *passage;
+@property (nonatomic, strong) BSBRoute *route;
+@property (nonatomic, assign) NSUInteger stopSequence;
 
 @property (nonatomic, readonly) NSString *routeID;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+@property (nonatomic, readonly) NSString *nextStopName;
+@property (nonatomic, readonly) NSString *destinationStopName;
 
 @end

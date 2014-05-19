@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BSBBus;
+
 @interface BSBAppearance : NSObject
 
 + (UIFont *)appFontOfSize:(CGFloat)size;
@@ -20,6 +22,7 @@
 + (UIColor *)greenblue;
 + (UIColor *)pinkish;
 
++ (UIColor *)colorForBus:(BSBBus *)bus;
 + (UIColor *)moduloColor:(NSUInteger)index;
 
 @end

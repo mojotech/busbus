@@ -36,6 +36,9 @@
 		E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AA192716C30019CC20 /* BSBAppearance.m */; };
 		E7C3E7AF1927237E0019CC20 /* BSBBusCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */; };
 		E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */; };
+		E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4A1929A23900020920 /* BSBPassage.m */; };
+		E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4D1929A79200020920 /* BSBBusStop.m */; };
+		E7E2CD511929AC3400020920 /* BSBRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD501929AC3400020920 /* BSBRoute.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,12 @@
 		E7C3E7AD1927237E0019CC20 /* BSBBusCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusCollectionViewController.h; sourceTree = "<group>"; };
 		E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusCollectionViewController.m; sourceTree = "<group>"; };
 		E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBBusDetailCell.xib; sourceTree = "<group>"; };
+		E7E2CD491929A23900020920 /* BSBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBPassage.h; sourceTree = "<group>"; };
+		E7E2CD4A1929A23900020920 /* BSBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBPassage.m; sourceTree = "<group>"; };
+		E7E2CD4C1929A79200020920 /* BSBBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusStop.h; sourceTree = "<group>"; };
+		E7E2CD4D1929A79200020920 /* BSBBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusStop.m; sourceTree = "<group>"; };
+		E7E2CD4F1929AC3400020920 /* BSBRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBRoute.h; sourceTree = "<group>"; };
+		E7E2CD501929AC3400020920 /* BSBRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBRoute.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +229,12 @@
 				940A695718AC22CD00472B65 /* BSBBus.m */,
 				E7A839A91926E68900EE7048 /* BSBVehicle.h */,
 				E7A839AA1926E68900EE7048 /* BSBVehicle.m */,
+				E7E2CD491929A23900020920 /* BSBPassage.h */,
+				E7E2CD4A1929A23900020920 /* BSBPassage.m */,
+				E7E2CD4C1929A79200020920 /* BSBBusStop.h */,
+				E7E2CD4D1929A79200020920 /* BSBBusStop.m */,
+				E7E2CD4F1929AC3400020920 /* BSBRoute.h */,
+				E7E2CD501929AC3400020920 /* BSBRoute.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -382,14 +397,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D8A8E418BBC212007DFA6F /* PageContentViewController.m in Sources */,
+				E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */,
 				940A693318AC21B600472B65 /* AppDelegate.m in Sources */,
 				E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */,
+				E7E2CD511929AC3400020920 /* BSBRoute.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
 				E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */,
 				E7C3E7AF1927237E0019CC20 /* BSBBusCollectionViewController.m in Sources */,
 				E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */,
 				E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */,
+				E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */,
 				940A695518AC222800472B65 /* BusBusViewController.m in Sources */,
 				9449A36918ECAC7E004E0A4E /* BSBBusService.m in Sources */,
 				9476177918E9A8C3000FEA58 /* BOClient.m in Sources */,

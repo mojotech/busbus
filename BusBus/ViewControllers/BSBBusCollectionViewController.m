@@ -26,6 +26,7 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     ((UICollectionViewFlowLayout *)layout).itemSize = CGSizeMake(320, 250);
     ((UICollectionViewFlowLayout *)layout).minimumInteritemSpacing = 0;
     ((UICollectionViewFlowLayout *)layout).minimumLineSpacing = 0;
+    ((UICollectionViewFlowLayout *)layout).sectionInset = UIEdgeInsetsZero;
     
     if (self == nil) {
         return nil;
@@ -39,6 +40,7 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     [super viewDidLoad];
     
     [self.collectionView setPagingEnabled:YES];
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBBusDetailCell" bundle:nil]
@@ -63,7 +65,9 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 - (void)setBuses:(NSArray *)buses
 {
     _buses = [buses copy];
-    [self.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -75,14 +79,18 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
         return cell;
     }
     
-    cell.routeLabel.text = ((BSBBus *)self.buses[indexPath.item]).routeID;
+    BSBBus *bus = self.buses[indexPath.item];
+    
+    cell.routeLabel.text = bus.routeID;
+    cell.stopLabel.text = bus.nextStopName;
+    cell.progressView.progressTintColor = [BSBAppearance colorForBus:bus];
     
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(320, 250);
+    return self.collectionView.frame.size;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

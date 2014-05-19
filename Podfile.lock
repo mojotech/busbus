@@ -1,4 +1,19 @@
 PODS:
+  - BlocksKit (2.2.3):
+    - BlocksKit/All
+  - BlocksKit/All (2.2.3):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.3)
+  - BlocksKit/DynamicDelegate (2.2.3)
+  - BlocksKit/MessageUI (2.2.3):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.3):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Masonry (0.5.0)
   - OHMKit (0.1.0)
   - ReactiveCocoa (2.3):
@@ -10,11 +25,13 @@ PODS:
     - ReactiveCocoa/Core
 
 DEPENDENCIES:
+  - BlocksKit
   - Masonry
   - OHMKit
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
+  BlocksKit: d2f8e007646282b4ffc525c15bdf432ad3d11d78
   Masonry: bef482b29f00b33a2da916e1011af85f5d371d66
   OHMKit: a4f796da5fcbbad308a41afee3f195df5d226467
   ReactiveCocoa: dde7b11a14954edf789e7343b2c32e595caabd01

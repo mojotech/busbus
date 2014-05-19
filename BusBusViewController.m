@@ -66,7 +66,7 @@
     
     self.bussesViewController = [[BSBBusCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     
-    _bussesViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.width));
+    _bussesViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.height));
     [self addChildViewController:_bussesViewController];
     [self.pageView addSubview:_bussesViewController.view];
     [_bussesViewController didMoveToParentViewController:self];
@@ -91,7 +91,7 @@
         NSString *busNumber = bus.routeID;
         
         pin.pinText = busNumber;
-        pin.color = [BSBAppearance moduloColor:[busNumber integerValue]];
+        pin.color = [BSBAppearance colorForBus:bus];
         
         pin.canShowCallout = NO;
     }

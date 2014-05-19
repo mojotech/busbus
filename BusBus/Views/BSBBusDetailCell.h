@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *routeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stopLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "BSBAppearance.h"
 
+#import "BSBBus.h"
+
 @implementation BSBAppearance
 
 + (UIFont *)appFontOfSize:(CGFloat)size
@@ -26,6 +28,11 @@
 }
 
 #pragma mark - Color
+
++ (UIColor *)colorForBus:(BSBBus *)bus
+{
+    return [self moduloColor:[bus.routeID integerValue]];
+}
 
 + (UIColor *)moduloColor:(NSUInteger)index
 {
