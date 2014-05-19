@@ -14,6 +14,9 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) BOClient *client;
+
+@property (nonatomic, strong) NSDate *lastFetchedDate;
+
 @end
 
 @implementation BSBBusService
@@ -33,6 +36,8 @@
         _sharedManager->_locationManager.delegate = self;
         
         _sharedManager->_client = [[BOClient alloc] init];
+        
+        _sharedManager->_lastFetchedDate = [NSDate distantPast];
     });
     self = _sharedManager;
     
@@ -56,9 +61,16 @@
 
 - (void)updateCurrentBusLocations
 {
+    if ([self.lastFetchedDate timeIntervalSinceNow] > -10) {
+        return;
+    }
+    
+    NSLog(@"fetch");
+    
     [self.client busLocationsNearLocation:self.currentLocation.coordinate
                                 completion:^(NSArray *busLocations) {
                                     self.currentBusses = busLocations;
+                                    self.lastFetchedDate = [NSDate date];
                                 } failure:nil];
 }
 
