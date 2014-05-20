@@ -49,13 +49,6 @@
     return nil;
 }
 
-- (NSString *)routeNameForID:(NSString *)routeID
-{
-//    [self.route bk_se];
-    
-    return nil;
-}
-
 - (NSString *)routeID
 {
     return self.vehicle.routeID;
