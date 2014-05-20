@@ -25,7 +25,6 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
     ((UICollectionViewFlowLayout *)layout).minimumLineSpacing = 0;
     ((UICollectionViewFlowLayout *)layout).sectionInset = UIEdgeInsetsZero;
     
-    
     if (self == nil) {
         return nil;
     }
@@ -107,7 +106,7 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
 {
     CGPoint offsetInOut = *targetContentOffset;
     
-    offsetInOut.x = ((NSInteger)targetContentOffset->x)%(NSInteger)kBSBBusLineGroupHeight + kBSBBusLineGroupHeight/2.;
+    offsetInOut.x = (NSInteger)(offsetInOut.x / kBSBBusLineGroupHeight) * kBSBBusLineGroupHeight + kBSBBusLineGroupHeight/2.;
     
     *targetContentOffset = offsetInOut;
 }
@@ -115,10 +114,10 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGPoint scrollOffset = scrollView.contentOffset;
-    CGRect bounds = self.collectionView.bounds;
+    CGRect bounds = self.view.bounds;
     
     scrollOffset.x += CGRectGetMidX(bounds);
-    scrollOffset.y = CGRectGetMidY(bounds);
+    scrollOffset.y = kBSBBusLineGroupHeight / 2;
     
     NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollOffset];
     [self.delegate collectionViewSelectedBus:self.buses[path.item]];

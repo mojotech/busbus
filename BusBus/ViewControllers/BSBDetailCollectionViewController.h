@@ -11,12 +11,6 @@
 #import "BSBBus.h"
 #import "BSBBusCollectionDelegate.h"
 
-@protocol BSBBusCollectionDelegate <NSObject>
-
-- (void)collectionViewSelectedBus:(BSBBus *)bus;
-
-@end
-
 @interface BSBDetailCollectionViewController : UICollectionViewController
 @property (nonatomic, strong) NSArray *buses;
 @property (nonatomic, weak) id<BSBBusCollectionDelegate> delegate;
