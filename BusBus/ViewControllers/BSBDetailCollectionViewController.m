@@ -23,7 +23,6 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
 {
     self = [super initWithCollectionViewLayout:layout];
-    ((UICollectionViewFlowLayout *)layout).itemSize = CGSizeMake(320, 250);
     ((UICollectionViewFlowLayout *)layout).minimumInteritemSpacing = 0;
     ((UICollectionViewFlowLayout *)layout).minimumLineSpacing = 0;
     ((UICollectionViewFlowLayout *)layout).sectionInset = UIEdgeInsetsZero;
@@ -57,6 +56,11 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     }];
 }
 
+- (void)didMoveToParentViewController:(UIViewController *)parent{
+    [super didMoveToParentViewController:parent];
+    ((UICollectionViewFlowLayout *)self.collectionViewLayout).itemSize = self.collectionView.bounds.size;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.buses.count;
@@ -78,8 +82,6 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     if (indexPath.item > self.buses.count) {
         return cell;
     }
-    
-    cell.backgroundColor = [BSBAppearance moduloColor:indexPath.row%2 + 1];
     
     BSBBus *bus = self.buses[indexPath.item];
     

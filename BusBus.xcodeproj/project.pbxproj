@@ -39,6 +39,9 @@
 		E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4A1929A23900020920 /* BSBPassage.m */; };
 		E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4D1929A79200020920 /* BSBBusStop.m */; };
 		E7E2CD511929AC3400020920 /* BSBRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD501929AC3400020920 /* BSBRoute.m */; };
+		E7E2CD54192AE1BB00020920 /* BSBBusLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */; };
+		E7E2CD57192AE4D400020920 /* BSBSmallBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD56192AE4D400020920 /* BSBSmallBusCell.m */; };
+		E7E2CD59192AE4EC00020920 /* BSBSmallBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7E2CD58192AE4EC00020920 /* BSBSmallBusCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +105,12 @@
 		E7E2CD4D1929A79200020920 /* BSBBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusStop.m; sourceTree = "<group>"; };
 		E7E2CD4F1929AC3400020920 /* BSBRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBRoute.h; sourceTree = "<group>"; };
 		E7E2CD501929AC3400020920 /* BSBRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBRoute.m; sourceTree = "<group>"; };
+		E7E2CD52192AE1BB00020920 /* BSBBusLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusLineViewController.h; sourceTree = "<group>"; };
+		E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusLineViewController.m; sourceTree = "<group>"; };
+		E7E2CD55192AE4D400020920 /* BSBSmallBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBSmallBusCell.h; sourceTree = "<group>"; };
+		E7E2CD56192AE4D400020920 /* BSBSmallBusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBSmallBusCell.m; sourceTree = "<group>"; };
+		E7E2CD58192AE4EC00020920 /* BSBSmallBusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBSmallBusCell.xib; sourceTree = "<group>"; };
+		E7E2CD5A192AE8A300020920 /* BSBBusCollectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSBBusCollectionDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +256,9 @@
 				E7C3E7A6192712F90019CC20 /* BSBBusPin.h */,
 				E7C3E7A7192712F90019CC20 /* BSBBusPin.m */,
 				E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */,
+				E7E2CD55192AE4D400020920 /* BSBSmallBusCell.h */,
+				E7E2CD56192AE4D400020920 /* BSBSmallBusCell.m */,
+				E7E2CD58192AE4EC00020920 /* BSBSmallBusCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +268,9 @@
 			children = (
 				E7C3E7AD1927237E0019CC20 /* BSBDetailCollectionViewController.h */,
 				E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */,
+				E7E2CD52192AE1BB00020920 /* BSBBusLineViewController.h */,
+				E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */,
+				E7E2CD5A192AE8A300020920 /* BSBBusCollectionDelegate.h */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -342,6 +357,7 @@
 			files = (
 				94F606F018ECB0A800782D1B /* Boston.gpx in Resources */,
 				E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */,
+				E7E2CD59192AE4EC00020920 /* BSBSmallBusCell.xib in Resources */,
 				940A695218AC21F900472B65 /* MainStoryboard.storyboard in Resources */,
 				940A692D18AC21B600472B65 /* InfoPlist.strings in Resources */,
 				940A693518AC21B600472B65 /* Images.xcassets in Resources */,
@@ -403,12 +419,14 @@
 				E7E2CD511929AC3400020920 /* BSBRoute.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
+				E7E2CD57192AE4D400020920 /* BSBSmallBusCell.m in Sources */,
 				E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */,
 				E7C3E7AF1927237E0019CC20 /* BSBDetailCollectionViewController.m in Sources */,
 				E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */,
 				E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */,
 				E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */,
 				940A695518AC222800472B65 /* BusBusViewController.m in Sources */,
+				E7E2CD54192AE1BB00020920 /* BSBBusLineViewController.m in Sources */,
 				9449A36918ECAC7E004E0A4E /* BSBBusService.m in Sources */,
 				9476177918E9A8C3000FEA58 /* BOClient.m in Sources */,
 			);

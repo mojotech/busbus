@@ -11,6 +11,7 @@
 #import "BSBBusService.h"
 #import "BSBBusPin.h"
 #import "BSBDetailCollectionViewController.h"
+#import "BSBBusLineViewController.h"
 
 #import <MapKit/MapKit.h>
 
@@ -21,6 +22,7 @@
 
 @property (nonatomic, assign) BOOL busesHavePresented;
 @property (nonatomic, strong) BSBDetailCollectionViewController *bussesViewController;
+@property (nonatomic, strong) BSBBusLineViewController *busLineController;
 
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
@@ -57,6 +59,7 @@
 {
     _buses = buses;
     [self.bussesViewController setBuses:buses];
+    [self.busLineController setBuses:buses];
 }
 
 - (void)instantiatePageViewController
@@ -66,12 +69,28 @@
     
     self.bussesViewController = [[BSBDetailCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     
-    _bussesViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.height));
+    _bussesViewController.view.frame = (CGRectMake(0, kBSBBusLineGroupHeight + 0.5,
+                                                   self.pageView.frame.size.width, self.pageView.frame.size.height - kBSBBusLineGroupHeight));
     [self addChildViewController:_bussesViewController];
     [self.pageView addSubview:_bussesViewController.view];
     [_bussesViewController didMoveToParentViewController:self];
     
     self.bussesViewController.delegate = self;
+    
+    // Need a separate flow layout
+    flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    
+    self.busLineController = [[BSBBusLineViewController alloc] initWithCollectionViewLayout:flowLayout];
+    
+    self.busLineController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, kBSBBusLineGroupHeight));
+    [self addChildViewController:self.busLineController];
+    [self.pageView addSubview:self.busLineController.view];
+    [self.busLineController didMoveToParentViewController:self];
+    
+    [self.view bringSubviewToFront:self.bussesViewController.view];
+    
+    self.busLineController.delegate = self;
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation

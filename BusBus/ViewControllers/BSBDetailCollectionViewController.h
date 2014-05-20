@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BSBBus.h"
+#import "BSBBusCollectionDelegate.h"
 
 @protocol BSBBusCollectionDelegate <NSObject>
 
