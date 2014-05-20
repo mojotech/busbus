@@ -12,7 +12,7 @@
 
 #import "BSBVehicle.h"
 #import "BSBPassage.h"
-#import "BSBRoute.h"
+#import "BSBBusRoute.h"
 
 @interface BSBBus : NSObject <MKAnnotation>
 
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) BSBVehicle *vehicle;
 @property (nonatomic, strong) BSBPassage *passage;
-@property (nonatomic, strong) BSBRoute *route;
+@property (nonatomic, strong) BSBBusRoute *route;
 @property (nonatomic, assign) NSUInteger stopSequence;
 
 @property (nonatomic, readonly) NSString *routeID;

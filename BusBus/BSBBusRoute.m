@@ -6,7 +6,7 @@
 //
 //
 
-#import "BSBRoute.h"
+#import "BSBBusRoute.h"
 
 #import <OHMKit/ObjectMapping.h>
 
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation BSBRoute
+@implementation BSBBusRoute
 
 + (void)load
 {

@@ -20,7 +20,7 @@
 
 @end
 
-@interface BSBRoute : NSObject
+@interface BSBBusRoute : NSObject
 
 /**
  An array of BSBDirectedRoute objects

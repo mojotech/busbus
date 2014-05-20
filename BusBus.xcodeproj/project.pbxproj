@@ -38,7 +38,7 @@
 		E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */; };
 		E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4A1929A23900020920 /* BSBPassage.m */; };
 		E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4D1929A79200020920 /* BSBBusStop.m */; };
-		E7E2CD511929AC3400020920 /* BSBRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD501929AC3400020920 /* BSBRoute.m */; };
+		E7E2CD511929AC3400020920 /* BSBBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD501929AC3400020920 /* BSBBusRoute.m */; };
 		E7E2CD54192AE1BB00020920 /* BSBBusLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */; };
 		E7E2CD57192AE4D400020920 /* BSBSmallBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD56192AE4D400020920 /* BSBSmallBusCell.m */; };
 		E7E2CD59192AE4EC00020920 /* BSBSmallBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7E2CD58192AE4EC00020920 /* BSBSmallBusCell.xib */; };
@@ -103,8 +103,8 @@
 		E7E2CD4A1929A23900020920 /* BSBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBPassage.m; sourceTree = "<group>"; };
 		E7E2CD4C1929A79200020920 /* BSBBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusStop.h; sourceTree = "<group>"; };
 		E7E2CD4D1929A79200020920 /* BSBBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusStop.m; sourceTree = "<group>"; };
-		E7E2CD4F1929AC3400020920 /* BSBRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBRoute.h; sourceTree = "<group>"; };
-		E7E2CD501929AC3400020920 /* BSBRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBRoute.m; sourceTree = "<group>"; };
+		E7E2CD4F1929AC3400020920 /* BSBBusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusRoute.h; sourceTree = "<group>"; };
+		E7E2CD501929AC3400020920 /* BSBBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusRoute.m; sourceTree = "<group>"; };
 		E7E2CD52192AE1BB00020920 /* BSBBusLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusLineViewController.h; sourceTree = "<group>"; };
 		E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusLineViewController.m; sourceTree = "<group>"; };
 		E7E2CD55192AE4D400020920 /* BSBSmallBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBSmallBusCell.h; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 				E7E2CD4A1929A23900020920 /* BSBPassage.m */,
 				E7E2CD4C1929A79200020920 /* BSBBusStop.h */,
 				E7E2CD4D1929A79200020920 /* BSBBusStop.m */,
-				E7E2CD4F1929AC3400020920 /* BSBRoute.h */,
-				E7E2CD501929AC3400020920 /* BSBRoute.m */,
+				E7E2CD4F1929AC3400020920 /* BSBBusRoute.h */,
+				E7E2CD501929AC3400020920 /* BSBBusRoute.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 				E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */,
 				940A693318AC21B600472B65 /* AppDelegate.m in Sources */,
 				E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */,
-				E7E2CD511929AC3400020920 /* BSBRoute.m in Sources */,
+				E7E2CD511929AC3400020920 /* BSBBusRoute.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
 				E7E2CD57192AE4D400020920 /* BSBSmallBusCell.m in Sources */,
