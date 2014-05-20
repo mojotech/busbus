@@ -3,19 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "appicon29x29_2x_360.png",
+      "filename" : "busbus-58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "appicon40x40_2x_360.png",
+      "filename" : "busbus-80.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "appicon60x60@2x.png",
+      "filename" : "busbus-120.png",
       "scale" : "2x"
     }
   ],
