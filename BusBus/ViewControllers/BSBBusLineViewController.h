@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BSBBusCollectionDelegate.h"
 
-static CGFloat kBSBBusLineGroupHeight = 60.;
+static CGFloat kBSBBusLineGroupHeight = 40.;
 
 @interface BSBBusLineViewController : UICollectionViewController
 

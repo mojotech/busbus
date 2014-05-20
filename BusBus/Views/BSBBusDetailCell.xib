@@ -17,7 +17,7 @@
                         <rect key="frame" x="20" y="50" width="280" height="119"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="qhG-l4-R6b"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="100" id="qhG-l4-R6b"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="86"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -37,7 +37,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="mpX-LM-eb5" firstAttribute="top" secondItem="zAz-qW-6VJ" secondAttribute="top" constant="50" id="8WX-OH-EMQ"/>
+                <constraint firstItem="mpX-LM-eb5" firstAttribute="top" relation="lessThanOrEqual" secondItem="zAz-qW-6VJ" secondAttribute="top" priority="749" constant="50" id="8WX-OH-EMQ"/>
                 <constraint firstItem="qAu-5l-y9n" firstAttribute="leading" secondItem="zAz-qW-6VJ" secondAttribute="leading" constant="20" id="ROf-Ka-hnc"/>
                 <constraint firstItem="mpX-LM-eb5" firstAttribute="leading" secondItem="zAz-qW-6VJ" secondAttribute="leading" constant="20" id="ac6-qa-REA"/>
                 <constraint firstItem="Y99-Q4-oWc" firstAttribute="top" secondItem="qAu-5l-y9n" secondAttribute="bottom" constant="20" id="dIt-I6-SZZ"/>
