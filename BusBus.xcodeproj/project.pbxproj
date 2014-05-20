@@ -34,7 +34,7 @@
 		E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839AA1926E68900EE7048 /* BSBVehicle.m */; };
 		E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7A7192712F90019CC20 /* BSBBusPin.m */; };
 		E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AA192716C30019CC20 /* BSBAppearance.m */; };
-		E7C3E7AF1927237E0019CC20 /* BSBBusCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */; };
+		E7C3E7AF1927237E0019CC20 /* BSBDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */; };
 		E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */; };
 		E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4A1929A23900020920 /* BSBPassage.m */; };
 		E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4D1929A79200020920 /* BSBBusStop.m */; };
@@ -93,8 +93,8 @@
 		E7C3E7A7192712F90019CC20 /* BSBBusPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusPin.m; sourceTree = "<group>"; };
 		E7C3E7A9192716C30019CC20 /* BSBAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBAppearance.h; sourceTree = "<group>"; };
 		E7C3E7AA192716C30019CC20 /* BSBAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBAppearance.m; sourceTree = "<group>"; };
-		E7C3E7AD1927237E0019CC20 /* BSBBusCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusCollectionViewController.h; sourceTree = "<group>"; };
-		E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusCollectionViewController.m; sourceTree = "<group>"; };
+		E7C3E7AD1927237E0019CC20 /* BSBDetailCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBDetailCollectionViewController.h; sourceTree = "<group>"; };
+		E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBDetailCollectionViewController.m; sourceTree = "<group>"; };
 		E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBBusDetailCell.xib; sourceTree = "<group>"; };
 		E7E2CD491929A23900020920 /* BSBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBPassage.h; sourceTree = "<group>"; };
 		E7E2CD4A1929A23900020920 /* BSBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBPassage.m; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 		E7C3E7AC1927236D0019CC20 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E7C3E7AD1927237E0019CC20 /* BSBBusCollectionViewController.h */,
-				E7C3E7AE1927237E0019CC20 /* BSBBusCollectionViewController.m */,
+				E7C3E7AD1927237E0019CC20 /* BSBDetailCollectionViewController.h */,
+				E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -404,7 +404,7 @@
 				940A692F18AC21B600472B65 /* main.m in Sources */,
 				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
 				E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */,
-				E7C3E7AF1927237E0019CC20 /* BSBBusCollectionViewController.m in Sources */,
+				E7C3E7AF1927237E0019CC20 /* BSBDetailCollectionViewController.m in Sources */,
 				E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */,
 				E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */,
 				E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */,

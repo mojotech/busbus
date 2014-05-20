@@ -6,7 +6,7 @@
 //
 //
 
-#import "BSBBusCollectionViewController.h"
+#import "BSBDetailCollectionViewController.h"
 #import "BSBBusDetailCell.h"
 #import "BSBBus.h"
 
@@ -14,11 +14,11 @@
 
 static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
-@interface BSBBusCollectionViewController () <UICollectionViewDelegateFlowLayout>
+@interface BSBDetailCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
 @end
 
-@implementation BSBBusCollectionViewController
+@implementation BSBDetailCollectionViewController
 
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
 {
@@ -78,6 +78,8 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     if (indexPath.item > self.buses.count) {
         return cell;
     }
+    
+    cell.backgroundColor = [BSBAppearance moduloColor:indexPath.row%2 + 1];
     
     BSBBus *bus = self.buses[indexPath.item];
     

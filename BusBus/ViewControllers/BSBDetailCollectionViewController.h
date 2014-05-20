@@ -16,7 +16,7 @@
 
 @end
 
-@interface BSBBusCollectionViewController : UICollectionViewController
+@interface BSBDetailCollectionViewController : UICollectionViewController
 @property (nonatomic, strong) NSArray *buses;
 @property (nonatomic, weak) id<BSBBusCollectionDelegate> delegate;
 @end

@@ -10,7 +10,7 @@
 #import "BSBBus.h"
 #import "BSBBusService.h"
 #import "BSBBusPin.h"
-#import "BSBBusCollectionViewController.h"
+#import "BSBDetailCollectionViewController.h"
 
 #import <MapKit/MapKit.h>
 
@@ -20,7 +20,7 @@
 @interface BusBusViewController () <BSBBusCollectionDelegate>
 
 @property (nonatomic, assign) BOOL busesHavePresented;
-@property (nonatomic, strong) BSBBusCollectionViewController *bussesViewController;
+@property (nonatomic, strong) BSBDetailCollectionViewController *bussesViewController;
 
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
@@ -64,7 +64,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
-    self.bussesViewController = [[BSBBusCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+    self.bussesViewController = [[BSBDetailCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     
     _bussesViewController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, self.pageView.frame.size.height));
     [self addChildViewController:_bussesViewController];
