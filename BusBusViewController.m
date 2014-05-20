@@ -165,4 +165,29 @@
     [self.mapView setCenterCoordinate:center animated:YES];
 }
 
+#ifdef DEBUG
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if ([[BSBBusService sharedManager] mockLocation] != nil) {
+        [[BSBBusService sharedManager] setMockLocation:nil];
+        
+        [[[UIAlertView alloc] initWithTitle:@"Mock Location Cleared" message:@"Now using your real location." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        
+        return;
+    }
+    
+    CLLocation *location =
+    [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(42.355579, -71.062768)
+                                  altitude:14
+                        horizontalAccuracy:1
+                          verticalAccuracy:10 timestamp:[NSDate date]];
+    
+    [[BSBBusService sharedManager] setMockLocation:location];
+    
+    [[[UIAlertView alloc] initWithTitle:@"Mock Location" message:@"Using test location. This only affects BusBus network calls, not your \"user location\" on the map. Enjoy the Common!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+}
+
+#endif
+
 @end

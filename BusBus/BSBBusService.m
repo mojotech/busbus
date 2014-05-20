@@ -51,7 +51,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    CLLocation *location = [locations lastObject];
+    CLLocation *location = self.mockLocation?:[locations lastObject];
     // Negative horizontal accuracies indicate an invalid location.
     if (location.horizontalAccuracy > 0) {
         self.currentLocation = location;
