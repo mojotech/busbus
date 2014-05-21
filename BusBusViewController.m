@@ -8,6 +8,7 @@
 
 #import "BusBusViewController.h"
 #import "BSBBus.h"
+#import "BSBBusStop.h"
 #import "BSBBusService.h"
 #import "BSBBusPin.h"
 #import "BSBDetailCollectionViewController.h"
@@ -43,10 +44,24 @@
     
     [[BSBBusService sharedManager] findCurrentLocation];
     
-    [RACObserve([BSBBusService sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
-        [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
-        [self dropBusLocationsOnMap];
+//    [RACObserve([BSBBusService sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
+//        [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
+//        [self dropBusLocationsOnMap];
+//    }];
+    
+    [RACObserve([BSBBusService sharedManager], busStops) subscribeNext:^(NSArray *stops) {
+        if (stops == nil || stops.count == 0) {
+            return;
+        }
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.mapView showAnnotations:stops animated:YES];
+            });
+        });
+        
     }];
+    
     
     [self.mapView setDelegate:self];
     
@@ -96,8 +111,11 @@
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
 {
     BSBBusPin *pin;
-    if(annotation != self.mapView.userLocation)
+    if(annotation == self.mapView.userLocation)
     {
+        return nil;
+    }
+    if ([annotation isKindOfClass:[BSBBus class]]) {
         BSBBus *bus = (BSBBus *)annotation;
         
         static NSString *busPinIdentifier = @"busPinIdentifier";
@@ -113,6 +131,13 @@
         pin.color = [BSBAppearance colorForBus:bus];
         
         pin.canShowCallout = NO;
+    } else if ([annotation isKindOfClass:[BSBBusStop class]]) {
+        MKAnnotationView *pin = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pandas"];
+        
+        if (pin == nil) {
+            pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pandas"];
+        }
+        return pin;
     }
     return pin;
 }

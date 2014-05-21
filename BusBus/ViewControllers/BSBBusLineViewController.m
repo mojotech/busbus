@@ -67,11 +67,7 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
      BSBSmallBusCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BSBBusLineCellReuseIdentifier
                                                                        forIndexPath:indexPath];
     
-    if (indexPath.item > self.buses.count) {
-        return cell;
-    }
-    
-    BSBBus *bus = self.buses[indexPath.item];
+    BSBBus *bus = [self itemAtIndex:indexPath.item];
     
     cell.bus = bus;
     
@@ -80,7 +76,15 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.buses.count;
+    if (self.buses.count == 0) {
+        return 0;
+    }
+    
+    NSUInteger multiplier = MAX(2, ceil( (self.view.bounds.size.width * 2) / ( self.buses.count * kBSBBusLineGroupHeight ) )) ;
+    
+    NSLog(@"mult: %d", (int) multiplier);
+    
+    return multiplier * self.buses.count;
 }
 
 - (void)setBuses:(NSArray *)buses
@@ -120,7 +124,37 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
     scrollOffset.y = kBSBBusLineGroupHeight / 2;
     
     NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollOffset];
-    [self.delegate collectionViewSelectedBus:self.buses[path.item]];
+    [self.delegate collectionViewSelectedBus:[self itemAtIndex:path.item]];
+}
+
+- (BSBBus *)itemAtIndex:(NSUInteger)index
+{
+    NSArray *buses = self.buses;
+    return buses[index%buses.count];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+//    CGPoint offset = scrollView.contentOffset;
+//    NSUInteger busCount = self.buses.count;
+//    
+//    NSUInteger indexAtCenter =
+//    
+//    
+//    
+//    NSUInteger itemIndexAtLeft = offset.x / kBSBBusLineGroupHeight;
+//    NSUInteger itemIndexAtRight = (offset.x + self.view.bounds.size.width) / kBSBBusLineGroupHeight;
+//    
+//    
+//    
+//    if (itemIndexAtLeft < (busCount / 2) ) {
+//        offset.x += busCount * kBSBBusLineGroupHeight;
+//        [scrollView setContentOffset:offset];
+//    } else if (itemIndexAtRight > ((busCount + busCount/2) + 1)) {
+//        offset.x -= (busCount * kBSBBusLineGroupHeight - 1);
+//        [scrollView setContentOffset:offset];
+//    }
+//    
 }
 
 @end

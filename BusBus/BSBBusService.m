@@ -7,6 +7,8 @@
 //
 
 #import "BSBBusService.h"
+#import <OHMKit/ObjectMapping.h>
+#import "BSBBusStop.h"
 
 @interface BSBBusService ()<CLLocationManagerDelegate>
 
@@ -20,6 +22,12 @@
 @end
 
 @implementation BSBBusService
+
++ (void)load
+{
+    OHMMappable(self);
+    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(busStops)) : [BSBBusStop class] });
+}
 
 + (instancetype)sharedManager
 {
@@ -67,11 +75,27 @@
     
     NSLog(@"fetch");
     
+    [self updateBusStops];
+    
     [self.client busLocationsNearLocation:self.currentLocation.coordinate
                                 completion:^(NSArray *busLocations) {
                                     self.currentBusses = busLocations;
                                     self.lastFetchedDate = [NSDate date];
                                 } failure:nil];
+}
+
+- (void)updateBusStops
+{
+    if ([self.lastFetchedDate timeIntervalSinceNow] > -10) {
+        return;
+    }
+    
+    NSLog(@"fetch");
+    
+    [[BOClient new] stopsNearLocation:self.currentLocation.coordinate
+                           completion:^(NSArray *busStops) {
+                               [self setValue:busStops forKey:NSStringFromSelector(@selector(busStops))];
+                           } failure:nil];
 }
 
 @end

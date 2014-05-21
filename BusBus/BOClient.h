@@ -16,4 +16,6 @@
                        completion:(void(^)(NSArray *))completion
                           failure:(void(^)(NSError *))failure;
 
+- (void)stopsNearLocation:(CLLocationCoordinate2D)coordinate completion:(void(^)(NSArray *))completion failure:(void(^)(NSError *))failure;
+
 @end
