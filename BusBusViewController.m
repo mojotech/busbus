@@ -18,6 +18,7 @@
 
 #import <OHMKit/ObjectMapping.h>
 #import <QuartzCore/QuartzCore.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BusBusViewController () <BSBBusCollectionDelegate>
 

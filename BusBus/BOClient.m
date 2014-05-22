@@ -9,6 +9,10 @@
 #import "BSBBus.h"
 #import "BOClient.h"
 
+static NSString * const BSBServiceHost = @"transit.nodejitsu.com";
+static NSString * const BSBServiceBusFeedPath = @"/api/feed/near";
+static NSString * const BSBServiceStopPath = @"/api/near-stops";
+
 @interface BOClient ()
 
 @property (nonatomic, strong) NSURLSession *session;
@@ -19,6 +23,7 @@
 
 - (instancetype)init
 {
+    self = [super init];
     if(self == nil) {
         return nil;
     }
@@ -29,12 +34,16 @@
     return self;
 }
 
-- (void)busLocationsNearLocation: (CLLocationCoordinate2D)coordinate completion:(void(^)(NSArray *))completion failure:(void(^)(NSError *))failure
+- (NSURLComponents *)componentsForBasicServiceCall
 {
-    NSString *requestString = [NSString stringWithFormat:@"http://transit.nodejitsu.com/api/feed/near?latitude=%f&longitude=%f&radius=1000",coordinate.latitude, coordinate.longitude];
-    
-    NSURL *url = [NSURL URLWithString:requestString];
-    
+    NSURLComponents *requestURLComponents = [NSURLComponents new];
+    requestURLComponents.scheme = @"http";
+    requestURLComponents.host = BSBServiceHost;
+    return requestURLComponents;
+}
+
+- (void)runDataTaskWithURL:(NSURL *)url completion:(void(^)(id JSONResult))completion failure:(void(^)(NSError *))failure
+{
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url
                                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                      
@@ -46,7 +55,9 @@
                                                          return;
                                                      }
                                                      
-                                                     NSArray *locations = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                     NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                                     
+                                                     id JSONResults = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                                                      
                                                      if (error) {
                                                          NSLog(@"JSON error: %@", error);
@@ -56,61 +67,42 @@
                                                          return;
                                                      }
                                                      
-                                                     if (![locations isKindOfClass:[NSArray class]]) {
-                                                         if (failure) {
-                                                             failure(nil);
-                                                         }
-                                                     }
-                                                     
                                                      if (completion) {
-                                                         completion(locations);
+                                                         completion(JSONResults);
                                                      }
                                                  }];
     [dataTask resume];
 }
 
-
-- (void)stopsNearLocation:(CLLocationCoordinate2D)coordinate completion:(void(^)(NSArray *))completion failure:(void(^)(NSError *))failure
+- (NSString *)servicePathForEntity:(BSBServiceEntity)entity
 {
-    NSString *requestString = [NSString stringWithFormat:@"http://transit.nodejitsu.com/api/near-stops?latitude=%f&longitude=%f&distance=500",coordinate.latitude, coordinate.longitude];
+    static NSDictionary *entityPathMap;
+    entityPathMap = @{@(BSBServiceEntityBus) : BSBServiceBusFeedPath,
+                      @(BSBServiceEntityBusStop) : BSBServiceStopPath
+                      };
+    return entityPathMap[@(entity)];
+}
+
+- (void)fetchEntity:(BSBServiceEntity)entity
+       nearLocation:(CLLocationCoordinate2D)coordinate
+             radius:(CLLocationDistance)distance
+         completion:(void(^)(NSArray *))completion
+            failure:(void(^)(NSError *))failure
+{
+    NSURLComponents *requestURLComponents = [self componentsForBasicServiceCall];
+    requestURLComponents.path = [self servicePathForEntity:entity];
+    requestURLComponents.query = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%f",coordinate.latitude, coordinate.longitude, distance];
     
-    NSURL *url = [NSURL URLWithString:requestString];
-    
-    NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url
-                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                     
-                                                     if (error) {
-                                                         NSLog(@"%@", error);
-                                                         if (failure){
-                                                             failure(error);
-                                                         }
-                                                         return;
-                                                     }
-                                                     
-                                                     NSArray *locations = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                                     
-                                                     
-                                                     NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                                     
-                                                     if (error) {
-                                                         NSLog(@"JSON error: %@", error);
-                                                         if (failure) {
-                                                             failure(error);
-                                                         }
-                                                         return;
-                                                     }
-                                                     
-                                                     if (![locations isKindOfClass:[NSArray class]]) {
-                                                         if (failure) {
-                                                             failure(nil);
-                                                         }
-                                                     }
-                                                     
-                                                     if (completion) {
-                                                         completion(locations);
-                                                     }
-                                                 }];
-    [dataTask resume];
+    [self runDataTaskWithURL:requestURLComponents.URL
+                  completion:^(id JSONResult) {
+                      if (![JSONResult isKindOfClass:[NSArray class]]) {
+                          if (failure) { failure(nil); }
+                      }
+                      
+                      if (completion) {
+                          completion(JSONResult);
+                      }
+                  } failure:failure];
 }
 
 @end

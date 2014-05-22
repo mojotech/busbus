@@ -79,11 +79,13 @@
     
     NSLog(@"fetch");
     
-    [self.client busLocationsNearLocation:self.currentLocation.coordinate
-                                completion:^(NSArray *busLocations) {
-                                    self.currentBusses = busLocations;
-                                    self.lastBusFetchDate = [NSDate date];
-                                } failure:nil];
+    [self.client fetchEntity:BSBServiceEntityBus
+                nearLocation:self.currentLocation.coordinate
+                      radius:1000
+                  completion:^(NSArray *busLocations) {
+                      self.currentBusses = busLocations;
+                      self.lastBusFetchDate = [NSDate date];
+                  } failure:nil];
 }
 
 - (void)updateBusStops
@@ -94,11 +96,13 @@
     
     NSLog(@"fetch");
     
-    [[BOClient new] stopsNearLocation:self.currentLocation.coordinate
-                           completion:^(NSArray *busStops) {
-                               [self setValue:busStops forKey:NSStringFromSelector(@selector(busStops))];
-                               self.lastStopFetchDate = [NSDate date];
-                           } failure:nil];
+    [self.client fetchEntity:BSBServiceEntityBusStop
+                nearLocation:self.currentLocation.coordinate
+                      radius:1000
+                  completion:^(NSArray *busStops) {
+                      [self setValue:busStops forKey:NSStringFromSelector(@selector(busStops))];
+                      self.lastStopFetchDate = [NSDate date];
+                  } failure:nil];
 }
 
 @end

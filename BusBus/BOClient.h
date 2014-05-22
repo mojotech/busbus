@@ -8,16 +8,18 @@
 
 @import Foundation;
 @import CoreLocation;
-#import <ReactiveCocoa.h>
+
+typedef NS_ENUM(NSUInteger, BSBServiceEntity) {
+    BSBServiceEntityBus,
+    BSBServiceEntityBusStop,
+};
 
 @interface BOClient : NSObject
 
-- (void)busLocationsNearLocation:(CLLocationCoordinate2D)coordinate
-                       completion:(void(^)(NSArray *))completion
-                          failure:(void(^)(NSError *))failure;
-
-- (void)stopsNearLocation:(CLLocationCoordinate2D)coordinate
-               completion:(void(^)(NSArray *))completion
-                  failure:(void(^)(NSError *))failure;
+- (void)fetchEntity:(BSBServiceEntity)entity
+       nearLocation:(CLLocationCoordinate2D)coordinate
+             radius:(CLLocationDistance)distance
+         completion:(void(^)(NSArray *))completion
+            failure:(void(^)(NSError *))failure;
 
 @end
