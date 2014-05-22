@@ -29,6 +29,11 @@
 
 #pragma mark - Color
 
++ (UIColor *)tintColor
+{
+    return [UIColor colorWithRed:46./255. green:151./255. blue:251./255. alpha:1.0];
+}
+
 + (UIColor *)colorForBus:(BSBBus *)bus
 {
     return [self moduloColor:[bus.routeID integerValue]];

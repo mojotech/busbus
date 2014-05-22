@@ -8,6 +8,7 @@
 
 #import "BusBusViewController.h"
 #import "BSBBus.h"
+#import "BSBBusStop.h"
 #import "BSBBusService.h"
 #import "BSBBusPin.h"
 #import "BSBDetailCollectionViewController.h"
@@ -23,6 +24,11 @@
 @property (nonatomic, assign) BOOL busesHavePresented;
 @property (nonatomic, strong) BSBDetailCollectionViewController *bussesViewController;
 @property (nonatomic, strong) BSBBusLineViewController *busLineController;
+
+@property (nonatomic, strong) NSArray *buses;
+@property (nonatomic, strong) NSArray *busPinAnnotations;
+
+@property (nonatomic, strong) NSArray *busStops;
 
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
@@ -46,6 +52,12 @@
     [RACObserve([BSBBusService sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
         [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
         [self dropBusLocationsOnMap];
+    }];
+    
+    [[RACObserve([BSBBusService sharedManager], busStops) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        [self.mapView removeAnnotations:self.busStops];
+        [self setValue:x forKeyPath:NSStringFromSelector(@selector(busStops))];
+        [self.mapView addAnnotations:self.busStops];
     }];
     
     [self.mapView setDelegate:self];
@@ -96,8 +108,12 @@
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
 {
     BSBBusPin *pin;
-    if(annotation != self.mapView.userLocation)
+    if(annotation == self.mapView.userLocation)
     {
+        return nil;
+    }
+    if ([annotation isKindOfClass:[BSBBus class]]) {
+
         BSBBus *bus = (BSBBus *)annotation;
         
         static NSString *busPinIdentifier = @"busPinIdentifier";
@@ -113,6 +129,17 @@
         pin.color = [BSBAppearance colorForBus:bus];
         
         pin.canShowCallout = NO;
+    } else if ([annotation isKindOfClass:[BSBBusStop class]]) {
+        MKAnnotationView *pin = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pandas"];
+        
+        if (pin == nil) {
+            pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pandas"];
+        }
+        
+        [pin setTintColor:[BSBAppearance tintColor]];
+        
+        return pin;
+
     }
     return pin;
 }

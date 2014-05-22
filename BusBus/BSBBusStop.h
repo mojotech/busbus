@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface BSBBusStop : NSObject
+@interface BSBBusStop : NSObject <MKAnnotation>
 
 @property (nonatomic, copy) NSString *stopName;
 @property (nonatomic, copy) NSNumber *stopID;
-@property (nonatomic, readonly) CLLocationCoordinate2D location;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @end

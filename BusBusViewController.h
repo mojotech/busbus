@@ -18,8 +18,4 @@
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 
-@property (nonatomic, strong) NSArray *buses;
-@property (nonatomic, strong) NSArray *busPinAnnotations;
-
-
 @end

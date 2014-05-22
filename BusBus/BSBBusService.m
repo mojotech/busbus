@@ -7,6 +7,9 @@
 //
 
 #import "BSBBusService.h"
+#import "BSBBusStop.h"
+
+#import <OHMKit/ObjectMapping.h>
 
 @interface BSBBusService ()<CLLocationManagerDelegate>
 
@@ -15,11 +18,18 @@
 
 @property (nonatomic, strong) BOClient *client;
 
-@property (nonatomic, strong) NSDate *lastFetchedDate;
+@property (nonatomic, strong) NSDate *lastBusFetchDate;
+@property (nonatomic, strong) NSDate *lastStopFetchDate;
 
 @end
 
 @implementation BSBBusService
+
++ (void)load
+{
+    OHMMappable(self);
+    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(busStops)) : [BSBBusStop class] });
+}
 
 + (instancetype)sharedManager
 {
@@ -37,7 +47,8 @@
         
         _sharedManager->_client = [[BOClient alloc] init];
         
-        _sharedManager->_lastFetchedDate = [NSDate distantPast];
+        _sharedManager->_lastBusFetchDate = [NSDate distantPast];
+        _sharedManager->_lastStopFetchDate = [NSDate distantPast];
     });
     self = _sharedManager;
     
@@ -56,12 +67,13 @@
     if (location.horizontalAccuracy > 0) {
         self.currentLocation = location;
         [self updateCurrentBusLocations];
+        [self updateBusStops];
     }
 }
 
 - (void)updateCurrentBusLocations
 {
-    if ([self.lastFetchedDate timeIntervalSinceNow] > -10) {
+    if ([self.lastBusFetchDate timeIntervalSinceNow] > -10) {
         return;
     }
     
@@ -70,8 +82,23 @@
     [self.client busLocationsNearLocation:self.currentLocation.coordinate
                                 completion:^(NSArray *busLocations) {
                                     self.currentBusses = busLocations;
-                                    self.lastFetchedDate = [NSDate date];
+                                    self.lastBusFetchDate = [NSDate date];
                                 } failure:nil];
+}
+
+- (void)updateBusStops
+{
+    if ([self.lastStopFetchDate timeIntervalSinceNow] > -10) {
+        return;
+    }
+    
+    NSLog(@"fetch");
+    
+    [[BOClient new] stopsNearLocation:self.currentLocation.coordinate
+                           completion:^(NSArray *busStops) {
+                               [self setValue:busStops forKey:NSStringFromSelector(@selector(busStops))];
+                               self.lastStopFetchDate = [NSDate date];
+                           } failure:nil];
 }
 
 @end

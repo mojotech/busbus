@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) NSArray *currentBusses;
 @property (nonatomic, strong) CLLocation *mockLocation;
+@property (nonatomic, strong) NSArray *busStops;
 
 - (void)updateCurrentBusLocations;
 - (void)findCurrentLocation;

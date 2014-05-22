@@ -12,6 +12,8 @@
 
 @interface BSBAppearance : NSObject
 
++ (UIColor *)tintColor;
+
 + (UIFont *)appFontOfSize:(CGFloat)size;
 + (UIFont *)appFont;
 
