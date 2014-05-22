@@ -13,7 +13,7 @@
 		940A692718AC21B600472B65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A692618AC21B600472B65 /* UIKit.framework */; };
 		940A692D18AC21B600472B65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 940A692B18AC21B600472B65 /* InfoPlist.strings */; };
 		940A692F18AC21B600472B65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A692E18AC21B600472B65 /* main.m */; };
-		940A693318AC21B600472B65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A693218AC21B600472B65 /* AppDelegate.m */; };
+		940A693318AC21B600472B65 /* BSBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A693218AC21B600472B65 /* BSBAppDelegate.m */; };
 		940A693518AC21B600472B65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 940A693418AC21B600472B65 /* Images.xcassets */; };
 		940A693C18AC21B600472B65 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A693B18AC21B600472B65 /* XCTest.framework */; };
 		940A693D18AC21B600472B65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A692218AC21B600472B65 /* Foundation.framework */; };
@@ -21,24 +21,23 @@
 		940A694618AC21B600472B65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 940A694418AC21B600472B65 /* InfoPlist.strings */; };
 		940A694818AC21B600472B65 /* BusBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A694718AC21B600472B65 /* BusBusTests.m */; };
 		940A695218AC21F900472B65 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940A695118AC21F900472B65 /* MainStoryboard.storyboard */; };
-		940A695518AC222800472B65 /* BusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695418AC222800472B65 /* BusBusViewController.m */; };
-		940A695818AC22CD00472B65 /* BSBBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 940A695718AC22CD00472B65 /* BSBBus.m */; };
 		940A695B18AC24C000472B65 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A695A18AC24C000472B65 /* MapKit.framework */; };
-		9449A36918ECAC7E004E0A4E /* BSBBusService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9449A36818ECAC7E004E0A4E /* BSBBusService.m */; };
-		9476177918E9A8C3000FEA58 /* BOClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476177818E9A8C3000FEA58 /* BOClient.m */; };
 		948B142718C4F51D00ADA61A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948B142618C4F51D00ADA61A /* QuartzCore.framework */; };
 		9499D24C18AC349C000C1374 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9499D24A18AC2E66000C1374 /* CoreLocation.framework */; };
-		94D8A8E418BBC212007DFA6F /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8A8E318BBC212007DFA6F /* PageContentViewController.m */; };
 		94F606F018ECB0A800782D1B /* Boston.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 94F606EF18ECB0A800782D1B /* Boston.gpx */; };
+		E7631CAD192EC908003D9F9C /* BSBBus.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CA4192EC908003D9F9C /* BSBBus.m */; };
+		E7631CAE192EC908003D9F9C /* BSBBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CA6192EC908003D9F9C /* BSBBusRoute.m */; };
+		E7631CAF192EC908003D9F9C /* BSBBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CA8192EC908003D9F9C /* BSBBusStop.m */; };
+		E7631CB0192EC908003D9F9C /* BSBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CAA192EC908003D9F9C /* BSBPassage.m */; };
+		E7631CB1192EC908003D9F9C /* BSBVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CAC192EC908003D9F9C /* BSBVehicle.m */; };
+		E7631CB8192EC976003D9F9C /* BSBBusService.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CB5192EC976003D9F9C /* BSBBusService.m */; };
+		E7631CB9192EC976003D9F9C /* BSBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CB7192EC976003D9F9C /* BSBClient.m */; };
+		E7631CBC192ECC28003D9F9C /* BusBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7631CBB192ECC28003D9F9C /* BusBusViewController.m */; };
 		E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839A71926C5BB00EE7048 /* BSBBusDetailCell.m */; };
-		E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A839AA1926E68900EE7048 /* BSBVehicle.m */; };
 		E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7A7192712F90019CC20 /* BSBBusPin.m */; };
 		E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AA192716C30019CC20 /* BSBAppearance.m */; };
 		E7C3E7AF1927237E0019CC20 /* BSBDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */; };
 		E7C3E7B1192725260019CC20 /* BSBBusDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */; };
-		E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4A1929A23900020920 /* BSBPassage.m */; };
-		E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD4D1929A79200020920 /* BSBBusStop.m */; };
-		E7E2CD511929AC3400020920 /* BSBBusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD501929AC3400020920 /* BSBBusRoute.m */; };
 		E7E2CD54192AE1BB00020920 /* BSBBusLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */; };
 		E7E2CD57192AE4D400020920 /* BSBSmallBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2CD56192AE4D400020920 /* BSBSmallBusCell.m */; };
 		E7E2CD59192AE4EC00020920 /* BSBSmallBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7E2CD58192AE4EC00020920 /* BSBSmallBusCell.xib */; };
@@ -65,8 +64,8 @@
 		940A692C18AC21B600472B65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		940A692E18AC21B600472B65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		940A693018AC21B600472B65 /* BusBus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BusBus-Prefix.pch"; sourceTree = "<group>"; };
-		940A693118AC21B600472B65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		940A693218AC21B600472B65 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		940A693118AC21B600472B65 /* BSBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSBAppDelegate.h; sourceTree = "<group>"; };
+		940A693218AC21B600472B65 /* BSBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBAppDelegate.m; sourceTree = "<group>"; };
 		940A693418AC21B600472B65 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		940A693A18AC21B600472B65 /* BusBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		940A693B18AC21B600472B65 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -74,24 +73,29 @@
 		940A694518AC21B600472B65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		940A694718AC21B600472B65 /* BusBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusBusTests.m; sourceTree = "<group>"; };
 		940A695118AC21F900472B65 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
-		940A695318AC222800472B65 /* BusBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusBusViewController.h; sourceTree = SOURCE_ROOT; };
-		940A695418AC222800472B65 /* BusBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusBusViewController.m; sourceTree = SOURCE_ROOT; };
-		940A695618AC22CD00472B65 /* BSBBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBus.h; sourceTree = "<group>"; };
-		940A695718AC22CD00472B65 /* BSBBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBus.m; sourceTree = "<group>"; };
+		940A695318AC222800472B65 /* BSBBusCollectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusCollectionDelegate.h; sourceTree = "<group>"; };
 		940A695A18AC24C000472B65 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		9449A36718ECAC7E004E0A4E /* BSBBusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusService.h; sourceTree = "<group>"; };
-		9449A36818ECAC7E004E0A4E /* BSBBusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusService.m; sourceTree = "<group>"; };
-		9476177718E9A8C3000FEA58 /* BOClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOClient.h; sourceTree = "<group>"; };
-		9476177818E9A8C3000FEA58 /* BOClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOClient.m; sourceTree = "<group>"; };
 		948B142618C4F51D00ADA61A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9499D24A18AC2E66000C1374 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		94D8A8E218BBC212007DFA6F /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
-		94D8A8E318BBC212007DFA6F /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		94F606EF18ECB0A800782D1B /* Boston.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Boston.gpx; sourceTree = "<group>"; };
+		E7631CA3192EC908003D9F9C /* BSBBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBus.h; sourceTree = "<group>"; };
+		E7631CA4192EC908003D9F9C /* BSBBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBus.m; sourceTree = "<group>"; };
+		E7631CA5192EC908003D9F9C /* BSBBusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusRoute.h; sourceTree = "<group>"; };
+		E7631CA6192EC908003D9F9C /* BSBBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusRoute.m; sourceTree = "<group>"; };
+		E7631CA7192EC908003D9F9C /* BSBBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusStop.h; sourceTree = "<group>"; };
+		E7631CA8192EC908003D9F9C /* BSBBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusStop.m; sourceTree = "<group>"; };
+		E7631CA9192EC908003D9F9C /* BSBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBPassage.h; sourceTree = "<group>"; };
+		E7631CAA192EC908003D9F9C /* BSBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBPassage.m; sourceTree = "<group>"; };
+		E7631CAB192EC908003D9F9C /* BSBVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBVehicle.h; sourceTree = "<group>"; };
+		E7631CAC192EC908003D9F9C /* BSBVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBVehicle.m; sourceTree = "<group>"; };
+		E7631CB4192EC976003D9F9C /* BSBBusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusService.h; sourceTree = "<group>"; };
+		E7631CB5192EC976003D9F9C /* BSBBusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusService.m; sourceTree = "<group>"; };
+		E7631CB6192EC976003D9F9C /* BSBClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBClient.h; sourceTree = "<group>"; };
+		E7631CB7192EC976003D9F9C /* BSBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBClient.m; sourceTree = "<group>"; };
+		E7631CBA192ECC28003D9F9C /* BusBusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusBusViewController.h; sourceTree = "<group>"; };
+		E7631CBB192ECC28003D9F9C /* BusBusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusBusViewController.m; sourceTree = "<group>"; };
 		E7A839A61926C5BB00EE7048 /* BSBBusDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusDetailCell.h; sourceTree = "<group>"; };
 		E7A839A71926C5BB00EE7048 /* BSBBusDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusDetailCell.m; sourceTree = "<group>"; };
-		E7A839A91926E68900EE7048 /* BSBVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBVehicle.h; sourceTree = "<group>"; };
-		E7A839AA1926E68900EE7048 /* BSBVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBVehicle.m; sourceTree = "<group>"; };
 		E7C3E7A6192712F90019CC20 /* BSBBusPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusPin.h; sourceTree = "<group>"; };
 		E7C3E7A7192712F90019CC20 /* BSBBusPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusPin.m; sourceTree = "<group>"; };
 		E7C3E7A9192716C30019CC20 /* BSBAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBAppearance.h; sourceTree = "<group>"; };
@@ -99,18 +103,11 @@
 		E7C3E7AD1927237E0019CC20 /* BSBDetailCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBDetailCollectionViewController.h; sourceTree = "<group>"; };
 		E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBDetailCollectionViewController.m; sourceTree = "<group>"; };
 		E7C3E7B0192725260019CC20 /* BSBBusDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBBusDetailCell.xib; sourceTree = "<group>"; };
-		E7E2CD491929A23900020920 /* BSBPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBPassage.h; sourceTree = "<group>"; };
-		E7E2CD4A1929A23900020920 /* BSBPassage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBPassage.m; sourceTree = "<group>"; };
-		E7E2CD4C1929A79200020920 /* BSBBusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusStop.h; sourceTree = "<group>"; };
-		E7E2CD4D1929A79200020920 /* BSBBusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusStop.m; sourceTree = "<group>"; };
-		E7E2CD4F1929AC3400020920 /* BSBBusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusRoute.h; sourceTree = "<group>"; };
-		E7E2CD501929AC3400020920 /* BSBBusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusRoute.m; sourceTree = "<group>"; };
 		E7E2CD52192AE1BB00020920 /* BSBBusLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBBusLineViewController.h; sourceTree = "<group>"; };
 		E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBBusLineViewController.m; sourceTree = "<group>"; };
 		E7E2CD55192AE4D400020920 /* BSBSmallBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBSmallBusCell.h; sourceTree = "<group>"; };
 		E7E2CD56192AE4D400020920 /* BSBSmallBusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBSmallBusCell.m; sourceTree = "<group>"; };
 		E7E2CD58192AE4EC00020920 /* BSBSmallBusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSBSmallBusCell.xib; sourceTree = "<group>"; };
-		E7E2CD5A192AE8A300020920 /* BSBBusCollectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSBBusCollectionDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,21 +178,14 @@
 			children = (
 				E7C3E7AC1927236D0019CC20 /* ViewControllers */,
 				E7A839A31926C56000EE7048 /* Views */,
-				940A695318AC222800472B65 /* BusBusViewController.h */,
-				940A695418AC222800472B65 /* BusBusViewController.m */,
+				E7631CA2192EC908003D9F9C /* Models */,
+				E7631CB3192EC976003D9F9C /* BusBusService */,
 				94F606EF18ECB0A800782D1B /* Boston.gpx */,
-				9449A36718ECAC7E004E0A4E /* BSBBusService.h */,
-				9449A36818ECAC7E004E0A4E /* BSBBusService.m */,
 				940A695118AC21F900472B65 /* MainStoryboard.storyboard */,
-				94D8A8E218BBC212007DFA6F /* PageContentViewController.h */,
-				94D8A8E318BBC212007DFA6F /* PageContentViewController.m */,
-				940A695918AC22D000472B65 /* Models */,
-				940A693118AC21B600472B65 /* AppDelegate.h */,
-				940A693218AC21B600472B65 /* AppDelegate.m */,
+				940A693118AC21B600472B65 /* BSBAppDelegate.h */,
+				940A693218AC21B600472B65 /* BSBAppDelegate.m */,
 				940A693418AC21B600472B65 /* Images.xcassets */,
 				940A692918AC21B600472B65 /* Supporting Files */,
-				9476177718E9A8C3000FEA58 /* BOClient.h */,
-				9476177818E9A8C3000FEA58 /* BOClient.m */,
 				E7C3E7A9192716C30019CC20 /* BSBAppearance.h */,
 				E7C3E7AA192716C30019CC20 /* BSBAppearance.m */,
 			);
@@ -231,21 +221,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		940A695918AC22D000472B65 /* Models */ = {
+		E7631CA2192EC908003D9F9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				940A695618AC22CD00472B65 /* BSBBus.h */,
-				940A695718AC22CD00472B65 /* BSBBus.m */,
-				E7A839A91926E68900EE7048 /* BSBVehicle.h */,
-				E7A839AA1926E68900EE7048 /* BSBVehicle.m */,
-				E7E2CD491929A23900020920 /* BSBPassage.h */,
-				E7E2CD4A1929A23900020920 /* BSBPassage.m */,
-				E7E2CD4C1929A79200020920 /* BSBBusStop.h */,
-				E7E2CD4D1929A79200020920 /* BSBBusStop.m */,
-				E7E2CD4F1929AC3400020920 /* BSBBusRoute.h */,
-				E7E2CD501929AC3400020920 /* BSBBusRoute.m */,
+				E7631CA3192EC908003D9F9C /* BSBBus.h */,
+				E7631CA4192EC908003D9F9C /* BSBBus.m */,
+				E7631CA5192EC908003D9F9C /* BSBBusRoute.h */,
+				E7631CA6192EC908003D9F9C /* BSBBusRoute.m */,
+				E7631CA7192EC908003D9F9C /* BSBBusStop.h */,
+				E7631CA8192EC908003D9F9C /* BSBBusStop.m */,
+				E7631CA9192EC908003D9F9C /* BSBPassage.h */,
+				E7631CAA192EC908003D9F9C /* BSBPassage.m */,
+				E7631CAB192EC908003D9F9C /* BSBVehicle.h */,
+				E7631CAC192EC908003D9F9C /* BSBVehicle.m */,
 			);
-			name = Models;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E7631CB3192EC976003D9F9C /* BusBusService */ = {
+			isa = PBXGroup;
+			children = (
+				E7631CB4192EC976003D9F9C /* BSBBusService.h */,
+				E7631CB5192EC976003D9F9C /* BSBBusService.m */,
+				E7631CB6192EC976003D9F9C /* BSBClient.h */,
+				E7631CB7192EC976003D9F9C /* BSBClient.m */,
+			);
+			path = BusBusService;
 			sourceTree = "<group>";
 		};
 		E7A839A31926C56000EE7048 /* Views */ = {
@@ -266,11 +267,13 @@
 		E7C3E7AC1927236D0019CC20 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E7631CBA192ECC28003D9F9C /* BusBusViewController.h */,
+				E7631CBB192ECC28003D9F9C /* BusBusViewController.m */,
+				940A695318AC222800472B65 /* BSBBusCollectionDelegate.h */,
 				E7C3E7AD1927237E0019CC20 /* BSBDetailCollectionViewController.h */,
 				E7C3E7AE1927237E0019CC20 /* BSBDetailCollectionViewController.m */,
 				E7E2CD52192AE1BB00020920 /* BSBBusLineViewController.h */,
 				E7E2CD53192AE1BB00020920 /* BSBBusLineViewController.m */,
-				E7E2CD5A192AE8A300020920 /* BSBBusCollectionDelegate.h */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -412,23 +415,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94D8A8E418BBC212007DFA6F /* PageContentViewController.m in Sources */,
-				E7E2CD4B1929A23900020920 /* BSBPassage.m in Sources */,
-				940A693318AC21B600472B65 /* AppDelegate.m in Sources */,
-				E7A839AB1926E68900EE7048 /* BSBVehicle.m in Sources */,
-				E7E2CD511929AC3400020920 /* BSBBusRoute.m in Sources */,
+				940A693318AC21B600472B65 /* BSBAppDelegate.m in Sources */,
+				E7631CB1192EC908003D9F9C /* BSBVehicle.m in Sources */,
+				E7631CB0192EC908003D9F9C /* BSBPassage.m in Sources */,
+				E7631CBC192ECC28003D9F9C /* BusBusViewController.m in Sources */,
+				E7631CAE192EC908003D9F9C /* BSBBusRoute.m in Sources */,
+				E7631CB9192EC976003D9F9C /* BSBClient.m in Sources */,
 				940A692F18AC21B600472B65 /* main.m in Sources */,
-				940A695818AC22CD00472B65 /* BSBBus.m in Sources */,
 				E7E2CD57192AE4D400020920 /* BSBSmallBusCell.m in Sources */,
+				E7631CAD192EC908003D9F9C /* BSBBus.m in Sources */,
 				E7C3E7AB192716C30019CC20 /* BSBAppearance.m in Sources */,
+				E7631CAF192EC908003D9F9C /* BSBBusStop.m in Sources */,
 				E7C3E7AF1927237E0019CC20 /* BSBDetailCollectionViewController.m in Sources */,
 				E7A839A81926C5BB00EE7048 /* BSBBusDetailCell.m in Sources */,
+				E7631CB8192EC976003D9F9C /* BSBBusService.m in Sources */,
 				E7C3E7A8192712F90019CC20 /* BSBBusPin.m in Sources */,
-				E7E2CD4E1929A79200020920 /* BSBBusStop.m in Sources */,
-				940A695518AC222800472B65 /* BusBusViewController.m in Sources */,
 				E7E2CD54192AE1BB00020920 /* BSBBusLineViewController.m in Sources */,
-				9449A36918ECAC7E004E0A4E /* BSBBusService.m in Sources */,
-				9476177918E9A8C3000FEA58 /* BOClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

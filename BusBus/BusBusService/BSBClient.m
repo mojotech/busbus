@@ -1,25 +1,22 @@
 //
-//  BOClient.m
+//  BSBClient.m
 //  BusBus
 //
 //  Created by Ryan on 3/31/14.
 //
-//
 
 #import "BSBBus.h"
-#import "BOClient.h"
+#import "BSBClient.h"
 
 static NSString * const BSBServiceHost = @"transit.nodejitsu.com";
 static NSString * const BSBServiceBusFeedPath = @"/api/feed/near";
 static NSString * const BSBServiceStopPath = @"/api/near-stops";
 
-@interface BOClient ()
-
+@interface BSBClient ()
 @property (nonatomic, strong) NSURLSession *session;
-
 @end
 
-@implementation BOClient
+@implementation BSBClient
 
 - (instancetype)init
 {
@@ -91,7 +88,10 @@ static NSString * const BSBServiceStopPath = @"/api/near-stops";
 {
     NSURLComponents *requestURLComponents = [self componentsForBasicServiceCall];
     requestURLComponents.path = [self servicePathForEntity:entity];
-    requestURLComponents.query = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%f",coordinate.latitude, coordinate.longitude, distance];
+    
+    if (CLLocationCoordinate2DIsValid(coordinate)) {
+        requestURLComponents.query = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%f",coordinate.latitude, coordinate.longitude, distance];
+    }
     
     [self runDataTaskWithURL:requestURLComponents.URL
                   completion:^(id JSONResult) {

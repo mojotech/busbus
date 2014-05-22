@@ -14,7 +14,7 @@
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBusLineViewController.h"
 
-#import <MapKit/MapKit.h>
+@import MapKit;
 
 #import <OHMKit/ObjectMapping.h>
 #import <QuartzCore/QuartzCore.h>
@@ -200,7 +200,11 @@
     if ([[BSBBusService sharedManager] mockLocation] != nil) {
         [[BSBBusService sharedManager] setMockLocation:nil];
         
-        [[[UIAlertView alloc] initWithTitle:@"Mock Location Cleared" message:@"Now using your real location." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Mock Location Cleared"
+                                    message:@"Now using your real location."
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles: nil] show];
         
         return;
     }
@@ -213,7 +217,11 @@
     
     [[BSBBusService sharedManager] setMockLocation:location];
     
-    [[[UIAlertView alloc] initWithTitle:@"Mock Location" message:@"Using test location. This only affects BusBus network calls, not your \"user location\" on the map. Enjoy the Common!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    [[[UIAlertView alloc] initWithTitle:@"Mock Location"
+                                message:@"Using test location. This only affects BusBus network calls, not your \"user location\" on the map. Enjoy the Common!"
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles: nil] show];
 }
 
 #endif

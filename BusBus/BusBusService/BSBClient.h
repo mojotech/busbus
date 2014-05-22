@@ -1,9 +1,8 @@
 //
-//  BOClient.h
+//  BSBClient.h
 //  BusBus
 //
 //  Created by Ryan on 3/31/14.
-//
 //
 
 @import Foundation;
@@ -14,7 +13,7 @@ typedef NS_ENUM(NSUInteger, BSBServiceEntity) {
     BSBServiceEntityBusStop,
 };
 
-@interface BOClient : NSObject
+@interface BSBClient : NSObject
 
 - (void)fetchEntity:(BSBServiceEntity)entity
        nearLocation:(CLLocationCoordinate2D)coordinate

@@ -10,7 +10,7 @@
 @import CoreLocation;
 @import MapKit;
 #import "BusBusViewController.h"
-#import "BOClient.h"
+#import "BSBClient.h"
 #import "BSBBus.h"
 
 @interface BSBBusService : NSObject

@@ -16,7 +16,7 @@
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
-@property (nonatomic, strong) BOClient *client;
+@property (nonatomic, strong) BSBClient *client;
 
 @property (nonatomic, strong) NSDate *lastBusFetchDate;
 @property (nonatomic, strong) NSDate *lastStopFetchDate;
@@ -45,7 +45,7 @@
         _sharedManager->_locationManager = [[CLLocationManager alloc] init];
         _sharedManager->_locationManager.delegate = self;
         
-        _sharedManager->_client = [[BOClient alloc] init];
+        _sharedManager->_client = [BSBClient new];
         
         _sharedManager->_lastBusFetchDate = [NSDate distantPast];
         _sharedManager->_lastStopFetchDate = [NSDate distantPast];
@@ -90,7 +90,7 @@
 
 - (void)updateBusStops
 {
-    if ([self.lastStopFetchDate timeIntervalSinceNow] > -10) {
+    if ([self.lastStopFetchDate timeIntervalSinceNow] > -10000) {
         return;
     }
     
