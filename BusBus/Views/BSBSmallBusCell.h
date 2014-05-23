@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "BSBBus.h"
+#import "BSBBusPresenter.h"
 
-@interface BSBSmallBusCell : UICollectionViewCell
+@interface BSBSmallBusCell : UICollectionViewCell<BSBBusPresenter>
 
 @property (nonatomic, strong) BSBBus *bus;
 

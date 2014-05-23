@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BSBBusDetailCell : UICollectionViewCell
+#import "BSBBusPresenter.h"
 
-@property (weak, nonatomic) IBOutlet UILabel *routeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stopLabel;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@interface BSBBusDetailCell : UICollectionViewCell <BSBBusPresenter>
 
 @end

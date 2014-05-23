@@ -9,11 +9,12 @@
 #import "BSBBusLineViewController.h"
 #import <Masonry/Masonry.h>
 #import "BSBSmallBusCell.h"
+#import "BSBBusDataSource.h"
 
 static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIdentifier";
 
 @interface BSBBusLineViewController () <UICollectionViewDelegateFlowLayout>
-
+@property (nonatomic, strong) BSBBusDataSource *dataSource;
 @end
 
 @implementation BSBBusLineViewController
@@ -25,10 +26,11 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
     ((UICollectionViewFlowLayout *)layout).minimumLineSpacing = 0;
     ((UICollectionViewFlowLayout *)layout).sectionInset = UIEdgeInsetsZero;
     
-    
     if (self == nil) {
         return nil;
     }
+    
+    self.dataSource = [BSBBusDataSource new];
     
     return self;
 }
@@ -37,15 +39,12 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
 {
     [super viewDidLoad];
     
-//    CGFloat leftRightInset = (320 - kBSBBusLineGroupHeight)/2;
-    
     [self.collectionView setShowsHorizontalScrollIndicator:NO];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBSmallBusCell" bundle:nil]
           forCellWithReuseIdentifier:BSBBusLineCellReuseIdentifier];
-    
-//    self.collectionView.contentInset = UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset);
+    self.dataSource.cellReuseIdentifier = BSBBusLineCellReuseIdentifier;
     
     UIToolbar *blurringBackgroundView = [[UIToolbar alloc] initWithFrame:CGRectZero];
     [self.view addSubview:blurringBackgroundView];
@@ -58,36 +57,21 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
     }];
 }
 
-//- (void)didMoveToParentViewController:(UIViewController *)parent{
-//    [super didMoveToParentViewController:parent];
-//    ((UICollectionViewFlowLayout *)self.collectionViewLayout).itemSize = self.collectionView.bounds.size;
-//}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-     BSBSmallBusCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BSBBusLineCellReuseIdentifier
-                                                                       forIndexPath:indexPath];
-    
-    if (indexPath.item > self.buses.count) {
-        return cell;
-    }
-    
-    BSBBus *bus = self.buses[indexPath.item];
-    
-    cell.bus = bus;
-    
-    return cell;
+    return [self.dataSource collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.buses.count;
+    return [self.dataSource collectionView:collectionView numberOfItemsInSection:section];
 }
 
 - (void)setBuses:(NSArray *)buses
 {
     _buses = [buses copy];
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.dataSource.buses = buses;
         [self.collectionView reloadData];
     });
 }

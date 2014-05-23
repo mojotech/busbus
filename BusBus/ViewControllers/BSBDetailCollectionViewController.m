@@ -9,13 +9,14 @@
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBusDetailCell.h"
 #import "BSBBus.h"
+#import "BSBBusDataSource.h"
 
 #import <Masonry/Masonry.h>
 
 static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
 @interface BSBDetailCollectionViewController () <UICollectionViewDelegateFlowLayout>
-
+@property (nonatomic, strong) BSBBusDataSource *dataSource;
 @end
 
 @implementation BSBDetailCollectionViewController
@@ -31,6 +32,8 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
         return nil;
     }
     
+    self.dataSource = [BSBBusDataSource new];
+    
     return self;
 }
 
@@ -44,6 +47,7 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBBusDetailCell" bundle:nil]
           forCellWithReuseIdentifier:BSBBusCellReuseIdentifier];
+    self.dataSource.cellReuseIdentifier = @"BSBBusDetailCell";
     
     UIToolbar *blurringBackgroundView = [[UIToolbar alloc] initWithFrame:CGRectZero];
     [self.view addSubview:blurringBackgroundView];
@@ -63,33 +67,21 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.buses.count;
+    return [self.dataSource collectionView:collectionView numberOfItemsInSection:section];
 }
 
 - (void)setBuses:(NSArray *)buses
 {
     _buses = [buses copy];
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.dataSource.buses = _buses;
         [self.collectionView reloadData];
     });
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BSBBusDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BSBBusCellReuseIdentifier
-                                                                           forIndexPath:indexPath];
-    
-    if (indexPath.item > self.buses.count) {
-        return cell;
-    }
-    
-    BSBBus *bus = self.buses[indexPath.item];
-    
-    cell.routeLabel.text = bus.routeID;
-    cell.stopLabel.text = bus.nextStopName;
-    cell.progressView.progressTintColor = [BSBAppearance colorForBus:bus];
-    
-    return cell;
+    return [self.dataSource collectionView:collectionView cellForItemAtIndexPath:indexPath];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
