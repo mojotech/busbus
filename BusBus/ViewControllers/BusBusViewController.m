@@ -15,10 +15,14 @@
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBusLineViewController.h"
 
+#import <MapKit/MapKit.h>
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BusBusViewController ()<BSBBusCollectionDelegate>
+@interface BusBusViewController ()<BSBBusCollectionDelegate, MKMapViewDelegate>
+
+@property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic, strong) UIView *pageView;
 
 @property (nonatomic, assign) BOOL busesHavePresented;
 @property (nonatomic, strong) BSBDetailCollectionViewController *bussesViewController;
