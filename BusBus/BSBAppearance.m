@@ -54,14 +54,8 @@
                                       @459:[self bluegreen],
                                       @93:[self greenblue],
                                       @424:[self cyan],
-                                      @7:[self purple]
-                                          };
-    UIColor *color = registeredBuses[@([bus.routeID integerValue])];
-    if (color) {
-        return color;
-    }
-    
-    return [self moduloColor:[bus.routeID integerValue]];
+                                      @7:[self purple],};
+    return registeredBuses[@([bus.routeID integerValue])]?:[self moduloColor:[bus.routeID integerValue]];
 }
 
 + (UIColor *)moduloColor:(NSUInteger)index
