@@ -21,7 +21,7 @@
     OHMSetMapping(self, @{@"direction_id" : NSStringFromSelector(@selector(directionID)),
                           @"direction_name" : NSStringFromSelector(@selector(directionName)),
                           @"stop" : NSStringFromSelector(@selector(stops)),
-                          });
+    });
     OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(stops)) : [BSBBusStop class]});
 }
 
@@ -33,7 +33,7 @@
 {
     OHMMappable(self);
     OHMSetMapping(self, @{@"direction" : NSStringFromSelector(@selector(directions))});
-    OHMSetArrayClasses(self, @{ NSStringFromSelector(@selector(directions)) : [BSBDirectedRoute class] });
+    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(directions)) : [BSBDirectedRoute class]});
 }
 
 @end

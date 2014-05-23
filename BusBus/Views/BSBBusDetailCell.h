@@ -10,6 +10,6 @@
 
 #import "BSBBusPresenter.h"
 
-@interface BSBBusDetailCell : UICollectionViewCell <BSBBusPresenter>
+@interface BSBBusDetailCell : UICollectionViewCell<BSBBusPresenter>
 
 @end

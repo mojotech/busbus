@@ -17,17 +17,25 @@
 + (UIColor *)tintColor;
 
 + (UIFont *)appFontOfSize:(CGFloat)size;
+
 + (UIFont *)appFont;
+
 + (UIFont *)lightAppFontOfSize:(CGFloat)size;
 
 + (UIColor *)pinTextColor;
+
 + (UIColor *)reddish;
+
 + (UIColor *)orangered;
+
 + (UIColor *)bluegreen;
+
 + (UIColor *)greenblue;
+
 + (UIColor *)pinkish;
 
 + (UIColor *)colorForBus:(BSBBus *)bus;
+
 + (UIColor *)moduloColor:(NSUInteger)index;
 
 @end

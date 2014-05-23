@@ -7,7 +7,6 @@
 //
 
 #import "BSBBus.h"
-#import <BlocksKit/BlocksKit.h>
 #import <OHMKit/ObjectMapping.h>
 #import "BSBBusStop.h"
 
@@ -24,23 +23,23 @@
 {
     NSNumber *stopID = [[self.passage.tripUpdate valueForKeyPath:@"stop_time_update.stop_id"] firstObject];
     NSNumber *stopIndex = [[self.passage.tripUpdate valueForKeyPath:@"stop_time_update.stop_sequence"] firstObject];
-    
+
     __block BSBBusStop *busStop = nil;
-    
+
     [self.route.directions enumerateObjectsUsingBlock:^(BSBDirectedRoute *directedRoute, NSUInteger idx, BOOL *stop) {
-        
+
         NSUInteger testIndex = [stopIndex unsignedIntegerValue] - 1;
         if (testIndex < directedRoute.stops.count) {
             BSBBusStop *testStop = directedRoute.stops[testIndex];
-            
-            if ( [testStop.stopID integerValue] == [stopID integerValue]) {
+
+            if ([testStop.stopID integerValue] == [stopID integerValue]) {
                 busStop = testStop;
                 *stop = YES;
             }
         }
-        
+
     }];
-    
+
     return busStop.stopName;
 }
 

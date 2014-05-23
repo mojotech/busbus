@@ -9,6 +9,7 @@
 @import Foundation;
 @import CoreLocation;
 @import MapKit;
+
 #import "BusBusViewController.h"
 #import "BSBClient.h"
 #import "BSBBus.h"
@@ -20,7 +21,9 @@
 @property (nonatomic, strong) CLLocation *mockLocation;
 
 - (void)updateCurrentBusLocations;
+
 - (void)findCurrentLocation;
+
 + (instancetype)sharedManager;
 
 @end

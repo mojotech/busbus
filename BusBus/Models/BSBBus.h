@@ -14,7 +14,7 @@
 #import "BSBPassage.h"
 #import "BSBBusRoute.h"
 
-@interface BSBBus : NSObject <MKAnnotation>
+@interface BSBBus : NSObject<MKAnnotation>
 
 @property (nonatomic, copy) NSString *busID;
 @property (nonatomic, strong) NSString *address;

@@ -23,10 +23,11 @@
     OHMSetMapping(self, @{@"stop_name" : NSStringFromSelector(@selector(stopName)),
                           @"stop_id" : NSStringFromSelector(@selector(stopID)),
                           @"stop_lng" : NSStringFromSelector(@selector(stop_lon)),
-                          });
+    });
 }
 
-- (CLLocationCoordinate2D)coordinate{
+- (CLLocationCoordinate2D)coordinate
+{
     return CLLocationCoordinate2DMake([self.stop_lat doubleValue], [self.stop_lon doubleValue]);
 }
 

@@ -21,15 +21,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell<BSBBusPresenter> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellReuseIdentifier
-                                                                       forIndexPath:indexPath];
-    
+                                                                                            forIndexPath:indexPath];
+
     if (indexPath.item > self.buses.count) {
         return cell;
     }
-    
+
     BSBBus *bus = self.buses[indexPath.item];
     cell.bus = bus;
-    
+
     return cell;
 }
 
@@ -41,30 +41,30 @@
     } else if ([indexPath respondsToSelector:@selector(item)]) {
         index = indexPath.item;
     }
-    
+
     if (index >= self.buses.count) {
         return nil;
     }
-    
+
     return self.buses[index];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    BSBBus *bus = (BSBBus *)annotation;
-    
+    BSBBus *bus = (BSBBus *) annotation;
+
     static NSString *busPinIdentifier = @"busPinIdentifier";
-    BSBBusPin *pin = (BSBBusPin *)[mapView dequeueReusableAnnotationViewWithIdentifier:busPinIdentifier];
-    if ( pin == nil ) {
+    BSBBusPin *pin = (BSBBusPin *) [mapView dequeueReusableAnnotationViewWithIdentifier:busPinIdentifier];
+    if (pin == nil ) {
         pin = [[BSBBusPin alloc] initWithAnnotation:annotation
                                     reuseIdentifier:busPinIdentifier];
     }
-    
+
     NSString *busNumber = bus.routeID;
-    
+
     pin.pinText = busNumber;
     pin.color = [BSBAppearance colorForBus:bus];
-    
+
     pin.canShowCallout = NO;
     return pin;
 }

@@ -6,8 +6,6 @@
 //
 //
 
-#import "BSBAppearance.h"
-
 #import "BSBBus.h"
 
 @implementation BSBAppearance
@@ -46,7 +44,7 @@
 
 + (UIColor *)tintColor
 {
-    return [UIColor colorWithRed:46./255. green:151./255. blue:251./255. alpha:1.0];
+    return [UIColor colorWithRed:46. / 255. green:151. / 255. blue:251. / 255. alpha:1.0];
 }
 
 + (UIColor *)colorForBus:(BSBBus *)bus
@@ -61,8 +59,8 @@
                         [self bluegreen],
                         [self greenblue],
                         [self pinkish]
-                        ];
-    return colors[index%colors.count];
+    ];
+    return colors[index % colors.count];
 }
 
 + (UIColor *)pinTextColor
@@ -73,29 +71,28 @@
 + (UIColor *)reddish
 {
     // 200 0   23
-    return [UIColor colorWithRed:200./255 green:0 blue:23./255 alpha:1.0];
+    return [UIColor colorWithRed:200. / 255 green:0 blue:23. / 255 alpha:1.0];
 }
 
-+ (UIColor *) orangered
++ (UIColor *)orangered
 {
-    return [UIColor colorWithRed:254./255 green:67./255 blue:0 alpha:1.0];
+    return [UIColor colorWithRed:254. / 255 green:67. / 255 blue:0 alpha:1.0];
 }
 
-+ (UIColor *) bluegreen
++ (UIColor *)bluegreen
 {
-    return [UIColor colorWithRed:28./255 green:224./255 blue:113./255 alpha:1.0];
+    return [UIColor colorWithRed:28. / 255 green:224. / 255 blue:113. / 255 alpha:1.0];
 }
 
-+ (UIColor *) greenblue
++ (UIColor *)greenblue
 {
-    return [UIColor colorWithRed:64./255 green:181./255 blue:231./255 alpha:1.0];
+    return [UIColor colorWithRed:64. / 255 green:181. / 255 blue:231. / 255 alpha:1.0];
 }
 
-+ (UIColor *) pinkish
++ (UIColor *)pinkish
 {
-    return [UIColor colorWithRed:136./255 green:91./255 blue:53./255 alpha:1.0];
+    return [UIColor colorWithRed:136. / 255 green:91. / 255 blue:53. / 255 alpha:1.0];
 }
-
 
 
 @end

@@ -20,17 +20,17 @@
     if (self == nil) {
         return nil;
     }
-    
+
     self.frame = CGRectMake(0, 0, 30, 30);
-    
+
     _pinTextLabel = [[UILabel alloc] initWithFrame:self.bounds];
     [_pinTextLabel setFont:[BSBAppearance appFontOfSize:12]];
     [_pinTextLabel setTextColor:[BSBAppearance pinTextColor]];
     [_pinTextLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:_pinTextLabel];
-    
+
     [self configurePinLayer];
-    
+
     return self;
 }
 
@@ -48,7 +48,7 @@
 - (void)configurePinLayer
 {
     self.color = [UIColor redColor];
-    self.layer.cornerRadius = self.bounds.size.height/2;
+    self.layer.cornerRadius = self.bounds.size.height / 2;
 }
 
 - (void)setPinText:(NSString *)pinText

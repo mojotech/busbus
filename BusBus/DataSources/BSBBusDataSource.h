@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @import MapKit;
 
-@interface BSBBusDataSource : NSObject <UICollectionViewDataSource, MKMapViewDelegate>
+@interface BSBBusDataSource : NSObject<UICollectionViewDataSource, MKMapViewDelegate>
 
 @property (nonatomic, strong) NSArray *buses;
 @property (nonatomic, copy) NSString *cellReuseIdentifier;

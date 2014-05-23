@@ -6,8 +6,6 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
 #import "BSBAppDelegate.h"
 
 int main(int argc, char * argv[])

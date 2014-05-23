@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface BSBBusStop : NSObject <MKAnnotation>
+@interface BSBBusStop : NSObject<MKAnnotation>
 
 @property (nonatomic, copy) NSString *stopName;
 @property (nonatomic, copy) NSNumber *stopID;

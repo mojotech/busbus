@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, BSBServiceEntity) {
 - (void)fetchEntity:(BSBServiceEntity)entity
        nearLocation:(CLLocationCoordinate2D)coordinate
              radius:(CLLocationDistance)distance
-         completion:(void(^)(NSArray *))completion
-            failure:(void(^)(NSError *))failure;
+         completion:(void (^)(NSArray *))completion
+            failure:(void (^)(NSError *))failure;
 
 @end

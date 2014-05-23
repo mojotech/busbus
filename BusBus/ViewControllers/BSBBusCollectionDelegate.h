@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol BSBBusCollectionDelegate <NSObject>
+@protocol BSBBusCollectionDelegate<NSObject>
 
 - (void)collectionViewSelectedBus:(BSBBus *)bus;
 

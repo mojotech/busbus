@@ -12,12 +12,11 @@
 #import <Masonry/Masonry.h>
 
 #import "BSBBusService.h"
-#import "BSBSmallBusCell.h"
 #import "BSBBusDataSource.h"
 
-static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIdentifier";
+static NSString *const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIdentifier";
 
-@interface BSBBusLineViewController () <UICollectionViewDelegateFlowLayout>
+@interface BSBBusLineViewController ()<UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) BSBBusDataSource *dataSource;
 @end
 
@@ -26,39 +25,39 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
 {
     self = [super initWithCollectionViewLayout:layout];
-    ((UICollectionViewFlowLayout *)layout).minimumInteritemSpacing = 0;
-    ((UICollectionViewFlowLayout *)layout).minimumLineSpacing = 0;
-    ((UICollectionViewFlowLayout *)layout).sectionInset = UIEdgeInsetsZero;
-    
+    ((UICollectionViewFlowLayout *) layout).minimumInteritemSpacing = 0;
+    ((UICollectionViewFlowLayout *) layout).minimumLineSpacing = 0;
+    ((UICollectionViewFlowLayout *) layout).sectionInset = UIEdgeInsetsZero;
+
     if (self == nil) {
         return nil;
     }
-    
+
     self.dataSource = [BSBBusDataSource new];
     [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(id x) {
         self.buses = x;
     }];
-    
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.collectionView setShowsHorizontalScrollIndicator:NO];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
-    
+
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBSmallBusCell" bundle:nil]
           forCellWithReuseIdentifier:BSBBusLineCellReuseIdentifier];
     self.dataSource.cellReuseIdentifier = BSBBusLineCellReuseIdentifier;
-    
+
     UIToolbar *blurringBackgroundView = [[UIToolbar alloc] initWithFrame:CGRectZero];
     [self.view addSubview:blurringBackgroundView];
     [self.view sendSubviewToBack:blurringBackgroundView];
-    
+
     UIView *superview = self.view;
-    
+
     [blurringBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(superview);
     }];
@@ -83,23 +82,23 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
     });
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat widthForEvenSpacing = (self.collectionView.bounds.size.width / self.buses.count);
-    
+
     if (widthForEvenSpacing < kBSBBusLineGroupHeight) {
         widthForEvenSpacing = kBSBBusLineGroupHeight;
     }
-    
+
     return CGSizeMake(widthForEvenSpacing, kBSBBusLineGroupHeight);
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     CGPoint offsetInOut = *targetContentOffset;
-    
-    offsetInOut.x = ((NSInteger)targetContentOffset->x)%(NSInteger)kBSBBusLineGroupHeight + kBSBBusLineGroupHeight/2.;
-    
+
+    offsetInOut.x = ((NSInteger) targetContentOffset->x) % (NSInteger) kBSBBusLineGroupHeight + kBSBBusLineGroupHeight / 2.;
+
     *targetContentOffset = offsetInOut;
 }
 
@@ -107,10 +106,10 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
 {
     CGPoint scrollOffset = scrollView.contentOffset;
     CGRect bounds = self.collectionView.bounds;
-    
+
     scrollOffset.x += CGRectGetMidX(bounds);
     scrollOffset.y = CGRectGetMidY(bounds);
-    
+
     NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollOffset];
     [self.delegate collectionViewSelectedBus:self.buses[path.item]];
 }

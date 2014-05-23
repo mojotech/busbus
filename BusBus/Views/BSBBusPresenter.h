@@ -10,7 +10,7 @@
 
 @class BSBBus;
 
-@protocol BSBBusPresenter <NSObject>
+@protocol BSBBusPresenter<NSObject>
 
 - (void)setBus:(BSBBus *)bus;
 
