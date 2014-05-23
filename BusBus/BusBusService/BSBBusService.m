@@ -28,7 +28,8 @@
 + (void)load
 {
     OHMMappable(self);
-    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(busStops)) : [BSBBusStop class] });
+    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(busStops)) : [BSBBusStop class],
+                               NSStringFromSelector(@selector(buses)) : [BSBBus class]});
 }
 
 + (instancetype)sharedManager
@@ -83,7 +84,7 @@
                 nearLocation:self.currentLocation.coordinate
                       radius:1000
                   completion:^(NSArray *busLocations) {
-                      self.currentBusses = busLocations;
+                      [self setValue:busLocations forKey:NSStringFromSelector(@selector(buses))];
                       self.lastBusFetchDate = [NSDate date];
                   } failure:nil];
 }

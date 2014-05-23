@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSArray *buses;
 @property (nonatomic, copy) NSString *cellReuseIdentifier;
 
+- (BSBBus *)busAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

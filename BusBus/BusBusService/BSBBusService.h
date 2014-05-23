@@ -15,9 +15,9 @@
 
 @interface BSBBusService : NSObject
 
-@property (nonatomic, strong) NSArray *currentBusses;
-@property (nonatomic, strong) CLLocation *mockLocation;
+@property (nonatomic, strong) NSArray *buses;
 @property (nonatomic, strong) NSArray *busStops;
+@property (nonatomic, strong) CLLocation *mockLocation;
 
 - (void)updateCurrentBusLocations;
 - (void)findCurrentLocation;

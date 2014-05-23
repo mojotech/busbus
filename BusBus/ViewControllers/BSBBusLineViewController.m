@@ -7,7 +7,11 @@
 //
 
 #import "BSBBusLineViewController.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
+
+#import "BSBBusService.h"
 #import "BSBSmallBusCell.h"
 #import "BSBBusDataSource.h"
 
@@ -31,6 +35,9 @@ static NSString * const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIde
     }
     
     self.dataSource = [BSBBusDataSource new];
+    [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(id x) {
+        self.buses = x;
+    }];
     
     return self;
 }

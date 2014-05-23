@@ -18,8 +18,6 @@
 
 @import MapKit;
 
-#import <OHMKit/ObjectMapping.h>
-#import <QuartzCore/QuartzCore.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BusBusViewController () <BSBBusCollectionDelegate>
@@ -39,12 +37,6 @@
 @end
 
 @implementation BusBusViewController
-
-+ (void)load
-{
-    OHMMappable([BusBusViewController class]);
-    OHMSetArrayClasses([BusBusViewController class], @{NSStringFromSelector(@selector(buses)) : [BSBBus class]});
-}
 
 - (void)viewDidLoad
 {
@@ -74,8 +66,8 @@
     
     [[BSBBusService sharedManager] findCurrentLocation];
     
-    [RACObserve([BSBBusService sharedManager], currentBusses) subscribeNext:^(NSArray *buses) {
-        [self setValue:buses forKeyPath:NSStringFromSelector(@selector(buses))];
+    [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(NSArray *buses) {
+        self.buses = buses;
         [self dropBusLocationsOnMap];
     }];
     

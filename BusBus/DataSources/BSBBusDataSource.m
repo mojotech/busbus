@@ -31,4 +31,20 @@
     return cell;
 }
 
+- (BSBBus *)busAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger index = 0;
+    if ([indexPath respondsToSelector:@selector(row)]) {
+        index = indexPath.row;
+    } else if ([indexPath respondsToSelector:@selector(item)]) {
+        index = indexPath.item;
+    }
+    
+    if (index >= self.buses.count) {
+        return nil;
+    }
+    
+    return self.buses[index];
+}
+
 @end

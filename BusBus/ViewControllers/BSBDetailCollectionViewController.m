@@ -9,9 +9,11 @@
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBusDetailCell.h"
 #import "BSBBus.h"
+#import "BSBBusService.h"
 #import "BSBBusDataSource.h"
 
 #import <Masonry/Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
@@ -33,6 +35,10 @@ static NSString * const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     }
     
     self.dataSource = [BSBBusDataSource new];
+    
+    [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(id x) {
+        self.buses = x;
+    }];
     
     return self;
 }
