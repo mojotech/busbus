@@ -16,7 +16,6 @@
 #import "BSBBusLineViewController.h"
 
 #import <Masonry/Masonry.h>
-
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BusBusViewController ()<BSBBusCollectionDelegate>
@@ -25,15 +24,10 @@
 @property (nonatomic, strong) BSBDetailCollectionViewController *bussesViewController;
 @property (nonatomic, strong) BSBBusLineViewController *busLineController;
 
-@property (nonatomic, strong) NSArray *buses;
 @property (nonatomic, strong) NSArray *busPinAnnotations;
 
 @property (nonatomic, strong) NSArray *busStops;
 @property (nonatomic, strong) BSBBusDataSource *dataSource;
-
-- (void)dropBusLocationsOnMap;
-
-- (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
 
 @end
 
@@ -79,7 +73,11 @@
     }];
 
     [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(NSArray *buses) {
-        self.buses = buses;
+        self.dataSource.buses = buses;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.bussesViewController.collectionView reloadData];
+            [self.busLineController.collectionView reloadData];
+        });
         [self dropBusLocationsOnMap];
     }];
 
@@ -94,14 +92,6 @@
     self.navigationItem.rightBarButtonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
 
     [self instantiatePageViewController];
-}
-
-- (void)setBuses:(NSArray *)buses
-{
-    _buses = buses;
-    self.dataSource.buses = buses;
-    [self.bussesViewController setBuses:buses];
-    [self.busLineController setBuses:buses];
 }
 
 - (void)instantiatePageViewController
@@ -123,6 +113,7 @@
     }];
 
     self.bussesViewController.delegate = self;
+    self.bussesViewController.dataSource = self.dataSource;
 
     // Need a separate flow layout
     flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -144,11 +135,12 @@
     [self.view bringSubviewToFront:self.bussesViewController.view];
 
     self.busLineController.delegate = self;
+    self.busLineController.dataSource = self.dataSource;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    BSBBusPin *pin;
+    MKAnnotationView *pin;
     if (annotation == self.mapView.userLocation) {
         return nil;
     }
@@ -157,12 +149,12 @@
         pin = [self.dataSource mapView:mapView viewForAnnotation:annotation];
 
     } else if ([annotation isKindOfClass:[BSBBusStop class]]) {
-        MKAnnotationView *pin = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pandas"];
-
+        pin = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pandas"];
+        
         if (pin == nil) {
             pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pandas"];
         }
-
+        
         [pin setTintColor:[BSBAppearance tintColor]];
 
         return pin;
@@ -177,7 +169,7 @@
             [self.mapView removeAnnotation:obj];
         }];
 
-        self.busPinAnnotations = [self.buses copy];
+        self.busPinAnnotations = [self.dataSource.buses copy];
 
         __block MKMapRect zoomRect = MKMapRectNull;
 
@@ -200,7 +192,6 @@
         } else {
             [self.mapView addAnnotations:self.busPinAnnotations];
         }
-
     });
 }
 
@@ -230,7 +221,6 @@
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
-
         return;
     }
 

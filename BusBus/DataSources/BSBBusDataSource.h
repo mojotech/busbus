@@ -10,6 +10,8 @@
 
 @import MapKit;
 
+extern NSString *const BSBBusCellReuseIdentifier;
+
 @interface BSBBusDataSource : NSObject<UICollectionViewDataSource, MKMapViewDelegate>
 
 @property (nonatomic, strong) NSArray *buses;

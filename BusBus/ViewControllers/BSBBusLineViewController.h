@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BSBBusCollectionDelegate.h"
+#import "BSBBusDataSource.h"
 
 static CGFloat kBSBBusLineGroupHeight = 40.;
 
 @interface BSBBusLineViewController : UICollectionViewController
-
-@property (nonatomic, strong) NSArray *buses;
+@property (nonatomic, strong) BSBBusDataSource *dataSource;
 @property (nonatomic, weak) id<BSBBusCollectionDelegate> delegate;
-
 @end

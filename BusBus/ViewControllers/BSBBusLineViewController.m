@@ -14,10 +14,7 @@
 #import "BSBBusService.h"
 #import "BSBBusDataSource.h"
 
-static NSString *const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIdentifier";
-
 @interface BSBBusLineViewController ()<UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) BSBBusDataSource *dataSource;
 @end
 
 @implementation BSBBusLineViewController
@@ -33,11 +30,6 @@ static NSString *const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIden
         return nil;
     }
 
-    self.dataSource = [BSBBusDataSource new];
-    [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(id x) {
-        self.buses = x;
-    }];
-
     return self;
 }
 
@@ -49,8 +41,7 @@ static NSString *const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIden
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBSmallBusCell" bundle:nil]
-          forCellWithReuseIdentifier:BSBBusLineCellReuseIdentifier];
-    self.dataSource.cellReuseIdentifier = BSBBusLineCellReuseIdentifier;
+          forCellWithReuseIdentifier:BSBBusCellReuseIdentifier];
 
     UIToolbar *blurringBackgroundView = [[UIToolbar alloc] initWithFrame:CGRectZero];
     [self.view addSubview:blurringBackgroundView];
@@ -73,24 +64,9 @@ static NSString *const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIden
     return [self.dataSource collectionView:collectionView numberOfItemsInSection:section];
 }
 
-- (void)setBuses:(NSArray *)buses
-{
-    _buses = [buses copy];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.dataSource.buses = buses;
-        [self.collectionView reloadData];
-    });
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat widthForEvenSpacing = (self.collectionView.bounds.size.width / self.buses.count);
-
-    if (widthForEvenSpacing < kBSBBusLineGroupHeight) {
-        widthForEvenSpacing = kBSBBusLineGroupHeight;
-    }
-
-    return CGSizeMake(widthForEvenSpacing, kBSBBusLineGroupHeight);
+    return CGSizeMake(kBSBBusLineGroupHeight, kBSBBusLineGroupHeight);
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -111,7 +87,7 @@ static NSString *const BSBBusLineCellReuseIdentifier = @"BSBBusLineCellReuseIden
     scrollOffset.y = CGRectGetMidY(bounds);
 
     NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:scrollOffset];
-    [self.delegate collectionViewSelectedBus:self.buses[path.item]];
+    [self.delegate collectionViewSelectedBus:[self.dataSource busAtIndexPath:path]];
 }
 
 @end

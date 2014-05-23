@@ -11,6 +11,8 @@
 #import "BSBBusPin.h"
 #import "BSBBusPresenter.h"
 
+NSString *const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
+
 @implementation BSBBusDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -20,14 +22,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell<BSBBusPresenter> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellReuseIdentifier
+    UICollectionViewCell<BSBBusPresenter> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BSBBusCellReuseIdentifier
                                                                                             forIndexPath:indexPath];
-
-    if (indexPath.item > self.buses.count) {
-        return cell;
-    }
-
-    BSBBus *bus = self.buses[indexPath.item];
+    BSBBus *bus = [self busAtIndexPath:indexPath];
     cell.bus = bus;
 
     return cell;

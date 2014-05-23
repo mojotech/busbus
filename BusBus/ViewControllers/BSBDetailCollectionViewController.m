@@ -9,15 +9,12 @@
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBus.h"
 #import "BSBBusService.h"
-#import "BSBBusDataSource.h"
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-static NSString *const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
-
 @interface BSBDetailCollectionViewController ()<UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) BSBBusDataSource *dataSource;
+
 @end
 
 @implementation BSBDetailCollectionViewController
@@ -32,9 +29,7 @@ static NSString *const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
     if (self == nil) {
         return nil;
     }
-
-    self.dataSource = [BSBBusDataSource new];
-
+    
     [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(id x) {
         self.buses = x;
     }];
@@ -52,7 +47,6 @@ static NSString *const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"BSBBusDetailCell" bundle:nil]
           forCellWithReuseIdentifier:BSBBusCellReuseIdentifier];
-    self.dataSource.cellReuseIdentifier = @"BSBBusDetailCell";
 
     UIToolbar *blurringBackgroundView = [[UIToolbar alloc] initWithFrame:CGRectZero];
     [self.view addSubview:blurringBackgroundView];
@@ -74,15 +68,6 @@ static NSString *const BSBBusCellReuseIdentifier = @"BSBBusDetailCell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.dataSource collectionView:collectionView numberOfItemsInSection:section];
-}
-
-- (void)setBuses:(NSArray *)buses
-{
-    _buses = [buses copy];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.dataSource.buses = _buses;
-        [self.collectionView reloadData];
-    });
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
