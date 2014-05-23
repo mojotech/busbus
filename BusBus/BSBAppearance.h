@@ -24,15 +24,14 @@
 
 + (UIColor *)pinTextColor;
 
-+ (UIColor *)reddish;
-
++ (UIColor *)red;
 + (UIColor *)orangered;
-
 + (UIColor *)bluegreen;
-
 + (UIColor *)greenblue;
-
-+ (UIColor *)pinkish;
++ (UIColor *)slate;
++ (UIColor *)cyan;
++ (UIColor *)purple;
++ (UIColor *)green;
 
 + (UIColor *)colorForBus:(BSBBus *)bus;
 
