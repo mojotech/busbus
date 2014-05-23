@@ -14,6 +14,8 @@
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBusLineViewController.h"
 
+#import <Masonry/Masonry.h>
+
 @import MapKit;
 
 #import <OHMKit/ObjectMapping.h>
@@ -47,6 +49,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"BusBus";
+    [BSBAppearance styleNavigationBar:self.navigationController.navigationBar];
+    
+    self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.mapView];
+    
+    self.pageView = [[UIView alloc] initWithFrame:CGRectNull];
+    [self.view addSubview:self.pageView];
+    
+    UIView *superview = self.view;
+    
+    [self.pageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(superview);
+        make.leading.equalTo(superview);
+        make.trailing.equalTo(superview);
+        make.height.equalTo(@250);
+    }];
+    
+    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(superview);
+    }];
     
     [[BSBBusService sharedManager] findCurrentLocation];
     
@@ -82,11 +106,16 @@
     
     self.bussesViewController = [[BSBDetailCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     
-    _bussesViewController.view.frame = (CGRectMake(0, kBSBBusLineGroupHeight + 0.5,
-                                                   self.pageView.frame.size.width, self.pageView.frame.size.height - kBSBBusLineGroupHeight));
     [self addChildViewController:_bussesViewController];
     [self.pageView addSubview:_bussesViewController.view];
     [_bussesViewController didMoveToParentViewController:self];
+    
+    [self.bussesViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.leading.equalTo(self.view);
+        make.trailing.equalTo(self.view);
+        make.height.equalTo(@(250 - (kBSBBusLineGroupHeight + 0.5)));
+    }];
     
     self.bussesViewController.delegate = self;
     
@@ -96,10 +125,16 @@
     
     self.busLineController = [[BSBBusLineViewController alloc] initWithCollectionViewLayout:flowLayout];
     
-    self.busLineController.view.frame = (CGRectMake(0, 0, self.pageView.frame.size.width, kBSBBusLineGroupHeight));
     [self addChildViewController:self.busLineController];
     [self.pageView addSubview:self.busLineController.view];
     [self.busLineController didMoveToParentViewController:self];
+    
+    [self.busLineController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view);
+        make.trailing.equalTo(self.view);
+        make.height.equalTo(@(kBSBBusLineGroupHeight));
+        make.bottom.equalTo(self.bussesViewController.view.mas_top).with.mas_offset(@(-0.5));
+    }];
     
     [self.view bringSubviewToFront:self.bussesViewController.view];
     

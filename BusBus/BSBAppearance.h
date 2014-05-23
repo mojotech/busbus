@@ -12,10 +12,13 @@
 
 @interface BSBAppearance : NSObject
 
++ (void)styleNavigationBar:(UINavigationBar *)navigationBar;
+
 + (UIColor *)tintColor;
 
 + (UIFont *)appFontOfSize:(CGFloat)size;
 + (UIFont *)appFont;
++ (UIFont *)lightAppFontOfSize:(CGFloat)size;
 
 + (UIColor *)pinTextColor;
 + (UIColor *)reddish;

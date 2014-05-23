@@ -12,6 +12,16 @@
 
 @implementation BSBAppearance
 
++ (void)styleNavigationBar:(UINavigationBar *)navigationBar
+{
+    [navigationBar setTitleTextAttributes:@{NSFontAttributeName : [BSBAppearance lightAppFontOfSize:26]}];
+}
+
++ (UIFont *)lightAppFontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:[self lightAppFontName] size:size];
+}
+
 + (UIFont *)appFontOfSize:(CGFloat)size
 {
     return [UIFont fontWithName:[self appFontName] size:size];
@@ -25,6 +35,11 @@
 + (NSString *)appFontName
 {
     return @"HelveticaNeue-Light";
+}
+
++ (NSString *)lightAppFontName
+{
+    return @"HelveticaNeue-UltraLight";
 }
 
 #pragma mark - Color
