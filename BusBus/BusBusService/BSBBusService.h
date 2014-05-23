@@ -22,8 +22,6 @@
 
 - (void)updateCurrentBusLocations;
 
-- (void)findCurrentLocation;
-
 + (instancetype)sharedManager;
 
 @end

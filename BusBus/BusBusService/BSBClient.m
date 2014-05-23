@@ -8,7 +8,7 @@
 #import "BSBBus.h"
 #import "BSBClient.h"
 
-static NSString *const BSBServiceHost = @"transit.nodejitsu.com";
+static NSString *const BSBServiceHost = @"10.0.1.9:8000";//@"transit.nodejitsu.com";
 static NSString *const BSBServiceBusFeedPath = @"/api/feed/near";
 static NSString *const BSBServiceStopPath = @"/api/near-stops";
 
@@ -24,9 +24,8 @@ static NSString *const BSBServiceStopPath = @"/api/near-stops";
     if (self == nil) {
         return nil;
     }
-
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    _session = [NSURLSession sessionWithConfiguration:config];
+    
+    _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
     return self;
 }
@@ -41,29 +40,26 @@ static NSString *const BSBServiceStopPath = @"/api/near-stops";
 
 - (void)runDataTaskWithURL:(NSURL *)url completion:(void (^)(id JSONResult))completion failure:(void (^)(NSError *))failure
 {
+    BOOL (^safeFail)(NSError *) = ^(NSError *error){
+        if (error == nil) return NO;
+        NSLog(@"Error: %@ in %@", error, NSStringFromSelector(_cmd));
+        if (failure) failure(error);
+        return YES;
+    };
+    
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url
                                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-                                                     if (error) {
-                                                         NSLog(@"%@", error);
-                                                         if (failure) {
-                                                             failure(error);
-                                                         }
-                                                         return;
-                                                     }
-
+                                                     
+                                                     if (safeFail(error)) return;
+                                                     
                                                      NSString *s = [[NSString alloc] initWithData:data
                                                                                          encoding:NSUTF8StringEncoding];
 
                                                      id JSONResults = [NSJSONSerialization JSONObjectWithData:data
                                                                                                       options:kNilOptions
                                                                                                         error:&error];
-
-                                                     if (error) {
-                                                         NSLog(@"JSON error: %@", error);
-                                                         if (failure) {
-                                                             failure(error);
-                                                         }
+                                                     if (safeFail(error)) {
+                                                         NSLog(@"Error in response :: %@", s);
                                                          return;
                                                      }
 

@@ -45,20 +45,17 @@
         _sharedManager = [super init];
         _sharedManager->_locationManager = [[CLLocationManager alloc] init];
         _sharedManager->_locationManager.delegate = self;
-
+        
         _sharedManager->_client = [BSBClient new];
 
         _sharedManager->_lastBusFetchDate = [NSDate distantPast];
         _sharedManager->_lastStopFetchDate = [NSDate distantPast];
+        
+        [_sharedManager->_locationManager startUpdatingLocation];
     });
     self = _sharedManager;
 
     return self;
-}
-
-- (void)findCurrentLocation
-{
-    [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -77,9 +74,7 @@
     if ([self.lastBusFetchDate timeIntervalSinceNow] > -10) {
         return;
     }
-
-    NSLog(@"fetch");
-
+    
     [self.client fetchEntity:BSBServiceEntityBus
                 nearLocation:self.currentLocation.coordinate
                       radius:1000
@@ -94,9 +89,7 @@
     if ([self.lastStopFetchDate timeIntervalSinceNow] > -10000) {
         return;
     }
-
-    NSLog(@"fetch");
-
+    
     [self.client fetchEntity:BSBServiceEntityBusStop
                 nearLocation:self.currentLocation.coordinate
                       radius:1000

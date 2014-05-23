@@ -78,8 +78,6 @@
         make.edges.equalTo(superview);
     }];
 
-    [[BSBBusService sharedManager] findCurrentLocation];
-
     [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(NSArray *buses) {
         self.buses = buses;
         [self dropBusLocationsOnMap];
