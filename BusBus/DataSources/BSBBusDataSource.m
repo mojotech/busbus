@@ -6,7 +6,9 @@
 //
 //
 
+#import "BSBBus.h"
 #import "BSBBusDataSource.h"
+#import "BSBBusPin.h"
 #import "BSBBusPresenter.h"
 
 @implementation BSBBusDataSource
@@ -45,6 +47,26 @@
     }
     
     return self.buses[index];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    BSBBus *bus = (BSBBus *)annotation;
+    
+    static NSString *busPinIdentifier = @"busPinIdentifier";
+    BSBBusPin *pin = (BSBBusPin *)[mapView dequeueReusableAnnotationViewWithIdentifier:busPinIdentifier];
+    if ( pin == nil ) {
+        pin = [[BSBBusPin alloc] initWithAnnotation:annotation
+                                    reuseIdentifier:busPinIdentifier];
+    }
+    
+    NSString *busNumber = bus.routeID;
+    
+    pin.pinText = busNumber;
+    pin.color = [BSBAppearance colorForBus:bus];
+    
+    pin.canShowCallout = NO;
+    return pin;
 }
 
 @end

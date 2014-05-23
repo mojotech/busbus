@@ -10,6 +10,7 @@
 #import "BSBBus.h"
 #import "BSBBusStop.h"
 #import "BSBBusService.h"
+#import "BSBBusDataSource.h"
 #import "BSBBusPin.h"
 #import "BSBDetailCollectionViewController.h"
 #import "BSBBusLineViewController.h"
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) NSArray *busPinAnnotations;
 
 @property (nonatomic, strong) NSArray *busStops;
+@property (nonatomic, strong) BSBBusDataSource *dataSource;
 
 - (void)dropBusLocationsOnMap;
 - (void)moveCenterByOffset:(CGPoint)offset from:(CLLocationCoordinate2D)coordinate;
@@ -37,6 +39,19 @@
 @end
 
 @implementation BusBusViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self == nil) {
+        return nil;
+    }
+    
+    self.dataSource = [BSBBusDataSource new];
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -87,6 +102,7 @@
 - (void)setBuses:(NSArray *)buses
 {
     _buses = buses;
+    self.dataSource.buses = buses;
     [self.bussesViewController setBuses:buses];
     [self.busLineController setBuses:buses];
 }
@@ -133,7 +149,7 @@
     self.busLineController.delegate = self;
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     BSBBusPin *pin;
     if(annotation == self.mapView.userLocation)
@@ -141,22 +157,9 @@
         return nil;
     }
     if ([annotation isKindOfClass:[BSBBus class]]) {
-
-        BSBBus *bus = (BSBBus *)annotation;
         
-        static NSString *busPinIdentifier = @"busPinIdentifier";
-        pin = (BSBBusPin *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:busPinIdentifier];
-        if ( pin == nil ) {
-            pin = [[BSBBusPin alloc] initWithAnnotation:annotation
-                                        reuseIdentifier:busPinIdentifier];
-        }
+        pin = [self.dataSource mapView:mapView viewForAnnotation:annotation];
         
-        NSString *busNumber = bus.routeID;
-        
-        pin.pinText = busNumber;
-        pin.color = [BSBAppearance colorForBus:bus];
-        
-        pin.canShowCallout = NO;
     } else if ([annotation isKindOfClass:[BSBBusStop class]]) {
         MKAnnotationView *pin = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pandas"];
         
@@ -167,7 +170,6 @@
         [pin setTintColor:[BSBAppearance tintColor]];
         
         return pin;
-
     }
     return pin;
 }
