@@ -157,11 +157,8 @@
         
         if (pin == nil) {
             pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pandas"];
+            ((MKPinAnnotationView *)pin).pinColor = MKPinAnnotationColorPurple;
         }
-        
-        [pin setTintColor:[BSBAppearance tintColor]];
-
-        return pin;
     }
     return pin;
 }
