@@ -7,6 +7,7 @@
 //
 
 #import "BSBBusStop.h"
+#import "BSBBusRoute.h"
 
 #import <OHMKit/ObjectMapping.h>
 
@@ -24,11 +25,17 @@
                           @"stop_id" : NSStringFromSelector(@selector(stopID)),
                           @"stop_lng" : NSStringFromSelector(@selector(stop_lon)),
     });
+    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(routes)) : [BSBBusRoute class]});
 }
 
 - (CLLocationCoordinate2D)coordinate
 {
     return CLLocationCoordinate2DMake([self.stop_lat doubleValue], [self.stop_lon doubleValue]);
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Stop::%@ , id:%@", self.stopName, self.stopID];
 }
 
 @end

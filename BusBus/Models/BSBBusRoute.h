@@ -18,13 +18,20 @@
  */
 @property (nonatomic, strong) NSArray *stops;
 
+/**
+ An array of NSStrings that are Bus IDs
+ */
+@property (nonatomic, strong) NSArray *stopIDs;
+
 @end
 
 @interface BSBBusRoute : NSObject
 
 /**
- An array of BSBDirectedRoute objects
+ An array of BSBDirectedRoute objects - Mapped from "direction"
  */
 @property (nonatomic, strong) NSArray *directions;
+@property (nonatomic, copy) NSString *routeName;
+@property (nonatomic, copy) NSString *routeID;
 
 @end

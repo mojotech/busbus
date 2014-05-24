@@ -95,7 +95,7 @@
     
     [self.client fetchEntity:BSBServiceEntityBusStop
                 nearLocation:self.currentLocation.coordinate
-                      radius:100
+                      radius:400
                   completion:^(NSArray *busStops) {
                       [self setValue:busStops forKey:NSStringFromSelector(@selector(busStops))];
                       self.lastStopFetchDate = [NSDate date];

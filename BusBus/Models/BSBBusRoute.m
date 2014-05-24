@@ -21,7 +21,8 @@
     OHMSetMapping(self, @{@"direction_id" : NSStringFromSelector(@selector(directionID)),
                           @"direction_name" : NSStringFromSelector(@selector(directionName)),
                           @"stop" : NSStringFromSelector(@selector(stops)),
-    });
+                          @"stop_ids" : NSStringFromSelector(@selector(stopIDs))
+                          });
     OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(stops)) : [BSBBusStop class]});
 }
 

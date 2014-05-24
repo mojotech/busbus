@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSString *stopName;
 @property (nonatomic, copy) NSString *stopID;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, strong) NSArray *routes;
 
 @end
