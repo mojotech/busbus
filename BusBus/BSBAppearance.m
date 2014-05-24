@@ -8,7 +8,46 @@
 
 #import "BSBBus.h"
 
+static NSMutableDictionary *motionEffectDictionary;
+
 @implementation BSBAppearance
+
++ (UIMotionEffect *)motionEffectForDepth:(NSInteger)depth
+{
+    if (motionEffectDictionary == nil) {
+        motionEffectDictionary = [NSMutableDictionary dictionary];
+    }
+    
+    UIMotionEffect *cachedEffect = motionEffectDictionary[@(depth)];
+    
+    if (cachedEffect != nil) {
+        return cachedEffect;
+    }
+    
+    // Set vertical effect
+    UIInterpolatingMotionEffect *verticalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc]
+     initWithKeyPath:@"center.y"
+     type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalMotionEffect.minimumRelativeValue = @(-depth);
+    verticalMotionEffect.maximumRelativeValue = @(depth);
+    
+    // Set horizontal effect
+    UIInterpolatingMotionEffect *horizontalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc]
+     initWithKeyPath:@"center.x"
+     type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalMotionEffect.minimumRelativeValue = @(-depth);
+    horizontalMotionEffect.maximumRelativeValue = @(depth);
+    
+    // Create group to combine both
+    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+    
+    motionEffectDictionary[@(depth)] = group;
+    
+    return group;
+}
 
 + (void)styleNavigationBar:(UINavigationBar *)navigationBar
 {

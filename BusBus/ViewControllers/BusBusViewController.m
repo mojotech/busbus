@@ -20,6 +20,8 @@
 #import <OHMKit/ObjectMapping.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+const CGFloat BSBMapParalaxDepth = 30;
+
 @interface BusBusViewController ()<BSBBusCollectionDelegate, MKMapViewDelegate>
 
 @property (nonatomic, strong) MKMapView *mapView;
@@ -57,9 +59,10 @@
 
     self.navigationItem.title = @"BusBus";
     [BSBAppearance styleNavigationBar:self.navigationController.navigationBar];
-
+    
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.mapView];
+    [self.mapView addMotionEffect:[BSBAppearance motionEffectForDepth:30]];
 
     self.pageView = [[UIView alloc] initWithFrame:CGRectNull];
     [self.view addSubview:self.pageView];
@@ -74,7 +77,7 @@
     }];
 
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(superview);
+        make.edges.equalTo(superview).with.insets(UIEdgeInsetsMake(-BSBMapParalaxDepth, -BSBMapParalaxDepth, -BSBMapParalaxDepth, -BSBMapParalaxDepth));
     }];
 
     [RACObserve([BSBBusService sharedManager], buses) subscribeNext:^(NSArray *buses) {

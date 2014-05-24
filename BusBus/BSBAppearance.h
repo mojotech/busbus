@@ -12,6 +12,8 @@
 
 @interface BSBAppearance : NSObject
 
++ (UIMotionEffect *)motionEffectForDepth:(NSInteger)depth;
+
 + (void)styleNavigationBar:(UINavigationBar *)navigationBar;
 
 + (UIColor *)tintColor;
