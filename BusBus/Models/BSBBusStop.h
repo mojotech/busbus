@@ -13,7 +13,7 @@
 @interface BSBBusStop : NSObject<MKAnnotation>
 
 @property (nonatomic, copy) NSString *stopName;
-@property (nonatomic, copy) NSNumber *stopID;
+@property (nonatomic, copy) NSString *stopID;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @end

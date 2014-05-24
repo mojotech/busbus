@@ -11,9 +11,14 @@
 typedef NS_ENUM(NSUInteger, BSBServiceEntity) {
     BSBServiceEntityBus,
     BSBServiceEntityBusStop,
+    BSBServiceEntityAlerts,
 };
 
 @interface BSBClient : NSObject
+
+- (void)fetchEntity:(BSBServiceEntity)entity
+         completion:(void (^)(NSArray *))completion
+            failure:(void (^)(NSError *))failure;
 
 - (void)fetchEntity:(BSBServiceEntity)entity
        nearLocation:(CLLocationCoordinate2D)coordinate

@@ -11,6 +11,7 @@
 static NSString *const BSBServiceHost = @"10.0.1.9:8000";//@"transit.nodejitsu.com";
 static NSString *const BSBServiceBusFeedPath = @"/api/feed/near";
 static NSString *const BSBServiceStopPath = @"/api/near-stops";
+static NSString *const BSBServiceAlertsPath = @"/api/alerts";
 
 @interface BSBClient ()
 @property (nonatomic, strong) NSURLSession *session;
@@ -54,11 +55,12 @@ static NSString *const BSBServiceStopPath = @"/api/near-stops";
                                                      
                                                      NSString *s = [[NSString alloc] initWithData:data
                                                                                          encoding:NSUTF8StringEncoding];
-
+                                                     
                                                      id JSONResults = [NSJSONSerialization JSONObjectWithData:data
                                                                                                       options:kNilOptions
                                                                                                         error:&error];
                                                      if (safeFail(error)) {
+                                                         NSLog(@"request: %@", url);
                                                          NSLog(@"Error in response :: %@", s);
                                                          return;
                                                      }
@@ -74,9 +76,21 @@ static NSString *const BSBServiceStopPath = @"/api/near-stops";
 {
     static NSDictionary *entityPathMap;
     entityPathMap = @{@(BSBServiceEntityBus) : BSBServiceBusFeedPath,
-                      @(BSBServiceEntityBusStop) : BSBServiceStopPath
+                      @(BSBServiceEntityBusStop) : BSBServiceStopPath,
+                      @(BSBServiceEntityAlerts) : BSBServiceAlertsPath,
     };
     return entityPathMap[@(entity)];
+}
+
+- (void)fetchEntity:(BSBServiceEntity)entity
+         completion:(void (^)(NSArray *))completion
+            failure:(void (^)(NSError *))failure
+{
+    [self fetchEntity:entity
+         nearLocation:kCLLocationCoordinate2DInvalid
+               radius:0
+           completion:completion
+              failure:failure];
 }
 
 - (void)fetchEntity:(BSBServiceEntity)entity

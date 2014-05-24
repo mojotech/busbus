@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) NSDate *lastBusFetchDate;
 @property (nonatomic, strong) NSDate *lastStopFetchDate;
+@property (nonatomic, strong) NSDate *lastAlertFetchDate;
 
 @end
 
@@ -50,6 +51,7 @@
 
         _sharedManager->_lastBusFetchDate = [NSDate distantPast];
         _sharedManager->_lastStopFetchDate = [NSDate distantPast];
+        _sharedManager->_lastAlertFetchDate = [NSDate distantPast];
         
         [_sharedManager->_locationManager startUpdatingLocation];
     });
@@ -66,6 +68,7 @@
         self.currentLocation = location;
         [self updateCurrentBusLocations];
         [self updateBusStops];
+//        [self updateServiceAlerts];
     }
 }
 
@@ -92,10 +95,23 @@
     
     [self.client fetchEntity:BSBServiceEntityBusStop
                 nearLocation:self.currentLocation.coordinate
-                      radius:1000
+                      radius:100
                   completion:^(NSArray *busStops) {
                       [self setValue:busStops forKey:NSStringFromSelector(@selector(busStops))];
                       self.lastStopFetchDate = [NSDate date];
+                  } failure:nil];
+}
+
+- (void)updateServiceAlerts
+{
+    if ([self.lastAlertFetchDate timeIntervalSinceNow] > -3600) {
+        return;
+    }
+    
+    [self.client fetchEntity:BSBServiceEntityAlerts
+                  completion:^(NSArray *alerts) {
+                      NSLog(@"Alerts: %@", alerts);
+                      self.lastAlertFetchDate = [NSDate date];
                   } failure:nil];
 }
 
