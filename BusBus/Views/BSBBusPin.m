@@ -15,7 +15,6 @@
 @property (nonatomic, strong) CALayer *circleLayer;
 @end
 
-static CGFloat kBSBBusPinUnselectedRadius = 7;
 static CGFloat kBSBBusPinSelectedRadius = 15;
 
 @implementation BSBBusPin
@@ -27,11 +26,11 @@ static CGFloat kBSBBusPinSelectedRadius = 15;
         return nil;
     }
 
-    self.frame = CGRectMake(0, 0, 30, 30);
+    self.frame = CGRectMake(0, 0, kBSBBusPinSelectedRadius*2, kBSBBusPinSelectedRadius*2);
     
     _circleLayer = [CALayer layer];
     _circleLayer.bounds = self.bounds;
-    _circleLayer.position = CGPointMake(15, 15);
+    _circleLayer.position = CGPointMake(kBSBBusPinSelectedRadius, kBSBBusPinSelectedRadius);
     _circleLayer.cornerRadius = 15.;
     _circleLayer.shadowColor = [UIColor blackColor].CGColor;
     _circleLayer.shadowRadius = 1.;
