@@ -14,7 +14,7 @@
 + (void)load
 {
     OHMMappable(self);
-    OHMSetMapping(self, @{@"trip_update" : NSStringFromSelector(@selector(tripUpdate))});
+    OHMSetMapping(self, @{@"trip_update" : ohm_key(tripUpdate)});
 }
 
 @end

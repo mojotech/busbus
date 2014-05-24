@@ -21,11 +21,11 @@
 + (void)load
 {
     OHMMappable(self);
-    OHMSetMapping(self, @{@"stop_name" : NSStringFromSelector(@selector(stopName)),
-                          @"stop_id" : NSStringFromSelector(@selector(stopID)),
-                          @"stop_lng" : NSStringFromSelector(@selector(stop_lon)),
+    OHMSetMapping(self, @{@"stop_name" : ohm_key(stopName),
+                          @"stop_id" : ohm_key(stopID),
+                          @"stop_lng" : ohm_key(stop_lon),
     });
-    OHMSetArrayClasses(self, @{NSStringFromSelector(@selector(routes)) : [BSBBusRoute class]});
+    OHMSetArrayClasses(self, @{ohm_key(routes) : [BSBBusRoute class]});
 }
 
 - (CLLocationCoordinate2D)coordinate

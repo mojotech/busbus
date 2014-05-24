@@ -15,8 +15,8 @@
 + (void)load
 {
     OHMMappable(self);
-    OHMSetMapping(self, @{@"stop_sequence" : NSStringFromSelector(@selector(stopSequence)),
-                          @"id" : NSStringFromSelector(@selector(busID))});
+    OHMSetMapping(self, @{@"stop_sequence" : ohm_key(stopSequence),
+                          @"id" : ohm_key(busID)});
 }
 
 - (NSString *)nextStopName

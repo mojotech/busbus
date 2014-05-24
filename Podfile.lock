@@ -14,8 +14,8 @@ PODS:
   - BlocksKit/UIKit (2.2.3):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Masonry (0.5.0)
-  - OHMKit (0.1.0)
+  - Masonry (0.5.1)
+  - OHMKit (HEAD based on 0.1.0)
   - ReactiveCocoa (2.3):
     - ReactiveCocoa/UI
   - ReactiveCocoa/Core (2.3):
@@ -27,12 +27,12 @@ PODS:
 DEPENDENCIES:
   - BlocksKit
   - Masonry
-  - OHMKit
+  - OHMKit (HEAD)
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
   BlocksKit: 07c8a80f04275efac6a5f8b973782489c083a182
-  Masonry: eb26a0073a2c4b0df533c39fd623fb11d79a1bd9
+  Masonry: 1583542eb69878299bc8a400f28caea96f14a9a3
   OHMKit: b70ab16add2eb78ffe138b7418d00ad2754f1719
   ReactiveCocoa: 2066583826c17dde8e90c41e489f682048cc57c9
 

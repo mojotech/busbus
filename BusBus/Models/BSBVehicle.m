@@ -19,7 +19,7 @@
 + (void)load
 {
     OHMMappable(self);
-    OHMSetMapping(self, @{@"route_id" : NSStringFromSelector(@selector(routeID))});
+    OHMSetMapping(self, @{@"route_id" : ohm_key(routeID)});
 }
 @end
 
@@ -39,7 +39,7 @@
         coordinate.longitude = [position[@"longitude"] doubleValue];
         return [NSValue valueWithBytes:&coordinate objCType:@encode(CLLocationCoordinate2D)];
     };
-    OHMSetAdapter(self, @{NSStringFromSelector(@selector(position)) : coordinateAdapter});
+    OHMSetAdapter(self, @{ohm_key(position) : coordinateAdapter});
 }
 
 - (NSString *)routeID

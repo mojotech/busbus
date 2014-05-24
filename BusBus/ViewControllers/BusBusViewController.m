@@ -17,6 +17,7 @@
 
 #import <MapKit/MapKit.h>
 #import <Masonry/Masonry.h>
+#import <OHMKit/ObjectMapping.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BusBusViewController ()<BSBBusCollectionDelegate, MKMapViewDelegate>
@@ -87,7 +88,7 @@
 
     [[RACObserve([BSBBusService sharedManager], busStops) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         [self.mapView removeAnnotations:self.busStops];
-        [self setValue:x forKeyPath:NSStringFromSelector(@selector(busStops))];
+        [self setValue:x forKeyPath:ohm_key(busStops)];
         [self.mapView addAnnotations:self.busStops];
     }];
 
