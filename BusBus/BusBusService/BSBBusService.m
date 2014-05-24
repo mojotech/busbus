@@ -60,6 +60,15 @@
     return self;
 }
 
+- (void)setMockLocation:(CLLocation *)mockLocation
+{
+    self.lastBusFetchDate = [NSDate distantPast];
+    self.lastStopFetchDate = [NSDate distantPast];
+    self.lastAlertFetchDate = [NSDate distantPast];
+    [self updateBusStops];
+    [self updateCurrentBusLocations];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *location = self.mockLocation ?: [locations lastObject];
